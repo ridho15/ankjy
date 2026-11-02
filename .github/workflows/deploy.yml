@@ -1,0 +1,72 @@
+name: CI & Auto Deploy to Portainer
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+jobs:
+  test-and-verify:
+    name: Run Tests & Build Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Run Test Suite
+        run: npm test
+
+      - name: Build Next.js Application
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+          NODE_ENV: production
+
+  deploy-to-portainer:
+    name: Trigger Portainer Auto-Deploy Webhook
+    needs: test-and-verify
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Call Portainer Webhook
+        env:
+          PORTAINER_WEBHOOK_URL: ${{ secrets.PORTAINER_WEBHOOK_URL }}
+        run: |
+          if [ -z "$PORTAINER_WEBHOOK_URL" ]; then
+            echo "::error::Secret PORTAINER_WEBHOOK_URL belum disetel di GitHub Repository Secrets!"
+            echo "Silakan buka GitHub Repository -> Settings -> Secrets and variables -> Actions, lalu tambahkan Secret dengan nama PORTAINER_WEBHOOK_URL berisi URL Webhook dari Portainer."
+            exit 1
+          fi
+
+          echo "🚀 Menghubungi Webhook Portainer untuk trigger auto-redeploy..."
+          HTTP_STATUS=$(curl -s -o response.txt -w "%{http_code}" -X POST "$PORTAINER_WEBHOOK_URL")
+
+          echo "Response HTTP Status: $HTTP_STATUS"
+          echo "Response Body:"
+          cat response.txt
+
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo ""
+            echo "✅ Berhasil memicu Portainer! Stack sedang di-pull dan di-deploy otomatis oleh Portainer."
+          else
+            echo ""
+            echo "::error::Webhook Portainer mengembalikan error dengan status HTTP $HTTP_STATUS"
+            exit 1
+          fi

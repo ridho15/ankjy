@@ -41,4 +41,15 @@ describe("Docker Stack & Portainer.io Configuration", () => {
     const nextConfig = fs.readFileSync(path.join(root, "next.config.mjs"), "utf8");
     expect(nextConfig).toContain("standalone");
   });
+
+  it("has GitHub Actions workflow configured for automated testing, build, and Portainer auto-deploy", () => {
+    const workflowPath = path.join(root, ".github", "workflows", "deploy.yml");
+    expect(fs.existsSync(workflowPath)).toBe(true);
+    const workflow = fs.readFileSync(workflowPath, "utf8");
+    expect(workflow).toContain("branches:\n      - main");
+    expect(workflow).toContain("npm test");
+    expect(workflow).toContain("npm run build");
+    expect(workflow).toContain("PORTAINER_WEBHOOK_URL");
+    expect(workflow).toContain("deploy-to-portainer");
+  });
 });
