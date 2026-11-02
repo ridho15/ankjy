@@ -18,7 +18,9 @@ const requiredModels = {
   RekeningAccountBookkeepingType: "rekeningAccountBookkeepingType",
   WhatsAppRecipient: "whatsAppRecipient",
   WhatsAppMessageLog: "whatsAppMessageLog",
-  StockAlertLog: "stockAlertLog"
+  StockAlertLog: "stockAlertLog",
+  Product: "product",
+  WarehouseStock: "warehouseStock"
 };
 
 async function main() {

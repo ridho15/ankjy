@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeAll, afterAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
 
@@ -22,6 +22,13 @@ const items = [{
 }];
 
 describe("ERP stock releases", () => {
+  beforeAll(() => {
+    process.env.INVENTORY_SOURCE = "erp";
+  });
+
+  afterAll(() => {
+    delete process.env.INVENTORY_SOURCE;
+  });
   beforeEach(() => {
     vi.clearAllMocks();
   });

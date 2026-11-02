@@ -1237,3 +1237,65 @@ model EmployeeSavingsTransaction {
   @@index([savingsAccountId])
   @@index([transactionDate])
 }
+
+model Product {
+  id               String           @id @default(cuid())
+  code             String           @unique
+  name             String
+  category         String           @default("Umum")
+  unit             String           @default("PCS")
+  sellingPrice     Decimal          @default(0) @db.Decimal(18, 2)
+  costPrice        Decimal          @default(0) @db.Decimal(18, 2)
+  brand            String?
+  minimumStock     Decimal          @default(0) @db.Decimal(18, 2)
+  defaultWarehouse String           @default("Toko")
+  defaultRack      String?
+  isActive         Boolean          @default(true)
+  notes            String?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  stocks           WarehouseStock[]
+  movements        StockMovement[]
+
+  @@index([code])
+  @@index([name])
+  @@index([category])
+}
+
+model WarehouseStock {
+  id          String   @id @default(cuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  warehouse   String   @default("Toko")
+  rack        String   @default("")
+  quantity    Decimal  @default(0) @db.Decimal(18, 2)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([productId, warehouse, rack])
+  @@index([productId])
+  @@index([warehouse])
+}
+
+model StockMovement {
+  id                    String   @id @default(cuid())
+  productId             String
+  product               Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  warehouse             String   @default("Toko")
+  rack                  String   @default("")
+  type                  String
+  quantity              Decimal  @db.Decimal(18, 2)
+  balanceBefore         Decimal  @db.Decimal(18, 2)
+  balanceAfter          Decimal  @db.Decimal(18, 2)
+  referenceType         String?
+  referenceId           String?
+  notes                 String?
+  createdByUserId       String?
+  createdByNameSnapshot String?
+  createdAt             DateTime @default(now())
+
+  @@index([productId])
+  @@index([type])
+  @@index([createdAt])
+}

@@ -155,6 +155,7 @@ export async function saveRekeningAccounts(rows: RekeningAccount[]): Promise<voi
           name: row.name,
           accountNumber: row.accountNumber,
           bankName: row.bank,
+          accountId: "cmvo4cy7x0000kobzr5sn8swt",
           erpCoaId: row.erpCoaId,
           erpCoaNameSnapshot: row.erpCoaNameSnapshot,
           isActive: row.isActive ?? true,

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeAll, afterAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   anikaRequest: vi.fn()
@@ -14,6 +14,14 @@ import { createOfficialProduct, findProductIdBySku, listProducts, paginateProduc
 import { listStocks, listStocksPage } from "@/lib/api/stocks";
 
 describe("ERP product and stock source contract", () => {
+  beforeAll(() => {
+    process.env.INVENTORY_SOURCE = "erp";
+  });
+
+  afterAll(() => {
+    delete process.env.INVENTORY_SOURCE;
+  });
+
   beforeEach(() => {
     mocks.anikaRequest.mockReset();
   });

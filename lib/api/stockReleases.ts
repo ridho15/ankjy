@@ -2,6 +2,8 @@ import "server-only";
 import { anikaRequest } from "@/lib/api/anikaClient";
 import { failure, type ApiResponse } from "@/lib/types/api";
 import type { Sale } from "@/lib/types/sales";
+import { prisma } from "@/lib/db/prisma";
+import { Prisma } from "@prisma/client";
 
 export type StockReleaseResult = {
   status: "released" | "already_released";
@@ -10,6 +12,10 @@ export type StockReleaseResult = {
 };
 
 type ReleaseItemInput = Sale["items"][number];
+
+function isLocalInventoryMode(): boolean {
+  return process.env.INVENTORY_SOURCE !== "erp";
+}
 
 function numberId(value: unknown) {
   if (typeof value === "number" && Number.isInteger(value) && value > 0) return value;
@@ -118,6 +124,96 @@ export async function releaseSaleStock(input: {
 }): Promise<ApiResponse<StockReleaseResult & { releaseReference: string }>> {
   const built = buildStockReleasePayload(input);
   if (!built.success) return built;
+  const releaseReference = built.data.releaseReference;
+
+  if (isLocalInventoryMode()) {
+    try {
+      await prisma.$transaction(async (tx) => {
+        for (const item of input.items) {
+          const qty = Number(item.quantity) || 0;
+          if (qty <= 0) continue;
+
+          const productKey = (item.productId || item.productRef || "").trim();
+          if (!productKey) continue;
+
+          const warehouse = (item.warehouseNameSnapshot || "Toko").trim() || "Toko";
+          const rack = (item.rackNameSnapshot || "").trim();
+
+          let product = await tx.product.findFirst({
+            where: {
+              OR: [{ id: productKey }, { code: productKey }]
+            }
+          });
+
+          if (!product) {
+            const manual = item.manualProduct as Record<string, unknown> | undefined;
+            const name = String(manual?.name || item.productRef || productKey).trim();
+            product = await tx.product.create({
+              data: {
+                code: (item.productRef || productKey).trim(),
+                name,
+                category: "Umum",
+                unit: item.unitSnapshot || "PCS",
+                sellingPrice: new Prisma.Decimal(item.unitPrice || 0),
+                defaultWarehouse: warehouse,
+                defaultRack: rack || null,
+                isActive: true
+              }
+            });
+          }
+
+          const stock = await tx.warehouseStock.upsert({
+            where: {
+              productId_warehouse_rack: {
+                productId: product.id,
+                warehouse,
+                rack
+              }
+            },
+            create: {
+              productId: product.id,
+              warehouse,
+              rack,
+              quantity: new Prisma.Decimal(-qty)
+            },
+            update: {
+              quantity: { decrement: new Prisma.Decimal(qty) }
+            }
+          });
+
+          const balanceAfter = Number(stock.quantity);
+          const balanceBefore = balanceAfter + qty;
+
+          await tx.stockMovement.create({
+            data: {
+              productId: product.id,
+              warehouse,
+              rack,
+              type: "OUT_SALE",
+              quantity: new Prisma.Decimal(qty),
+              balanceBefore: new Prisma.Decimal(balanceBefore),
+              balanceAfter: new Prisma.Decimal(balanceAfter),
+              referenceType: "SALE",
+              referenceId: input.sourceNumber || input.erpReference || input.saleId,
+              notes: `Pengurangan stok transaksi penjualan ${input.sourceNumber || input.saleId}`
+            }
+          });
+        }
+      });
+
+      return {
+        success: true,
+        data: {
+          status: "released",
+          releaseReference,
+          message: "Stok lokal berhasil dikurangi."
+        }
+      };
+    } catch (err: any) {
+      return failure(`Gagal memotong stok lokal: ${err?.message}`, "LOCAL_STOCK_RELEASE_FAILED");
+    }
+  }
+
   const response = await anikaRequest<StockReleaseResult>("/stock-releases", {
     method: "POST",
     body: JSON.stringify(built.data.payload)
@@ -134,6 +230,69 @@ export async function cancelStockRelease(input: {
   reference: string;
   reason: string;
 }): Promise<ApiResponse<{ status: "reversed"; message?: string }>> {
+  if (isLocalInventoryMode()) {
+    try {
+      await prisma.$transaction(async (tx) => {
+        const movements = await tx.stockMovement.findMany({
+          where: {
+            referenceId: input.reference,
+            type: "OUT_SALE"
+          }
+        });
+
+        for (const mov of movements) {
+          const qty = Number(mov.quantity);
+          const stock = await tx.warehouseStock.upsert({
+            where: {
+              productId_warehouse_rack: {
+                productId: mov.productId,
+                warehouse: mov.warehouse,
+                rack: mov.rack
+              }
+            },
+            create: {
+              productId: mov.productId,
+              warehouse: mov.warehouse,
+              rack: mov.rack,
+              quantity: new Prisma.Decimal(qty)
+            },
+            update: {
+              quantity: { increment: new Prisma.Decimal(qty) }
+            }
+          });
+
+          const balanceAfter = Number(stock.quantity);
+          const balanceBefore = balanceAfter - qty;
+
+          await tx.stockMovement.create({
+            data: {
+              productId: mov.productId,
+              warehouse: mov.warehouse,
+              rack: mov.rack,
+              type: "REVERSAL_IN",
+              quantity: new Prisma.Decimal(qty),
+              balanceBefore: new Prisma.Decimal(balanceBefore),
+              balanceAfter: new Prisma.Decimal(balanceAfter),
+              referenceType: "SALE_CANCEL",
+              referenceId: input.reference,
+              notes: `Pembatalan/revisi stok penjualan: ${input.reason}`
+            }
+          });
+        }
+      });
+
+      return {
+        success: true,
+        data: {
+          status: "reversed",
+          message: "Stok lokal berhasil dikembalikan."
+        }
+      };
+    } catch (err: any) {
+      return failure(`Gagal membatalkan rilis stok lokal: ${err?.message}`, "LOCAL_STOCK_REVERSAL_FAILED");
+    }
+  }
+
   const response = await anikaRequest<{ status?: string; message?: string }>("/stock-releases/cancel", {
     method: "POST",
     body: JSON.stringify({

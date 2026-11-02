@@ -7,7 +7,8 @@ import {
   listTempoReceivablesPage,
   listTempoTipeOptions,
   getTempoMetricsSummary,
-  type TempoReceivableFilters
+  type TempoReceivableFilters,
+  buildTempoWhatsAppUrl
 } from "@/lib/tempo/store";
 import { Input } from "@/components/ui/Input";
 import { ResponsiveFilterPanel } from "@/components/ui/ResponsiveFilterPanel";
@@ -269,13 +270,46 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
                   <Link href={`/tempo/${row.id}`} className="flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2 text-center text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">Detail</Link>
                 )}
                 <Link href={`/print/tempo/${row.id}`} className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-center text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">Cetak</Link>
+                {!["paid", "cancelled", "written_off"].includes(row.status) && (
+                  <a
+                    href={buildTempoWhatsAppUrl({
+                      phone: row.customerPhone,
+                      customerName: row.customerName,
+                      referenceNo: row.transactionNumber || row.id,
+                      remainingAmount: row.remainingAmount,
+                      dueDate: new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(row.dueDate))
+                    })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-lg border border-emerald-500 bg-emerald-50 px-3 py-2 text-center text-sm font-bold text-emerald-800 hover:bg-emerald-100 transition-colors"
+                  >
+                    WA Tagihan
+                  </a>
+                )}
               </div>
             </article>
           ))}
           {paged.length === 0 && <p className="py-8 text-center text-sm text-slate-500">Tidak ada Tempo sesuai filter.</p>}
         </div>
         <div className="hidden overflow-x-auto md:block">
-          <table className="min-w-full text-left text-sm"><thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500"><tr><th className="px-5 py-3">Customer</th><th className="px-5 py-3">Tipe</th><th className="px-5 py-3">Original</th><th className="px-5 py-3">Paid</th><th className="px-5 py-3">Remaining</th><th className="px-5 py-3">Jatuh Tempo</th><th className="px-5 py-3">Status</th><th className="px-5 py-3">Action</th></tr></thead><tbody>{paged.map((row) => <tr key={row.id} className="border-b border-slate-100 hover:bg-slate-50/70 transition-colors"><td className="px-5 py-4"><b>{row.customerName}</b><p className="mt-0.5 font-mono text-xs text-slate-500">{row.id}</p></td><td className="px-5 py-4"><span className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">{row.tipeCodeSnapshot}</span></td><td className="px-5 py-4 font-medium">{rupiah(row.originalAmount)}</td><td className="px-5 py-4 font-medium text-emerald-700">{rupiah(row.paidAmount)}</td><td className="px-5 py-4 font-bold text-slate-900">{rupiah(row.remainingAmount)}</td><td className="px-5 py-4 text-slate-600">{new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(row.dueDate))}</td><td className="px-5 py-4"><span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusBadgeClass(row.status)}`}>{row.status}</span></td><td className="px-5 py-4"><div className="flex items-center gap-2">{!["paid", "cancelled", "written_off"].includes(row.status) ? (<Link href={`/tempo/${row.id}`} className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-700 transition-colors">Bayar</Link>) : (<Link href={`/tempo/${row.id}`} className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors">Detail</Link>)}<Link href={`/print/tempo/${row.id}`} className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors">Cetak</Link></div></td></tr>)}{paged.length === 0 && <tr><td colSpan={8} className="px-5 py-10 text-center text-slate-500">Tidak ada Tempo sesuai filter.</td></tr>}</tbody></table>
+          <table className="min-w-full text-left text-sm"><thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500"><tr><th className="px-5 py-3">Customer</th><th className="px-5 py-3">Tipe</th><th className="px-5 py-3">Original</th><th className="px-5 py-3">Paid</th><th className="px-5 py-3">Remaining</th><th className="px-5 py-3">Jatuh Tempo</th><th className="px-5 py-3">Status</th><th className="px-5 py-3">Action</th></tr></thead><tbody>{paged.map((row) => <tr key={row.id} className="border-b border-slate-100 hover:bg-slate-50/70 transition-colors"><td className="px-5 py-4"><b>{row.customerName}</b><p className="mt-0.5 font-mono text-xs text-slate-500">{row.id}</p></td><td className="px-5 py-4"><span className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">{row.tipeCodeSnapshot}</span></td><td className="px-5 py-4 font-medium">{rupiah(row.originalAmount)}</td><td className="px-5 py-4 font-medium text-emerald-700">{rupiah(row.paidAmount)}</td><td className="px-5 py-4 font-bold text-slate-900">{rupiah(row.remainingAmount)}</td><td className="px-5 py-4 text-slate-600">{new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(row.dueDate))}</td><td className="px-5 py-4"><span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusBadgeClass(row.status)}`}>{row.status}</span></td><td className="px-5 py-4"><div className="flex items-center gap-2">{!["paid", "cancelled", "written_off"].includes(row.status) ? (<Link href={`/tempo/${row.id}`} className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-700 transition-colors">Bayar</Link>) : (<Link href={`/tempo/${row.id}`} className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors">Detail</Link>)}<Link href={`/print/tempo/${row.id}`} className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors">Cetak</Link>
+                      {!["paid", "cancelled", "written_off"].includes(row.status) && (
+                        <a
+                          href={buildTempoWhatsAppUrl({
+                            phone: row.customerPhone,
+                            customerName: row.customerName,
+                            referenceNo: row.transactionNumber || row.id,
+                            remainingAmount: row.remainingAmount,
+                            dueDate: new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(row.dueDate))
+                          })}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center rounded-lg border border-emerald-500 bg-emerald-50 px-2.5 py-1.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition-colors shadow-xs"
+                          title="Kirim Penagihan via WhatsApp"
+                        >
+                          WA
+                        </a>
+                      )}</div></td></tr>)}{paged.length === 0 && <tr><td colSpan={8} className="px-5 py-10 text-center text-slate-500">Tidak ada Tempo sesuai filter.</td></tr>}</tbody></table>
         </div>
         <div className="flex items-center justify-between border-t border-slate-200 px-5 py-4 text-sm"><span className="text-slate-500">Halaman {page} dari {totalPages}</span><div className="flex gap-2">{page > 1 && <Link className="rounded-lg border border-slate-300 px-3 py-1.5 font-bold text-slate-700 hover:bg-slate-50" href={pageHref(params, page - 1)}>Sebelumnya</Link>}{page < totalPages && <Link className="rounded-lg border border-slate-300 px-3 py-1.5 font-bold text-slate-700 hover:bg-slate-50" href={pageHref(params, page + 1)}>Berikutnya</Link>}</div></div>
       </section>

@@ -77,6 +77,7 @@ const saleInput = {
 describe("production Prisma transactions", () => {
   beforeEach(() => {
     vi.stubEnv("NEXT_PUBLIC_APP_MODE", "production");
+    vi.stubEnv("INVENTORY_SOURCE", "erp");
     vi.stubEnv("SALES_ERP_TYPE_CODES", "AJ");
     vi.stubEnv("ANIKA_ERP_AUTO_CREATE_CUSTOMER", "false");
     vi.stubEnv("ANIKA_ERP_DEFAULT_PRODUCT_COST_PRICE", "");

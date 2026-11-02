@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { AppShell } from "@/components/layout/AppShell";
 import { can } from "@/lib/auth/roles";
 import { getCurrentRole } from "@/lib/auth/session";
-import { getTempoReceivable, listTempoPaymentReversals, listTempoPayments } from "@/lib/tempo/store";
+import { getTempoReceivable, listTempoPaymentReversals, listTempoPayments, buildTempoWhatsAppUrl } from "@/lib/tempo/store";
 import { getSalesRecord } from "@/lib/sales/store";
 import { listRekeningAccounts } from "@/lib/business/masterData";
 import { TempoPayForm } from "@/components/tempo/TempoPayForm";
@@ -85,10 +85,26 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
           )}
           <Link
             href={`/print/tempo/${tempo.id}`}
-            className="inline-flex items-center rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-bold text-emerald-800 hover:bg-emerald-100 transition-colors shadow-sm"
+            className="inline-flex items-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
           >
             Cetak Nota
           </Link>
+          {!isPaid && (
+            <a
+              href={buildTempoWhatsAppUrl({
+                phone: sale?.customerPhone,
+                customerName: tempo.customerName,
+                referenceNo: sale?.transactionNumber || tempo.id,
+                remainingAmount: tempo.remainingAmount,
+                dueDate: new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(tempo.dueDate))
+              })}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-600 bg-emerald-600 px-4 py-2 text-sm font-bold text-white hover:bg-emerald-700 transition-colors shadow-sm"
+            >
+              Kirim Tagihan WA
+            </a>
+          )}
         </div>
       </div>
 

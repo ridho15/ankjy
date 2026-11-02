@@ -298,7 +298,7 @@ describe("Fase 3: Pembelian Valas, Landed Cost, & Multi-Currency Rekening", { ti
     let invoiceId: string;
 
     it("membuat supplier luar negeri dengan mata uang USD", async () => {
-      const uniqueCode = `SUPP-USD-${Date.now().toString().slice(-4)}`;
+      const uniqueCode = `SUPP-USD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
       const supplier = await createSupplier(
         {
           code: uniqueCode,

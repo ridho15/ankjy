@@ -1,8 +1,14 @@
 import { anikaRequest } from "@/lib/api/anikaClient";
 import { recordAudit } from "@/lib/audit/store";
 import { getCurrentUser } from "@/lib/auth/session";
+import { prisma } from "@/lib/db/prisma";
+import { Prisma } from "@prisma/client";
 import type { ApiResponse } from "@/lib/types/api";
 import type { StockAdjustmentInput } from "@/lib/validation/stockAdjustmentSchema";
+
+function isLocalInventoryMode(): boolean {
+  return process.env.INVENTORY_SOURCE !== "erp";
+}
 
 function toErpPayload(input: StockAdjustmentInput) {
   return {
@@ -30,6 +36,112 @@ function toErpPayload(input: StockAdjustmentInput) {
 
 export async function createStockAdjustment(input: StockAdjustmentInput): Promise<ApiResponse<unknown>> {
   const user = await getCurrentUser();
+
+  if (isLocalInventoryMode()) {
+    try {
+      const warehouse = input.warehouseId === 1 ? "Toko" : input.warehouseId === 2 ? "Gudang Utama" : `Gudang ${input.warehouseId}`;
+      const adjRef = input.adjustmentNumber || `ADJ-${Date.now()}`;
+
+      await prisma.$transaction(async (tx) => {
+        for (const item of input.items) {
+          const diff = Number(item.differenceQty) || 0;
+          if (diff === 0) continue;
+
+          const productKey = String(item.productId).trim();
+          let product = await tx.product.findFirst({
+            where: {
+              OR: [{ id: productKey }, { code: productKey }]
+            }
+          });
+
+          if (!product) {
+            product = await tx.product.create({
+              data: {
+                code: productKey,
+                name: `Produk ${productKey}`,
+                category: "Umum",
+                unit: "PCS",
+                sellingPrice: new Prisma.Decimal(item.unitCost || 0),
+                defaultWarehouse: warehouse,
+                isActive: true
+              }
+            });
+          }
+
+          const rack = item.rakId ? `Rak ${item.rakId}` : "";
+
+          const stock = await tx.warehouseStock.upsert({
+            where: {
+              productId_warehouse_rack: {
+                productId: product.id,
+                warehouse,
+                rack
+              }
+            },
+            create: {
+              productId: product.id,
+              warehouse,
+              rack,
+              quantity: new Prisma.Decimal(diff)
+            },
+            update: {
+              quantity: { increment: new Prisma.Decimal(diff) }
+            }
+          });
+
+          const balanceAfter = Number(stock.quantity);
+          const balanceBefore = balanceAfter - diff;
+
+          await tx.stockMovement.create({
+            data: {
+              productId: product.id,
+              warehouse,
+              rack,
+              type: "ADJUSTMENT",
+              quantity: new Prisma.Decimal(Math.abs(diff)),
+              balanceBefore: new Prisma.Decimal(balanceBefore),
+              balanceAfter: new Prisma.Decimal(balanceAfter),
+              referenceType: "ADJUSTMENT",
+              referenceId: adjRef,
+              notes: item.notes || input.reason || input.notes || "Penyesuaian stok opname",
+              createdByUserId: user?.id,
+              createdByNameSnapshot: user?.name
+            }
+          });
+        }
+      });
+
+      await recordAudit({
+        entityType: "stock",
+        entityId: adjRef,
+        action: "update",
+        afterValue: {
+          warehouseId: input.warehouseId,
+          adjustmentType: input.adjustmentType,
+          approveNow: input.approveNow,
+          itemCount: input.items.length,
+          success: true
+        },
+        reason: `Stock adjustment lokal oleh ${user?.name || "Sistem"}`
+      });
+
+      return {
+        success: true,
+        data: {
+          adjustmentNumber: adjRef,
+          warehouse,
+          itemsCount: input.items.length
+        }
+      };
+    } catch (err: any) {
+      return {
+        success: false,
+        code: "LOCAL_STOCK_ADJUSTMENT_FAILED",
+        message: `Gagal melakukan penyesuaian stok lokal: ${err?.message || "Kesalahan server"}`
+      };
+    }
+  }
+
   const payload = toErpPayload(input);
   const response = await anikaRequest<unknown>("/stock-adjustments", {
     method: "POST",

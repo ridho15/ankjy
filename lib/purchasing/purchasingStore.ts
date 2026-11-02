@@ -1,11 +1,11 @@
 import "server-only";
 import { prisma } from "@/lib/db/prisma";
+import { Prisma } from "@prisma/client";
 import type {
   PurchaseOrderStatus,
   PurchaseInvoiceStatus,
   LandedCostType,
-  LandedCostAllocationMethod,
-  Prisma
+  LandedCostAllocationMethod
 } from "@prisma/client";
 import type {
   SupplierInput,
@@ -157,10 +157,18 @@ export async function generatePoNumber(): Promise<string> {
     return `${prefix}0001`;
   }
 
-  const count = await prisma.purchaseOrder.count({
-    where: { poNumber: { startsWith: prefix } }
+  const latest = await prisma.purchaseOrder.findFirst({
+    where: { poNumber: { startsWith: prefix } },
+    orderBy: { poNumber: "desc" },
+    select: { poNumber: true }
   });
-  return `${prefix}${String(count + 1).padStart(4, "0")}`;
+  let nextSeq = 1;
+  if (latest?.poNumber) {
+    const parts = latest.poNumber.split("-");
+    const lastSeq = parseInt(parts[parts.length - 1], 10);
+    if (!isNaN(lastSeq)) nextSeq = lastSeq + 1;
+  }
+  return `${prefix}${String(nextSeq).padStart(4, "0")}`;
 }
 
 export async function listPurchaseOrders(params?: {
@@ -329,10 +337,18 @@ export async function generateGrnNumber(): Promise<string> {
     return `${prefix}0001`;
   }
 
-  const count = await prisma.purchaseReceipt.count({
-    where: { grnNumber: { startsWith: prefix } }
+  const latest = await prisma.purchaseReceipt.findFirst({
+    where: { grnNumber: { startsWith: prefix } },
+    orderBy: { grnNumber: "desc" },
+    select: { grnNumber: true }
   });
-  return `${prefix}${String(count + 1).padStart(4, "0")}`;
+  let nextSeq = 1;
+  if (latest?.grnNumber) {
+    const parts = latest.grnNumber.split("-");
+    const lastSeq = parseInt(parts[parts.length - 1], 10);
+    if (!isNaN(lastSeq)) nextSeq = lastSeq + 1;
+  }
+  return `${prefix}${String(nextSeq).padStart(4, "0")}`;
 }
 
 export async function createPurchaseReceipt(
@@ -383,6 +399,72 @@ export async function createPurchaseReceipt(
         receivedQuantity: { increment: item.quantityReceived }
       }
     });
+  }
+
+  // Update local WarehouseStock and record StockMovement (Tahap 3)
+  if (process.env.INVENTORY_SOURCE !== "erp") {
+    const warehouse = receipt.warehouseName || "Gudang Utama";
+    for (const it of receipt.items) {
+      const qty = Number(it.quantityReceived);
+      if (qty <= 0) continue;
+
+      let product = await prisma.product.findFirst({
+        where: { OR: [{ code: it.itemCode }, { id: it.itemCode }] }
+      });
+
+      if (!product) {
+        product = await prisma.product.create({
+          data: {
+            code: it.itemCode,
+            name: it.itemName,
+            category: "Umum",
+            unit: it.unit || "PCS",
+            defaultWarehouse: warehouse,
+            isActive: true
+          }
+        });
+      }
+
+      const rack = (product.defaultRack || "").trim();
+      const stock = await prisma.warehouseStock.upsert({
+        where: {
+          productId_warehouse_rack: {
+            productId: product.id,
+            warehouse,
+            rack
+          }
+        },
+        create: {
+          productId: product.id,
+          warehouse,
+          rack,
+          quantity: new Prisma.Decimal(qty)
+        },
+        update: {
+          quantity: { increment: new Prisma.Decimal(qty) }
+        }
+      });
+
+      const balanceAfter = Number(stock.quantity);
+      const balanceBefore = balanceAfter - qty;
+
+      await prisma.stockMovement.create({
+        data: {
+          productId: product.id,
+          warehouse,
+          rack,
+          type: "IN_PURCHASE",
+          quantity: new Prisma.Decimal(qty),
+          balanceBefore: new Prisma.Decimal(balanceBefore),
+          balanceAfter: new Prisma.Decimal(balanceAfter),
+          referenceType: "PURCHASE_RECEIPT",
+          referenceId: receipt.grnNumber,
+          notes: `Penerimaan barang dari PO ${po.poNumber}`,
+          createdByUserId: actor.id,
+          createdByNameSnapshot: actor.name
+        }
+      });
+    }
   }
 
   // Check PO status

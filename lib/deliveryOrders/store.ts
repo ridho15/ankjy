@@ -105,6 +105,9 @@ export async function syncDeliveryOrderForSale(saleId: string, customTx?: Prisma
       ? `DO-${sale.transactionNumber}`
       : `DO-${saleId.replace(/[^a-zA-Z0-9]/g, "").slice(-8).toUpperCase()}`;
 
+    const method = String(sale.shippingMethod || "").trim().toLowerCase();
+    const isWalkIn = method === "di tempat" || method === "ambil sendiri" || method === "pickup" || method === "di toko";
+
     const itemsToCreate = (sale.items || []).map((item) => {
       let productName = item.productRef;
       if (item.manualProduct) {
@@ -128,8 +131,9 @@ export async function syncDeliveryOrderForSale(saleId: string, customTx?: Prisma
         rackNameSnapshot: item.rackNameSnapshot || undefined,
         unitSnapshot: item.unitSnapshot || "Pcs",
         quantity: item.quantity,
-        isShipped: false,
-        shippedQuantity: 0
+        isShipped: isWalkIn,
+        shippedQuantity: isWalkIn ? item.quantity : 0,
+        shippedAt: isWalkIn ? new Date() : null
       };
     });
 
@@ -140,9 +144,11 @@ export async function syncDeliveryOrderForSale(saleId: string, customTx?: Prisma
         data: {
           doNumber,
           salesRecordId: sale.id,
-          status: "belum_selesai",
-          packingStatus: "belum",
-          shippingStatus: "belum",
+          status: isWalkIn ? "selesai" : "belum_selesai",
+          packingStatus: isWalkIn ? "sudah" : "belum",
+          shippingStatus: isWalkIn ? "sudah" : "belum",
+          packedAt: isWalkIn ? new Date() : null,
+          shippedAt: isWalkIn ? new Date() : null,
           items: {
             create: itemsToCreate
           }

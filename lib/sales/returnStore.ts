@@ -1,6 +1,6 @@
 import "server-only";
 import { prisma } from "@/lib/db/prisma";
-import type { SalesReturnStatus, SalesReturnRefundMethod } from "@prisma/client";
+import { Prisma, type SalesReturnStatus, type SalesReturnRefundMethod } from "@prisma/client";
 import type { SalesReturnInput } from "@/lib/validation/salesReturnSchema";
 import { postJournalEntry, type JournalLineInput } from "@/lib/accounting/journalStore";
 import { getAccountByCode, ensureStandardAccounts } from "@/lib/accounting/accountStore";
@@ -126,7 +126,7 @@ export async function postSalesReturn(returnId: string, actor: ReturnActor) {
   const returnRecord = await prisma.salesReturn.findUnique({
     where: { id: returnId },
     include: {
-      salesRecord: true,
+      salesRecord: { include: { items: true } },
       rekeningAccount: { include: { account: true } },
       items: true
     }
@@ -264,6 +264,80 @@ export async function postSalesReturn(returnId: string, actor: ReturnActor) {
       await applySalesReturnToTempo(returnRecord.salesRecordId, subtotalAmount, actor);
     } catch (tempoErr) {
       console.error("[postSalesReturn] Gagal apply potong piutang tempo:", tempoErr);
+    }
+  }
+
+  // Kembalikan stok fisik ke database lokal (Tahap 3 Decoupling)
+  if (process.env.INVENTORY_SOURCE !== "erp" && typeof prisma?.warehouseStock?.upsert === "function") {
+    for (const it of returnRecord.items) {
+      const qty = Number(it.quantity);
+      if (qty <= 0) continue;
+
+      const matchedSaleItem = (returnRecord.salesRecord as any)?.items?.find(
+        (si: any) => si.id === it.salesRecordItemId
+      );
+      const warehouse = (matchedSaleItem?.warehouseNameSnapshot || "Toko").trim() || "Toko";
+      const rack = (matchedSaleItem?.rackNameSnapshot || "").trim();
+
+      const productKey = (it.productRef || "").trim();
+      let product = await prisma.product.findFirst({
+        where: {
+          OR: [{ code: productKey }, { id: productKey }]
+        }
+      });
+
+      if (!product) {
+        product = await prisma.product.create({
+          data: {
+            code: productKey || `PROD-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+            name: it.productName || "Barang Retur",
+            category: "Umum",
+            unit: it.unit || "PCS",
+            defaultWarehouse: warehouse,
+            defaultRack: rack || null,
+            isActive: true
+          }
+        });
+      }
+
+      const stock = await prisma.warehouseStock.upsert({
+        where: {
+          productId_warehouse_rack: {
+            productId: product.id,
+            warehouse,
+            rack
+          }
+        },
+        create: {
+          productId: product.id,
+          warehouse,
+          rack,
+          quantity: new Prisma.Decimal(qty)
+        },
+        update: {
+          quantity: { increment: new Prisma.Decimal(qty) }
+        }
+      });
+
+      const balanceAfter = Number(stock.quantity);
+      const balanceBefore = balanceAfter - qty;
+
+      await prisma.stockMovement.create({
+        data: {
+          productId: product.id,
+          warehouse,
+          rack,
+          type: "RETURN_IN",
+          quantity: new Prisma.Decimal(qty),
+          balanceBefore: new Prisma.Decimal(balanceBefore),
+          balanceAfter: new Prisma.Decimal(balanceAfter),
+          referenceType: "SALES_RETURN",
+          referenceId: returnRecord.returnNumber || returnRecord.id,
+          notes: `Pengembalian fisik retur penjualan ${returnRecord.returnNumber}`,
+          createdByUserId: actor.id,
+          createdByNameSnapshot: actor.name
+        }
+      });
     }
   }
 

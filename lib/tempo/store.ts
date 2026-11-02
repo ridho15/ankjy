@@ -20,6 +20,8 @@ export type TempoReceivable = {
   tipeCodeSnapshot: string;
   tipeNameSnapshot: string;
   customerName: string;
+  customerPhone?: string;
+  transactionNumber?: string;
   originalAmount: number;
   paidAmount: number;
   remainingAmount: number;
@@ -675,6 +677,32 @@ export async function syncTempoReceivableOnSalesEdit(
   return { receivable: after, payment };
 }
 
+
+export function buildTempoWhatsAppUrl(params: {
+  phone?: string | null;
+  customerName?: string;
+  referenceNo: string;
+  remainingAmount: number;
+  dueDate: string;
+}): string {
+  const cleanPhone = (params.phone || "").replace(/[^0-9]/g, "");
+  let targetPhone = cleanPhone;
+  if (targetPhone.startsWith("0")) {
+    targetPhone = "62" + targetPhone.slice(1);
+  }
+  const rupiah = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(params.remainingAmount || 0);
+  const message = `Halo ${params.customerName || "Bapak/Ibu"},
+
+Kami dari Toko Aneka Jaya ingin mengonfirmasi tagihan piutang tempo Anda:
+• No. Tagihan / Sales: ${params.referenceNo}
+• Sisa Tagihan: ${rupiah}
+• Jatuh Tempo: ${params.dueDate}
+
+Mohon untuk dapat melakukan konfirmasi dan pelunasan. Terima kasih.`;
+  const encoded = encodeURIComponent(message);
+  return targetPhone ? `https://wa.me/${targetPhone}?text=${encoded}` : `https://wa.me/?text=${encoded}`;
+}
+
 export async function listTempoReceivables(): Promise<TempoReceivable[]> {
   if (isProductionMode()) {
     const rows = await prisma.tempoReceivable.findMany({ orderBy: { createdAt: "desc" } });
@@ -700,7 +728,27 @@ export async function listTempoReceivablesPage(input: { page?: number; pageSize?
         take: pageSize
       })
     ]);
-    return { data: rows.map(toTempoReceivable).map(applyOverdueStatus), meta: { page, pageSize, total, totalPages: Math.max(1, Math.ceil(total / pageSize)) } };
+    const baseData = rows.map(toTempoReceivable).map(applyOverdueStatus);
+    const salesIds = baseData.map((r) => r.salesId).filter(Boolean);
+    if (salesIds.length > 0 && typeof prisma?.salesRecord?.findMany === "function") {
+      try {
+        const sales = await prisma.salesRecord.findMany({
+          where: { id: { in: salesIds } },
+          select: { id: true, customerPhone: true, transactionNumber: true }
+        });
+        const salesMap = new Map(sales.map((s) => [s.id, s]));
+        for (const item of baseData) {
+          const s = salesMap.get(item.salesId);
+          if (s) {
+            item.customerPhone = s.customerPhone || undefined;
+            item.transactionNumber = s.transactionNumber || undefined;
+          }
+        }
+      } catch (err) {
+        // Safe fallback
+      }
+    }
+    return { data: baseData, meta: { page, pageSize, total, totalPages: Math.max(1, Math.ceil(total / pageSize)) } };
   }
   const filtered = filterTempoInMemory(await listTempoReceivables(), input.filters || {});
   const total = filtered.length;

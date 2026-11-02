@@ -69,6 +69,7 @@ const row = {
 describe("ERP sync retry service", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.stubEnv("INVENTORY_SOURCE", "erp");
     vi.stubEnv("ANIKA_ERP_AUTO_CREATE_CUSTOMER", "false");
     mocks.listErpPaginated.mockResolvedValue({ success: true, data: [{ id: 77, name: "Budi", code: "BUDI" }] });
     mocks.listProducts.mockResolvedValue({ success: true, data: [{ id: "88", productId: "88", code: "P-1", name: "Produk 1" }] });

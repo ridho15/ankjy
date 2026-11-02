@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeAll, afterAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { stockDetailHref, stockDetailReturnTo, summarizeStockDetail } from "@/lib/stocks/detail";
 
 const mocks = vi.hoisted(() => ({
@@ -13,6 +13,13 @@ vi.mock("@/lib/api/pagination", () => ({
 import { getStockDetail } from "@/lib/api/stocks";
 
 describe("stock detail", () => {
+  beforeAll(() => {
+    process.env.INVENTORY_SOURCE = "erp";
+  });
+
+  afterAll(() => {
+    delete process.env.INVENTORY_SOURCE;
+  });
   beforeEach(() => {
     mocks.listErpPaginated.mockReset();
   });
