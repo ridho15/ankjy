@@ -18,6 +18,8 @@ async function main() {
     await tx.rekeningAccountBookkeepingType.deleteMany({ where: { OR: [{ bookkeepingTypeId: "LSM" }, { rekeningAccountId: "cash-lsm" }] } });
     await tx.bookkeepingType.deleteMany({ where: { OR: [{ id: "LSM" }, { code: "LSM" }] } });
     await tx.rekeningAccount.deleteMany({ where: { id: "cash-lsm" } });
+    const defaultKasCoa = await tx.account.findUnique({ where: { code: "1-1001" } });
+
     for (const tipe of types) {
       await tx.bookkeepingType.upsert({
         where: { id: tipe.id },
@@ -26,13 +28,31 @@ async function main() {
       });
       await tx.rekeningAccount.upsert({
         where: { id: tipe.rekeningId },
-        create: { id: tipe.rekeningId, name: tipe.rekeningName, accountNumber: "-", bankName: "Cash", isActive: true },
-        update: { name: tipe.rekeningName, isActive: true }
+        create: {
+          id: tipe.rekeningId,
+          name: tipe.rekeningName,
+          accountNumber: "-",
+          bankName: "Cash",
+          isActive: true,
+          accountId: defaultKasCoa?.id || null
+        },
+        update: {
+          name: tipe.rekeningName,
+          isActive: true,
+          ...(defaultKasCoa ? { accountId: defaultKasCoa.id } : {})
+        }
       });
       await tx.rekeningAccountBookkeepingType.upsert({
         where: { rekeningAccountId_bookkeepingTypeId: { rekeningAccountId: tipe.rekeningId, bookkeepingTypeId: tipe.id } },
         create: { rekeningAccountId: tipe.rekeningId, bookkeepingTypeId: tipe.id },
         update: {}
+      });
+    }
+
+    if (defaultKasCoa) {
+      await tx.rekeningAccount.updateMany({
+        where: { accountId: null },
+        data: { accountId: defaultKasCoa.id }
       });
     }
   });

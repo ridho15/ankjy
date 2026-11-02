@@ -14,7 +14,7 @@ async function getDemoUser(): Promise<CurrentUser> {
     const cookieStore = await cookies();
     return resolveRequestUser({ headers: requestHeaders, cookies: cookieStore });
   } catch {
-    return resolveRequestUser({});
+    return unauthenticatedUser();
   }
 }
 
