@@ -56,6 +56,22 @@ if [ -n "$DATABASE_URL" ]; then
     echo "⚠️ Peringatan: prisma migrate deploy gagal atau ada error non-fatal, melanjutkan..."
   }
 
+  echo "🛡️ [SLM Entrypoint] Memastikan skema kolom kompatibel..."
+  node -e '
+    const { PrismaClient } = require("@prisma/client");
+    const prisma = new PrismaClient();
+    async function main() {
+      try {
+        await prisma.$executeRawUnsafe(`ALTER TABLE "SalesRecord" ADD COLUMN IF NOT EXISTS "customerPhone" TEXT;`);
+      } catch (err) {
+        console.warn("Notice: customerPhone check", err?.message);
+      } finally {
+        await prisma.$disconnect();
+      }
+    }
+    main();
+  ' || true
+
   echo "🌱 [SLM Entrypoint] Memastikan data awal Owner & Master Data (idempotent)..."
   node scripts/seed-initial-owner.mjs || true
   node scripts/seed-core-master-data.mjs || true
