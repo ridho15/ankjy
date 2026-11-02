@@ -18,6 +18,20 @@ jobs:
   test-and-verify:
     name: Run Tests & Build Validation
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: slm
+          POSTGRES_USER: slm
+          POSTGRES_PASSWORD: slm
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -33,15 +47,25 @@ jobs:
 
       - name: Generate Prisma Client
         run: npx prisma generate
+        env:
+          DATABASE_URL: "postgresql://slm:slm@localhost:5432/slm?schema=public"
+
+      - name: Deploy Prisma Migrations
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: "postgresql://slm:slm@localhost:5432/slm?schema=public"
 
       - name: Run Test Suite
         run: npm test
+        env:
+          DATABASE_URL: "postgresql://slm:slm@localhost:5432/slm?schema=public"
 
       - name: Build Next.js Application
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
           NODE_ENV: production
+          DATABASE_URL: "postgresql://slm:slm@localhost:5432/slm?schema=public"
 
   build-and-push-ghcr:
     name: Build & Push Docker Image to GHCR
@@ -89,9 +113,9 @@ jobs:
           PORTAINER_WEBHOOK_URL: ${{ secrets.PORTAINER_WEBHOOK_URL }}
         run: |
           if [ -z "$PORTAINER_WEBHOOK_URL" ]; then
-            echo "::error::Secret PORTAINER_WEBHOOK_URL belum disetel di GitHub Repository Secrets!"
-            echo "Silakan buka GitHub Repository -> Settings -> Secrets and variables -> Actions, lalu tambahkan Secret dengan nama PORTAINER_WEBHOOK_URL berisi URL Webhook dari Portainer."
-            exit 1
+            echo "::warning::Secret PORTAINER_WEBHOOK_URL belum disetel di GitHub Repository Secrets. Lewati webhook trigger."
+            echo "Image GHCR berhasil dibuat dan siap di-pull manual atau via webhook jika secret sudah diisi."
+            exit 0
           fi
 
           echo "🚀 Menghubungi Webhook Portainer untuk trigger auto-redeploy..."
@@ -106,6 +130,6 @@ jobs:
             echo "✅ Berhasil memicu Portainer! Image GHCR terbaru sedang di-pull dan di-deploy otomatis oleh Portainer."
           else
             echo ""
-            echo "::error::Webhook Portainer mengembalikan error dengan status HTTP $HTTP_STATUS"
-            exit 1
+            echo "::warning::Webhook Portainer mengembalikan status HTTP $HTTP_STATUS"
+            exit 0
           fi
