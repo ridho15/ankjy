@@ -17,3 +17,5 @@ audit-output
 scratch
 *.dump
 *.sql
+*.md
+camera-*.env

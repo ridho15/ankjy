@@ -1,3 +1,5 @@
+name: ankjy
+
 x-logging: &default-logging
   driver: "json-file"
   options:
@@ -5,116 +7,113 @@ x-logging: &default-logging
     max-file: "3"
 
 services:
-  slm-gateway:
-    container_name: slm-gateway
-    image: slm-app:local
-    command: node scripts/auth-gateway.mjs
-    ports:
-      - "8086:3001"
-    env_file:
-      - .env.local
-    environment:
-      AUTH_GATEWAY_APP_ORIGIN: http://slm-app:3000
-      AUTH_GATEWAY_HOST: "0.0.0.0"
-      AUTH_GATEWAY_PORT: "3001"
-    logging: *default-logging
-    depends_on:
-      slm-app:
-        condition: service_started
-
-  slm-app:
-    container_name: slm-app
-    image: slm-app:local
-    build: .
-    expose:
-      - "3000"
-    env_file:
-      - .env.local
-    environment:
-      DATABASE_URL: postgresql://slm:slm@slm-postgres:5432/slm?schema=public
-    logging: *default-logging
-    depends_on:
-      slm-postgres:
-        condition: service_healthy
-    volumes:
-      - slm_data:/app/data
-
-  db-migrate:
-    image: slm-app:local
-    build: .
-    command: npm run db:migrate:deploy
-    profiles:
-      - tools
-    env_file:
-      - .env.local
-    environment:
-      DATABASE_URL: postgresql://slm:slm@slm-postgres:5432/slm?schema=public
-    depends_on:
-      slm-postgres:
-        condition: service_healthy
-    volumes:
-      - slm_data:/app/data
-
-  db-seed-owner:
-    image: slm-app:local
-    build: .
-    command: npm run db:seed-owner
-    profiles:
-      - tools
-    env_file:
-      - .env.local
-    environment:
-      DATABASE_URL: postgresql://slm:slm@slm-postgres:5432/slm?schema=public
-    depends_on:
-      slm-postgres:
-        condition: service_healthy
-
-  db-import:
-    image: slm-app:local
-    build: .
-    command: npm run db:migrate:json
-    profiles:
-      - tools
-    env_file:
-      - .env.local
-    environment:
-      DATABASE_URL: postgresql://slm:slm@slm-postgres:5432/slm?schema=public
-    depends_on:
-      slm-postgres:
-        condition: service_healthy
-    volumes:
-      - slm_data:/app/data
-
-  db-verify:
-    image: slm-app:local
-    build: .
-    command: npm run db:verify
-    profiles:
-      - tools
-    env_file:
-      - .env.local
-    environment:
-      DATABASE_URL: postgresql://slm:slm@slm-postgres:5432/slm?schema=public
-    depends_on:
-      slm-postgres:
-        condition: service_healthy
-
-  slm-postgres:
-    container_name: slm-postgres
+  ankjy-postgres:
+    container_name: ankjy-postgres
     image: postgres:16-alpine
+    restart: unless-stopped
     environment:
-      POSTGRES_DB: slm
-      POSTGRES_USER: slm
-      POSTGRES_PASSWORD: slm
+      POSTGRES_DB: ${POSTGRES_DB:-ankjy}
+      POSTGRES_USER: ${POSTGRES_USER:-ankjy}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ankjy}
     logging: *default-logging
     volumes:
-      - slm_postgres:/var/lib/postgresql/data
+      - ankjy_postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U slm -d slm"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ankjy} -d ${POSTGRES_DB:-ankjy}"]
       interval: 5s
       timeout: 5s
       retries: 10
+      start_period: 10s
+    networks:
+      - ankjy-network
+
+  ankjy-app:
+    container_name: ankjy-app
+    image: ankjy-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3005}:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      NEXT_PUBLIC_APP_NAME: ${NEXT_PUBLIC_APP_NAME:-ANKJY}
+      NEXT_PUBLIC_APP_MODE: ${NEXT_PUBLIC_APP_MODE:-production}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-ankjy}:${POSTGRES_PASSWORD:-ankjy}@ankjy-postgres:5432/${POSTGRES_DB:-ankjy}?schema=public
+      AUTH_PROVIDER: ${AUTH_PROVIDER:-local_credentials}
+      INVENTORY_SOURCE: ${INVENTORY_SOURCE:-local}
+      AUTH_TRUSTED_HEADER_SECRET: ${AUTH_TRUSTED_HEADER_SECRET:-9aa877b5ce240edc5b0cb1131ea347f49fe3549c84590a8b520debe653ea586a}
+      AUTH_SESSION_SECRET: ${AUTH_SESSION_SECRET:-fcca197dceb5549af84c9ec7461b2e9bed5691d1409cf385b40133518184dc1b}
+      INITIAL_OWNER_EXTERNAL_ID: ${INITIAL_OWNER_EXTERNAL_ID:-owner}
+      INITIAL_OWNER_EMAIL: ${INITIAL_OWNER_EMAIL:-owner@example.local}
+      INITIAL_OWNER_NAME: ${INITIAL_OWNER_NAME:-Owner}
+      INITIAL_OWNER_PASSWORD: ${INITIAL_OWNER_PASSWORD:-nX3NWazgFRgitrvaM0Cdweqv5sTDGGqX}
+      APP_DEFAULT_ROLE: ${APP_DEFAULT_ROLE:-VIEWER}
+      APP_ACTOR_ID: ${APP_ACTOR_ID:-local-owner}
+      APP_ACTOR_NAME: ${APP_ACTOR_NAME:-Owner}
+      DATA_DIR: /app/data
+      CRON_SECRET: ${CRON_SECRET:-cd4021d0296939dd8570678b71086790970e14afdf36537a3eb3cd9048c11688}
+      REQUIRE_APPROVAL_PENJUALAN: ${REQUIRE_APPROVAL_PENJUALAN:-false}
+      REQUIRE_APPROVAL_PENGELUARAN: ${REQUIRE_APPROVAL_PENGELUARAN:-false}
+      MJ_INTEGRATION_ENVIRONMENT: ${MJ_INTEGRATION_ENVIRONMENT:-sandbox}
+      MJ_RATE_LIMIT_MUTATION_PER_MINUTE: ${MJ_RATE_LIMIT_MUTATION_PER_MINUTE:-60}
+      MJ_RATE_LIMIT_READ_PER_MINUTE: ${MJ_RATE_LIMIT_READ_PER_MINUTE:-300}
+    logging: *default-logging
+    depends_on:
+      ankjy-postgres:
+        condition: service_healthy
+    volumes:
+      - ankjy_data:/app/data
+    networks:
+      - ankjy-network
+
+  # Optional auth gateway proxy for trusted-header authentication
+  ankjy-gateway:
+    container_name: ankjy-gateway
+    image: ankjy-app:latest
+    command: node scripts/auth-gateway.mjs
+    profiles:
+      - gateway
+    restart: unless-stopped
+    ports:
+      - "${GATEWAY_PORT:-3006}:3001"
+    environment:
+      AUTH_GATEWAY_APP_ORIGIN: http://ankjy-app:3000
+      AUTH_GATEWAY_HOST: "0.0.0.0"
+      AUTH_GATEWAY_PORT: "3001"
+      AUTH_TRUSTED_HEADER_SECRET: ${AUTH_TRUSTED_HEADER_SECRET:-9aa877b5ce240edc5b0cb1131ea347f49fe3549c84590a8b520debe653ea586a}
+      AUTH_GATEWAY_SESSION_SECRET: ${AUTH_GATEWAY_SESSION_SECRET:-ded0b8e7b11580ba2197a8556c7fc42e8d071db596f2903b8b0e2227bfb81dcc}
+      AUTH_GATEWAY_USERS: ${AUTH_GATEWAY_USERS:-[]}
+    logging: *default-logging
+    depends_on:
+      ankjy-app:
+        condition: service_started
+    networks:
+      - ankjy-network
+
+  # Helper tools (executable on-demand if needed)
+  ankjy-db-verify:
+    image: ankjy-app:latest
+    command: node scripts/verify-prisma-db.mjs
+    profiles:
+      - tools
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-ankjy}:${POSTGRES_PASSWORD:-ankjy}@ankjy-postgres:5432/${POSTGRES_DB:-ankjy}?schema=public
+    depends_on:
+      ankjy-postgres:
+        condition: service_healthy
+    networks:
+      - ankjy-network
 
 volumes:
-  slm_data:
-  slm_postgres:
+  ankjy_data:
+    name: ankjy_data
+  ankjy_postgres:
+    name: ankjy_postgres
+
+networks:
+  ankjy-network:
+    name: ankjy-network
+    driver: bridge

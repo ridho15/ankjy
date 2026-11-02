@@ -1,24 +1,55 @@
+# syntax=docker/dockerfile:1
 FROM node:22-alpine AS base
+RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 
-FROM base AS build
+# Stage 1: Install all dependencies and generate prisma client
+FROM base AS deps
 COPY package.json package-lock.json ./
-RUN npm ci --no-audit --no-fund
-COPY . .
+COPY prisma ./prisma
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --no-audit --no-fund
 RUN npx prisma generate
-RUN npm run build && rm -rf .next/cache
+
+# Stage 2: Prune dev dependencies for lean production runtime
+FROM base AS prod-deps
+COPY package.json package-lock.json ./
+COPY prisma ./prisma
+COPY --from=deps /app/node_modules ./node_modules
 RUN npm prune --omit=dev --no-audit --no-fund
 
-FROM base AS production
+# Stage 3: Build the Next.js application
+FROM base AS builder
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+RUN --mount=type=cache,target=/app/.next/cache \
+    npm run build
+
+# Stage 4: Minimal Production Image (Runner)
+FROM base AS runner
 ENV NODE_ENV=production
 ENV PORT=3000
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/.next ./.next
-COPY --from=build /app/package.json ./package.json
-COPY --from=build /app/prisma ./prisma
-RUN npx prisma generate
-COPY --from=build /app/scripts ./scripts
-COPY --from=build /app/docs ./docs
-RUN mkdir -p /app/data
+ENV HOSTNAME="0.0.0.0"
+ENV NEXT_TELEMETRY_DISABLED=1
+
+# Copy pruned production dependencies (contains prisma CLI and runtime)
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/scripts ./scripts
+COPY --from=builder /app/docs ./docs
+COPY scripts/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh && mkdir -p /app/data
+
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+
+HEALTHCHECK --interval=15s --timeout=5s --start-period=20s --retries=3 \
+  CMD node -e 'require("http").get("http://127.0.0.1:3000/api/health", (res) => process.exit(res.statusCode === 200 ? 0 : 1)).on("error", () => process.exit(1))'
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["node", "server.js"]
