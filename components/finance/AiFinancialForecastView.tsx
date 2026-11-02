@@ -476,7 +476,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
               type="button"
               onClick={handleRefresh}
               disabled={loading}
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-700 disabled:opacity-50 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-blue-700 disabled:opacity-50 transition-colors cursor-pointer"
             >
               <IconRefresh className={`w-3.5 h-3.5 ${loading ? "animate-spin" : ""}`} />
               <span>{loading ? "Menganalisis..." : "Sinkronisasi AI"}</span>
@@ -1172,7 +1172,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                       setDebtorPage(1);
                     }}
                     placeholder="Cari nama debitur customer..."
-                    className="w-full rounded-lg border border-slate-300 bg-white pl-9 pr-8 py-2 text-xs text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 shadow-2xs"
+                    className="w-full rounded-lg border border-slate-300 bg-white pl-9 pr-8 py-2 text-xs text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs"
                   />
                   {debtorSearch && (
                     <button
@@ -1197,7 +1197,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                       setDebtorSort(e.target.value as any);
                       setDebtorPage(1);
                     }}
-                    className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-2xs focus:border-emerald-500 focus:outline-none"
+                    className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-2xs focus:border-blue-500 focus:outline-none"
                   >
                     <option value="DUE_ASC">Jatuh Tempo Terdekat</option>
                     <option value="AMOUNT_DESC">Nominal Tertinggi</option>
@@ -1349,7 +1349,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                       setDebtorPageSize(Number(e.target.value));
                       setDebtorPage(1);
                     }}
-                    className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs font-semibold text-slate-800 focus:border-emerald-500 focus:outline-none"
+                    className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs font-semibold text-slate-800 focus:border-blue-500 focus:outline-none"
                   >
                     <option value={6}>6</option>
                     <option value={12}>12</option>
@@ -1437,7 +1437,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                       setTimelinePage(1);
                     }}
                     placeholder="Cari tanggal (contoh: 2026-09 atau H+7)..."
-                    className="w-full rounded-lg border border-slate-300 bg-white pl-9 pr-8 py-2 text-xs text-slate-800 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 shadow-2xs"
+                    className="w-full rounded-lg border border-slate-300 bg-white pl-9 pr-8 py-2 text-xs text-slate-800 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs"
                   />
                   {timelineSearch && (
                     <button
@@ -1462,7 +1462,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                       setTimelineFilterWeek(e.target.value as any);
                       setTimelinePage(1);
                     }}
-                    className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-2xs focus:border-emerald-500 focus:outline-none"
+                    className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-2xs focus:border-blue-500 focus:outline-none"
                   >
                     <option value="ALL">Semua Minggu (H+1 s/d H+30)</option>
                     <option value="W1">Minggu 1 (H+1 s/d H+7)</option>
@@ -1613,7 +1613,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                       setTimelinePageSize(Number(e.target.value));
                       setTimelinePage(1);
                     }}
-                    className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs font-semibold text-slate-800 focus:border-emerald-500 focus:outline-none"
+                    className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs font-semibold text-slate-800 focus:border-blue-500 focus:outline-none"
                   >
                     <option value={10}>10</option>
                     <option value={15}>15</option>
@@ -1875,12 +1875,12 @@ export function AiFinancialForecastView({ initialData }: Props) {
                 onChange={(e) => setQuestion(e.target.value)}
                 placeholder="Ketik pertanyaan atau simulasi keuangan (contoh: Apakah aman belanja stok 50 juta minggu ini?)..."
                 disabled={asking}
-                className="flex-1 rounded-lg border border-slate-300 px-4 py-2.5 text-xs text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 shadow-2xs"
+                className="flex-1 rounded-lg border border-slate-300 px-4 py-2.5 text-xs text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs"
               />
               <button
                 type="submit"
                 disabled={asking || !question.trim()}
-                className="rounded-lg bg-emerald-600 px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-emerald-700 disabled:opacity-50 transition-colors cursor-pointer"
+                className="rounded-lg bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-blue-700 disabled:opacity-50 transition-colors cursor-pointer"
               >
                 {asking ? "Memproses..." : "Kirim Analisis"}
               </button>

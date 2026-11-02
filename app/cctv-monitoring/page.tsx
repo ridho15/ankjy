@@ -187,7 +187,7 @@ export default async function CctvMonitoringPage({ searchParams }: Props) {
             {detectionsResult.page < detectionsResult.totalPages && (
               <Link
                 href={pageHref(params, detectionsResult.page + 1)}
-                className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700"
+                className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
               >
                 Selanjutnya →
               </Link>

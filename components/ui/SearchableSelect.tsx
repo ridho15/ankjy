@@ -105,7 +105,7 @@ export function SearchableSelect({
         type="button"
         onClick={handleToggle}
         disabled={disabled || isLoading}
-        className={`inline-flex items-center justify-between gap-2 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-800 shadow-sm hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus:ring-1 focus:ring-emerald-500 disabled:cursor-not-allowed disabled:opacity-50 transition-colors ${buttonClassName}`}
+        className={`inline-flex items-center justify-between gap-2 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-800 shadow-sm hover:border-slate-400 hover:bg-slate-50 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 disabled:cursor-not-allowed disabled:opacity-50 transition-colors ${buttonClassName}`}
       >
         <span className="flex items-center gap-1.5 truncate">
           {isLoading ? (
@@ -149,7 +149,7 @@ export function SearchableSelect({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={searchPlaceholder}
-              className="w-full rounded-lg border border-slate-200 bg-slate-50 pl-7 pr-7 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-lg border border-slate-200 bg-slate-50 pl-7 pr-7 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
             {searchQuery && (
               <button
@@ -174,7 +174,7 @@ export function SearchableSelect({
                   type="button"
                   disabled={opt.disabled}
                   onClick={() => handleSelectOption(opt.value)}
-                  className="w-full flex items-center justify-between gap-2 rounded-lg px-2.5 py-1.5 text-left text-xs font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
+                  className="w-full flex items-center justify-between gap-2 rounded-lg px-2.5 py-1.5 text-left text-xs font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-900 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition-colors"
                 >
                   <div className="truncate">
                     <span className="font-semibold text-slate-900">{opt.label}</span>

@@ -37,7 +37,7 @@ export default async function StockDetailPage({ params, searchParams }: { params
           <h2 className="aj-page-title text-3xl font-bold">Detail Stok Barang</h2>
           <p className="mt-2 text-sm text-slate-600">Stok ERP per gudang dan rak.</p>
         </div>
-        <Link className="text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline" href={returnTo}>Kembali ke daftar stok</Link>
+        <Link className="text-sm font-semibold text-blue-600 hover:text-blue-700 hover:underline" href={returnTo}>Kembali ke daftar stok</Link>
       </div>
 
       {!result.success ? <ErrorState message={result.message} /> : (

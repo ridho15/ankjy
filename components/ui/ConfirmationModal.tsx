@@ -76,13 +76,13 @@ export function ConfirmationModal({
     ? "text-rose-600 bg-rose-50 border-rose-200"
     : isWarning
     ? "text-amber-700 bg-amber-50 border-amber-200"
-    : "text-emerald-700 bg-emerald-50 border-emerald-200";
+    : "text-blue-700 bg-blue-50 border-blue-200";
 
   const confirmBtnClass = isDanger
     ? "bg-rose-600 hover:bg-rose-700 text-white shadow-rose-600/20"
     : isWarning
     ? "bg-amber-600 hover:bg-amber-700 text-white shadow-amber-600/20"
-    : "bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-600/20";
+    : "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/20 focus-visible:outline-blue-600";
 
   return createPortal(
     <div

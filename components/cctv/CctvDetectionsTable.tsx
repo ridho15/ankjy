@@ -185,7 +185,7 @@ export function CctvDetectionsTable({ items }: { items: DetectionItem[] }) {
                     {item.salesRecord ? (
                       <Link
                         href={`/penjualan/${item.salesRecord.id}`}
-                        className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700 shadow-xs transition-colors inline-block"
+                        className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700 shadow-xs transition-colors inline-block"
                       >
                         Lihat Penjualan
                       </Link>

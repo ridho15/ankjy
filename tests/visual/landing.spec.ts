@@ -34,7 +34,7 @@ test.describe("login visual QA", () => {
       const submit = document.querySelector('button[type="submit"]');
       const submitClasses = submit?.getAttribute("class") || "";
       const monogramClasses = Array.from(document.querySelectorAll("span"))
-        .find((element) => element.textContent === "SLM" && element.getAttribute("class")?.includes("bg-emerald"))
+        .find((element) => element.textContent === "SLM" && element.getAttribute("class")?.includes("bg-blue"))
         ?.getAttribute("class") || "";
       return {
         innerWidth,
@@ -51,9 +51,9 @@ test.describe("login visual QA", () => {
     expect(metrics.formTop).not.toBeNull();
     expect(metrics.formTop || 0).toBeLessThan(metrics.innerHeight);
     expect(metrics.formBottom || 0).toBeLessThan(metrics.innerHeight + 220);
-    expect(metrics.submitClasses).toContain("bg-emerald-600");
+    expect(metrics.submitClasses).toContain("bg-blue-600");
     expect(metrics.submitClasses).not.toContain("bg-neutral-900");
-    expect(metrics.monogramClasses).toContain("bg-emerald-600");
+    expect(metrics.monogramClasses).toContain("bg-blue-600");
 
     await page.screenshot({
       path: testInfo.outputPath(`${testInfo.project.name}-login.png`),

@@ -235,7 +235,7 @@ export function AiInventoryForecastView({ initialData }: Props) {
           <button
             type="button"
             onClick={handleCopyExecutiveSummary}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:text-emerald-900 cursor-pointer"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-800 cursor-pointer"
           >
             {copied ? "Tersalin!" : "Salin Ringkasan"}
           </button>
@@ -444,7 +444,7 @@ export function AiInventoryForecastView({ initialData }: Props) {
                     setActiveTab("podraft");
                     setPoPage(1);
                   }}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:text-emerald-800 cursor-pointer"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 cursor-pointer"
                 >
                   Lihat Draf PO Supplier →
                 </button>

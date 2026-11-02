@@ -268,7 +268,7 @@ export default async function ErpSyncPage({
                     </span>
                     <a
                       href={`/penjualan/${item.id}`}
-                      className="font-semibold text-slate-900 hover:text-emerald-700 hover:underline"
+                      className="font-semibold text-slate-900 hover:text-blue-600 hover:underline"
                     >
                       {item.customerName}
                     </a>
@@ -388,7 +388,7 @@ export default async function ErpSyncPage({
                       </span>
                       <a
                         href={`/penjualan/${item.id}`}
-                        className="font-medium text-slate-900 hover:text-emerald-700 hover:underline"
+                        className="font-medium text-slate-900 hover:text-blue-600 hover:underline"
                       >
                         {item.customerName}
                       </a>
@@ -518,7 +518,7 @@ export default async function ErpSyncPage({
                 <div>
                   <a
                     href={`/pengeluaran/${item.id}`}
-                    className="font-semibold text-slate-900 hover:text-emerald-700 hover:underline"
+                    className="font-semibold text-slate-900 hover:text-blue-600 hover:underline"
                   >
                     {item.vendorName}
                   </a>
@@ -603,7 +603,7 @@ export default async function ErpSyncPage({
                   <td className="px-5 py-4">
                     <a
                       href={`/pengeluaran/${item.id}`}
-                      className="font-medium text-slate-900 hover:text-emerald-700 hover:underline"
+                      className="font-medium text-slate-900 hover:text-blue-600 hover:underline"
                     >
                       {item.vendorName}
                     </a>

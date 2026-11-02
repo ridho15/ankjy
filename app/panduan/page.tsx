@@ -261,7 +261,7 @@ export default async function PanduanPage() {
   return (
     <AppShell>
       <div className="mb-7">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Panduan aplikasi</p>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Panduan aplikasi</p>
         <h2 className="aj-page-title text-3xl font-bold">Panduan Penggunaan SLM</h2>
         <p className="mt-2 max-w-3xl text-sm text-slate-600">
           Satu halaman panduan kerja harian. Konten di bawah otomatis menyesuaikan role aktif Anda: {roleLabel(role)}.
@@ -286,8 +286,8 @@ export default async function PanduanPage() {
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {visibleSections.map((section) => (
-            <a key={section.title} href={`#${slug(section.title)}`} className="rounded-md border border-slate-200 p-4 transition hover:border-emerald-400 hover:bg-emerald-50">
-              <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">{section.eyebrow}</p>
+            <a key={section.title} href={`#${slug(section.title)}`} className="rounded-md border border-slate-200 p-4 transition hover:border-blue-400 hover:bg-blue-50/50">
+              <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">{section.eyebrow}</p>
               <p className="mt-1 font-bold text-slate-900">{section.title}</p>
             </a>
           ))}
@@ -296,7 +296,7 @@ export default async function PanduanPage() {
 
       {visibleRoleGuides.length > 0 && (
         <section className="aj-surface mb-6 p-5 sm:p-6">
-          <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Akses berdasarkan role</p>
+          <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Akses berdasarkan role</p>
           <h3 className="mt-1 text-xl font-bold text-slate-950">Apa yang perlu dilakukan role Anda</h3>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             {visibleRoleGuides.map((item) => (
@@ -311,7 +311,7 @@ export default async function PanduanPage() {
 
       {canViewWorkflows && (
         <section className="aj-surface mb-6 p-5 sm:p-6">
-          <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Alur kerja utama</p>
+          <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Alur kerja utama</p>
           <h3 className="mt-1 text-xl font-bold text-slate-950">Urutan operasional yang aman</h3>
           <div className="mt-5 grid gap-4 lg:grid-cols-3">
             {workflows.map((workflow) => (
@@ -336,7 +336,7 @@ export default async function PanduanPage() {
           <section key={section.title} id={slug(section.title)} className="aj-surface overflow-hidden">
             <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
               <div className="p-5 sm:p-6">
-                <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">{section.eyebrow}</p>
+                <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">{section.eyebrow}</p>
                 <h3 className="mt-1 text-2xl font-bold text-slate-950">{section.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{section.description}</p>
                 <ol className="mt-5 space-y-3">
@@ -360,7 +360,7 @@ export default async function PanduanPage() {
                     </ul>
                   </div>
                 ) : null}
-                <a className="mt-5 inline-flex rounded-md border border-emerald-300 px-4 py-2 text-sm font-bold text-emerald-700 hover:bg-emerald-50" href={section.href}>Buka halaman</a>
+                <a className="mt-5 inline-flex rounded-md border border-blue-600 bg-blue-600 px-4 py-2 text-sm font-bold text-white hover:bg-blue-700" href={section.href}>Buka halaman</a>
               </div>
               <div className="border-t border-slate-100 bg-slate-50 p-4 lg:border-l lg:border-t-0">
                 <img
@@ -375,7 +375,7 @@ export default async function PanduanPage() {
       </div>
 
       <section className="aj-surface mt-6 p-5 sm:p-6">
-        <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">FAQ</p>
+        <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">FAQ</p>
         <h3 className="mt-1 text-xl font-bold text-slate-950">Error umum dan cara membaca status</h3>
         <div className="mt-4 grid gap-3 md:grid-cols-2">
           {faqs.map((faq) => (

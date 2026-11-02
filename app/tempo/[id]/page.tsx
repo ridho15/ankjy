@@ -342,7 +342,7 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
               </p>
               <Link
                 href={`/print/tempo/${tempo.id}`}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 py-2.5 text-sm font-bold text-white shadow-xs hover:bg-emerald-700 transition-colors"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2.5 text-sm font-bold text-white shadow-xs hover:bg-blue-700 transition-colors"
               >
                 Cetak Bukti Pelunasan
               </Link>
