@@ -29,7 +29,6 @@ services:
 
   ankjy-app:
     container_name: ankjy-app
-    image: ${APP_IMAGE:-ghcr.io/ridho15/ankjy:latest}
     build:
       context: .
       dockerfile: Dockerfile
@@ -72,7 +71,9 @@ services:
   # Optional auth gateway proxy for trusted-header authentication
   ankjy-gateway:
     container_name: ankjy-gateway
-    image: ${APP_IMAGE:-ghcr.io/ridho15/ankjy:latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: node scripts/auth-gateway.mjs
     profiles:
       - gateway
@@ -95,7 +96,9 @@ services:
 
   # Helper tools (executable on-demand if needed)
   ankjy-db-verify:
-    image: ${APP_IMAGE:-ghcr.io/ridho15/ankjy:latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
     command: node scripts/verify-prisma-db.mjs
     profiles:
       - tools
