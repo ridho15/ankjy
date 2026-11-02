@@ -378,7 +378,7 @@ export function PurchaseInvoiceModal({
               <button
                 type="button"
                 onClick={handleAddLandedCost}
-                className="text-xs font-semibold text-emerald-700 hover:text-emerald-900"
+                className="text-xs font-semibold text-blue-600 hover:text-blue-800"
               >
                 + Tambah Biaya Landed Cost
               </button>

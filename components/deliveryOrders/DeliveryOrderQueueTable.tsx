@@ -277,7 +277,7 @@ export function DeliveryOrderQueueTable({
                 </Link>
                 <Link
                   href={`/delivery-orders/${item.id}`}
-                  className="flex-1 text-center rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-emerald-700"
+                  className="flex-1 text-center rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-blue-700"
                 >
                   {canProcess && item.status !== "selesai" ? "Proses DO" : "Lihat DO"}
                 </Link>
@@ -296,7 +296,7 @@ export function DeliveryOrderQueueTable({
       {/* Desktop Table View */}
       <div className="hidden overflow-x-auto md:block">
         <table className="min-w-full text-left text-sm">
-          <thead className="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
+          <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
             <tr>
               <th className="px-5 py-3.5">{isOwner ? "No DO / Invoice" : "No. Invoice"}</th>
               <th className="px-5 py-3.5">Customer &amp; Alamat</th>
@@ -470,7 +470,7 @@ export function DeliveryOrderQueueTable({
                     </Link>
                     <Link
                       href={`/delivery-orders/${item.id}`}
-                      className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-emerald-700 transition-colors"
+                      className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-blue-700 transition-colors"
                     >
                       {canProcess && item.status !== "selesai" ? "Proses DO" : "Lihat DO"}
                     </Link>

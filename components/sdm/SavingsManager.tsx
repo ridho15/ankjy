@@ -205,7 +205,7 @@ export function SavingsManager({
           <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
             Total Saldo Tersimpan
           </p>
-          <p className="mt-2 text-2xl font-bold tracking-tight text-emerald-700 tabular-nums">
+          <p className="mt-2 text-2xl font-black tracking-tight text-slate-900 font-mono tabular-nums">
             {formatCurrency(summary.totalBalance)}
           </p>
           <p className="mt-1 text-xs text-slate-500">Kewajiban internal perusahaan (COA 2-1003)</p>
@@ -300,7 +300,7 @@ export function SavingsManager({
                         {acc.employee.department}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-right font-bold text-emerald-700 tabular-nums">
+                    <td className="px-4 py-3 text-right font-bold text-slate-900 font-mono tabular-nums">
                       {formatCurrency(Number(acc.balance))}
                     </td>
                     <td className="px-4 py-3 text-center">

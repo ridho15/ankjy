@@ -144,7 +144,7 @@ export default async function CustomerReportsPage({
       <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <Link href="/reports" className="hover:text-emerald-600">
+            <Link href="/reports" className="hover:text-blue-600">
               Laporan
             </Link>
             <span>/</span>
@@ -168,7 +168,7 @@ export default async function CustomerReportsPage({
           </Link>
           <Link
             href="/reports/customers"
-            className="rounded-lg bg-emerald-600 px-3 py-1.5 text-white shadow-xs"
+            className="rounded-lg bg-blue-600 px-3 py-1.5 text-white shadow-xs"
           >
             Customer
           </Link>
@@ -214,7 +214,7 @@ export default async function CustomerReportsPage({
             Total Omset Penjualan
           </span>
           <div className="mt-2 flex items-baseline justify-between">
-            <span className="text-2xl font-black text-emerald-700 sm:text-3xl">
+            <span className="text-2xl font-black text-slate-900 font-mono tabular-nums sm:text-3xl">
               {rupiah(report.summary.totalRevenue)}
             </span>
           </div>
@@ -231,7 +231,7 @@ export default async function CustomerReportsPage({
             <span className="truncate text-lg font-bold text-slate-900" title={report.summary.topSpender?.name}>
               {report.summary.topSpender?.name || "-"}
             </span>
-            <span className="text-sm font-semibold text-emerald-700">
+            <span className="text-sm font-semibold text-slate-900 font-mono tabular-nums">
               {report.summary.topSpender ? rupiah(report.summary.topSpender.revenue) : "Rp 0"}
             </span>
           </div>
@@ -271,7 +271,7 @@ export default async function CustomerReportsPage({
               type="date"
               name="startDate"
               defaultValue={startDate}
-              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </label>
 
@@ -281,7 +281,7 @@ export default async function CustomerReportsPage({
               type="date"
               name="endDate"
               defaultValue={endDate}
-              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </label>
 
@@ -290,7 +290,7 @@ export default async function CustomerReportsPage({
             <select
               name="sort"
               defaultValue={sortParam}
-              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             >
               <option value="omset_desc">Omset Terbanyak (Rp Tertinggi)</option>
               <option value="omset_asc">Omset Paling Sedikit (Rp Terendah)</option>
@@ -310,7 +310,7 @@ export default async function CustomerReportsPage({
               name="keyword"
               defaultValue={keyword}
               placeholder="Contoh: Sensen / Bogor..."
-              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </label>
 
@@ -318,7 +318,7 @@ export default async function CustomerReportsPage({
             <div className="flex items-center gap-2">
               <button
                 type="submit"
-                className="flex-1 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-bold text-white shadow-xs transition hover:bg-emerald-700"
+                className="flex-1 rounded-xl bg-blue-600 px-4 py-2 text-sm font-bold text-white shadow-xs transition hover:bg-blue-700"
               >
                 Terapkan
               </button>
@@ -340,7 +340,7 @@ export default async function CustomerReportsPage({
               href={buildPageHref({ ...filterState, tipe: "" }, 1)}
               className={`rounded-lg px-2.5 py-1 text-xs transition ${
                 !tipe
-                  ? "bg-emerald-600 text-white font-bold shadow-xs"
+                  ? "bg-blue-600 text-white font-bold shadow-xs"
                   : "bg-slate-100 text-slate-700 hover:bg-slate-200"
               }`}
             >
@@ -352,7 +352,7 @@ export default async function CustomerReportsPage({
                 href={buildPageHref({ ...filterState, tipe: t.code }, 1)}
                 className={`rounded-lg px-2.5 py-1 text-xs transition ${
                   tipe === t.code
-                    ? "bg-emerald-600 text-white font-bold shadow-xs"
+                    ? "bg-blue-600 text-white font-bold shadow-xs"
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                 }`}
               >
@@ -409,7 +409,7 @@ export default async function CustomerReportsPage({
                       <td className="px-4 py-3.5 font-bold text-slate-900">
                         <Link
                           href={`/penjualan?keyword=${encodeURIComponent(c.customerName)}`}
-                          className="hover:text-emerald-600 hover:underline"
+                          className="hover:text-blue-600 hover:underline"
                           title="Lihat riwayat nota pelanggan ini"
                         >
                           {c.customerName}
@@ -430,7 +430,7 @@ export default async function CustomerReportsPage({
                         </span>
                       </td>
 
-                      <td className="px-4 py-3.5 text-right font-black text-emerald-700">
+                      <td className="px-4 py-3.5 text-right font-bold text-slate-900 font-mono tabular-nums">
                         {rupiah(c.totalRevenue)}
                       </td>
 
@@ -487,7 +487,7 @@ export default async function CustomerReportsPage({
                   href={buildPageHref({ ...filterState, pageSize: String(sz) }, 1)}
                   className={`rounded-md px-2 py-0.5 font-semibold transition ${
                     pageSize === sz
-                      ? "bg-emerald-600 text-white shadow-2xs"
+                      ? "bg-blue-600 text-white shadow-2xs"
                       : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
                   }`}
                 >
@@ -501,7 +501,7 @@ export default async function CustomerReportsPage({
             {currentPage > 1 ? (
               <Link
                 href={buildPageHref(filterState, currentPage - 1)}
-                className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 shadow-2xs transition hover:bg-slate-50 hover:text-emerald-700"
+                className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 shadow-2xs transition hover:bg-slate-50 hover:text-blue-600"
               >
                 ← Sebelumnya
               </Link>
@@ -518,7 +518,7 @@ export default async function CustomerReportsPage({
             {currentPage < totalPages ? (
               <Link
                 href={buildPageHref(filterState, currentPage + 1)}
-                className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 shadow-2xs transition hover:bg-slate-50 hover:text-emerald-700"
+                className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 shadow-2xs transition hover:bg-slate-50 hover:text-blue-600"
               >
                 Berikutnya →
               </Link>

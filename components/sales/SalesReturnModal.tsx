@@ -171,7 +171,7 @@ export function SalesReturnModal({
                     type="date"
                     value={returnDate}
                     onChange={(e) => setReturnDate(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                     required
                   />
                 </div>
@@ -182,7 +182,7 @@ export function SalesReturnModal({
                   <select
                     value={refundMethod}
                     onChange={(e) => setRefundMethod(e.target.value as any)}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                   >
                     {isTempo && <option value="REDUCE_RECEIVABLE">Potong Piutang Tempo (Kredit)</option>}
                     <option value="REFUND_CASH">Pengembalian Kas/Bank (Refund)</option>
@@ -199,7 +199,7 @@ export function SalesReturnModal({
                   <select
                     value={rekeningAccountId}
                     onChange={(e) => setRekeningAccountId(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                   >
                     {rekenings.map((r) => (
                       <option key={r.id} value={r.id}>{r.name}</option>
@@ -263,14 +263,14 @@ export function SalesReturnModal({
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Keterangan tambahan retur penjualan..."
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                 />
               </div>
 
               <div className="flex items-center justify-between border-t border-slate-100 pt-4">
                 <div>
                   <p className="text-xs text-slate-500">Total Nominal Retur:</p>
-                  <p className="text-base font-bold font-mono text-emerald-700">
+                  <p className="text-base font-bold font-mono tabular-nums text-slate-900">
                     Rp {totalReturnAmount.toLocaleString("id-ID")}
                   </p>
                 </div>
@@ -285,7 +285,7 @@ export function SalesReturnModal({
                   <button
                     type="submit"
                     disabled={loading || activeItems.length === 0}
-                    className="rounded-xl bg-emerald-600 px-5 py-2 text-sm font-bold text-white hover:bg-emerald-700 disabled:opacity-50"
+                    className="rounded-xl bg-blue-600 px-5 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50 shadow-xs"
                   >
                     {loading ? "Menyimpan..." : "Simpan Retur Penjualan"}
                   </button>

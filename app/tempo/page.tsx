@@ -116,7 +116,7 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
   return (
     <AppShell>
       <div className="mb-7">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Piutang</p>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Piutang</p>
         <h2 className="aj-page-title text-3xl font-bold">Tempo</h2>
         <p className="mt-2 text-sm text-slate-600">Default menampilkan open Tempo. Aktifkan final status untuk melihat paid, cancelled, atau written off.</p>
       </div>
@@ -126,31 +126,31 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
         {/* Card 1: Total Tempo Aktif */}
         <Link
           href={filterHref(params, { status: undefined, dueFrom: undefined, dueTo: undefined, includeFinal: undefined })}
-          className={`group block rounded-2xl border p-5 shadow-xs transition-all hover:shadow-sm hover:border-slate-300 bg-white cursor-pointer ${
-            isTotalActive ? "ring-2 ring-emerald-600 border-emerald-300" : "border-slate-200"
+          className={`group block rounded-xl border p-5 shadow-xs transition-all hover:shadow-sm hover:border-slate-300 bg-white cursor-pointer ${
+            isTotalActive ? "ring-2 ring-blue-600 border-blue-300" : "border-slate-200"
           }`}
         >
           <div className="flex items-center justify-between gap-2">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
               Total Tempo Aktif
             </span>
-            <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-700">
+            <span className="inline-flex items-center rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-700">
               {metricsSummary.total.count} Nota
             </span>
           </div>
-          <p className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
+          <p className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl font-mono tabular-nums">
             {rupiah(metricsSummary.total.amount)}
           </p>
           <div className="mt-2 flex items-center justify-between text-xs text-slate-500 font-medium">
             <span>Seluruh piutang berjalan</span>
-            <span className="font-bold text-emerald-700 group-hover:underline">Semua</span>
+            <span className="font-bold text-blue-600 group-hover:underline">Semua</span>
           </div>
         </Link>
 
         {/* Card 2: Lewat Jatuh Tempo (Overdue) */}
         <Link
           href={filterHref(params, { status: "overdue", dueFrom: undefined, dueTo: undefined, includeFinal: undefined })}
-          className={`group block rounded-2xl border p-5 shadow-xs transition-all hover:shadow-sm hover:border-rose-300 bg-rose-50/40 hover:bg-rose-50/70 cursor-pointer ${
+          className={`group block rounded-xl border p-5 shadow-xs transition-all hover:shadow-sm hover:border-rose-300 bg-rose-50/40 hover:bg-rose-50/70 cursor-pointer ${
             isOverdueActive ? "ring-2 ring-rose-600 border-rose-400" : "border-rose-200/80"
           }`}
         >
@@ -158,11 +158,11 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
             <span className="text-[11px] font-bold uppercase tracking-wider text-rose-800">
               Lewat Jatuh Tempo
             </span>
-            <span className="inline-flex items-center rounded-full border border-rose-200 bg-rose-100 px-2 py-0.5 text-xs font-bold text-rose-800">
+            <span className="inline-flex items-center rounded-md border border-rose-200 bg-rose-100 px-2 py-0.5 text-xs font-bold text-rose-800">
               {metricsSummary.overdue.count} Nota &bull; {metricsSummary.overdue.percentage}%
             </span>
           </div>
-          <p className="mt-2 text-2xl font-black tracking-tight text-rose-700 sm:text-3xl">
+          <p className="mt-2 text-2xl font-black tracking-tight text-rose-700 sm:text-3xl font-mono tabular-nums">
             {rupiah(metricsSummary.overdue.amount)}
           </p>
           <div className="mt-2 flex items-center justify-between text-xs text-rose-600 font-medium">
@@ -179,7 +179,7 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
             dueTo: metricsSummary.comingSoonH3.toDate,
             includeFinal: undefined
           })}
-          className={`group block rounded-2xl border p-5 shadow-xs transition-all hover:shadow-sm hover:border-amber-300 bg-amber-50/40 hover:bg-amber-50/70 cursor-pointer ${
+          className={`group block rounded-xl border p-5 shadow-xs transition-all hover:shadow-sm hover:border-amber-300 bg-amber-50/40 hover:bg-amber-50/70 cursor-pointer ${
             isComingSoonActive ? "ring-2 ring-amber-600 border-amber-400" : "border-amber-200/80"
           }`}
         >
@@ -187,11 +187,11 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
             <span className="text-[11px] font-bold uppercase tracking-wider text-amber-900">
               Jatuh Tempo Segera (H-3)
             </span>
-            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-900">
+            <span className="inline-flex items-center rounded-md border border-amber-200 bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-900">
               {metricsSummary.comingSoonH3.count} Nota &bull; {metricsSummary.comingSoonH3.percentage}%
             </span>
           </div>
-          <p className="mt-2 text-2xl font-black tracking-tight text-amber-800 sm:text-3xl">
+          <p className="mt-2 text-2xl font-black tracking-tight text-amber-800 sm:text-3xl font-mono tabular-nums">
             {rupiah(metricsSummary.comingSoonH3.amount)}
           </p>
           <div className="mt-2 flex items-center justify-between text-xs text-amber-700 font-medium">
@@ -208,7 +208,7 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
             dueTo: undefined,
             includeFinal: undefined
           })}
-          className={`group block rounded-2xl border p-5 shadow-xs transition-all hover:shadow-sm hover:border-emerald-300 bg-emerald-50/30 hover:bg-emerald-50/60 cursor-pointer ${
+          className={`group block rounded-xl border p-5 shadow-xs transition-all hover:shadow-sm hover:border-emerald-300 bg-emerald-50/30 hover:bg-emerald-50/60 cursor-pointer ${
             isBeyondActive ? "ring-2 ring-emerald-600 border-emerald-400" : "border-emerald-200/80"
           }`}
         >
@@ -216,11 +216,11 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
             <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-900">
               Jatuh Tempo Aman (&gt; H-3)
             </span>
-            <span className="inline-flex items-center rounded-full border border-emerald-200 bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-800">
+            <span className="inline-flex items-center rounded-md border border-emerald-200 bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-800">
               {metricsSummary.beyondH3.count} Nota &bull; {metricsSummary.beyondH3.percentage}%
             </span>
           </div>
-          <p className="mt-2 text-2xl font-black tracking-tight text-emerald-700 sm:text-3xl">
+          <p className="mt-2 text-2xl font-black tracking-tight text-emerald-700 sm:text-3xl font-mono tabular-nums">
             {rupiah(metricsSummary.beyondH3.amount)}
           </p>
           <div className="mt-2 flex items-center justify-between text-xs text-emerald-700 font-medium">
@@ -229,6 +229,7 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
           </div>
         </Link>
       </div>
+
       <ResponsiveFilterPanel
         title="Filter tempo"
         resetHref="/tempo"
@@ -245,8 +246,11 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
         <label className="text-sm font-medium text-slate-700">Jatuh tempo sampai<Input type="date" name="dueTo" defaultValue={valueOf(params, "dueTo") || ""} className="mt-1" /></label>
         <label className="flex items-end gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700"><input type="checkbox" name="includeFinal" value="1" defaultChecked={valueOf(params, "includeFinal") === "1"} /> Tampilkan final</label>
       </ResponsiveFilterPanel>
+
       <section className="aj-surface">
         <div className="border-b border-slate-200 px-5 py-4 text-sm text-slate-600">Menampilkan {paged.length} dari {meta.total} tempo.</div>
+
+        {/* Mobile View */}
         <div className="space-y-3 p-4 md:hidden">
           {paged.map((row) => (
             <article key={row.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
@@ -255,17 +259,17 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
                   <p className="truncate font-bold text-slate-900">{row.customerName}</p>
                   <p className="mt-1 font-mono text-xs text-slate-500">{row.id}</p>
                 </div>
-                <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${statusBadgeClass(row.status)}`}>{row.status}</span>
+                <span className={`shrink-0 rounded-md px-2.5 py-1 text-xs font-bold ${statusBadgeClass(row.status)}`}>{row.status}</span>
               </div>
               <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Remaining</dt><dd className="mt-0.5 font-bold text-slate-900">{rupiah(row.remainingAmount)}</dd></div>
-                <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Jatuh Tempo</dt><dd className="mt-0.5 text-slate-700">{new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(row.dueDate))}</dd></div>
-                <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Original</dt><dd className="mt-0.5 text-slate-700">{rupiah(row.originalAmount)}</dd></div>
-                <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Paid</dt><dd className="mt-0.5 text-slate-700">{rupiah(row.paidAmount)}</dd></div>
+                <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Remaining</dt><dd className="mt-0.5 font-bold font-mono tabular-nums text-slate-900">{rupiah(row.remainingAmount)}</dd></div>
+                <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Jatuh Tempo</dt><dd className="mt-0.5 font-mono tabular-nums text-slate-700">{new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(row.dueDate))}</dd></div>
+                <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Original</dt><dd className="mt-0.5 font-mono tabular-nums text-slate-700">{rupiah(row.originalAmount)}</dd></div>
+                <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Paid</dt><dd className="mt-0.5 font-mono tabular-nums text-emerald-700">{rupiah(row.paidAmount)}</dd></div>
               </dl>
               <div className="mt-4 flex flex-wrap gap-2">
                 {!["paid", "cancelled", "written_off"].includes(row.status) ? (
-                  <Link href={`/tempo/${row.id}`} className="flex-1 rounded-lg bg-emerald-600 px-3 py-2 text-center text-sm font-bold text-white shadow-xs hover:bg-emerald-700 transition-colors">Bayar</Link>
+                  <Link href={`/tempo/${row.id}`} className="flex-1 rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-bold text-white shadow-xs hover:bg-blue-700 transition-colors">Bayar</Link>
                 ) : (
                   <Link href={`/tempo/${row.id}`} className="flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2 text-center text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors">Detail</Link>
                 )}
@@ -281,7 +285,7 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
                     })}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg border border-emerald-500 bg-emerald-50 px-3 py-2 text-center text-sm font-bold text-emerald-800 hover:bg-emerald-100 transition-colors"
+                    className="rounded-lg border border-emerald-600 bg-emerald-50 px-3 py-2 text-center text-sm font-bold text-emerald-800 hover:bg-emerald-100 transition-colors"
                   >
                     WA Tagihan
                   </a>
@@ -291,8 +295,68 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
           ))}
           {paged.length === 0 && <p className="py-8 text-center text-sm text-slate-500">Tidak ada Tempo sesuai filter.</p>}
         </div>
+
+        {/* Desktop Table */}
         <div className="hidden overflow-x-auto md:block">
-          <table className="min-w-full text-left text-sm"><thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500"><tr><th className="px-5 py-3">Customer</th><th className="px-5 py-3">Tipe</th><th className="px-5 py-3">Original</th><th className="px-5 py-3">Paid</th><th className="px-5 py-3">Remaining</th><th className="px-5 py-3">Jatuh Tempo</th><th className="px-5 py-3">Status</th><th className="px-5 py-3">Action</th></tr></thead><tbody>{paged.map((row) => <tr key={row.id} className="border-b border-slate-100 hover:bg-slate-50/70 transition-colors"><td className="px-5 py-4"><b>{row.customerName}</b><p className="mt-0.5 font-mono text-xs text-slate-500">{row.id}</p></td><td className="px-5 py-4"><span className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">{row.tipeCodeSnapshot}</span></td><td className="px-5 py-4 font-medium">{rupiah(row.originalAmount)}</td><td className="px-5 py-4 font-medium text-emerald-700">{rupiah(row.paidAmount)}</td><td className="px-5 py-4 font-bold text-slate-900">{rupiah(row.remainingAmount)}</td><td className="px-5 py-4 text-slate-600">{new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(row.dueDate))}</td><td className="px-5 py-4"><span className={`rounded-full px-2.5 py-1 text-xs font-bold ${statusBadgeClass(row.status)}`}>{row.status}</span></td><td className="px-5 py-4"><div className="flex items-center gap-2">{!["paid", "cancelled", "written_off"].includes(row.status) ? (<Link href={`/tempo/${row.id}`} className="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-700 transition-colors">Bayar</Link>) : (<Link href={`/tempo/${row.id}`} className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors">Detail</Link>)}<Link href={`/print/tempo/${row.id}`} className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors">Cetak</Link>
+          <table className="min-w-full text-left text-sm divide-y divide-slate-200">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
+              <tr>
+                <th className="px-5 py-3.5">Customer</th>
+                <th className="px-5 py-3.5">Tipe</th>
+                <th className="px-5 py-3.5 font-mono">Original</th>
+                <th className="px-5 py-3.5 font-mono">Paid</th>
+                <th className="px-5 py-3.5 font-mono">Remaining</th>
+                <th className="px-5 py-3.5">Jatuh Tempo</th>
+                <th className="px-5 py-3.5">Status</th>
+                <th className="px-5 py-3.5 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 bg-white">
+              {paged.map((row) => (
+                <tr key={row.id} className="hover:bg-slate-50/70 transition-colors">
+                  <td className="px-5 py-4">
+                    <b className="text-slate-900">{row.customerName}</b>
+                    <p className="mt-0.5 font-mono text-xs text-slate-500">{row.id}</p>
+                  </td>
+                  <td className="px-5 py-4">
+                    <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700">
+                      {row.tipeCodeSnapshot}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4 font-mono tabular-nums font-medium text-slate-700">{rupiah(row.originalAmount)}</td>
+                  <td className="px-5 py-4 font-mono tabular-nums font-medium text-emerald-700">{rupiah(row.paidAmount)}</td>
+                  <td className="px-5 py-4 font-mono tabular-nums font-bold text-slate-900">{rupiah(row.remainingAmount)}</td>
+                  <td className="px-5 py-4 font-mono tabular-nums text-slate-600">
+                    {new Intl.DateTimeFormat("id-ID", { timeZone: "Asia/Jakarta" }).format(new Date(row.dueDate))}
+                  </td>
+                  <td className="px-5 py-4">
+                    <span className={`rounded-md px-2.5 py-1 text-xs font-bold ${statusBadgeClass(row.status)}`}>
+                      {row.status}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      {!["paid", "cancelled", "written_off"].includes(row.status) ? (
+                        <Link
+                          href={`/tempo/${row.id}`}
+                          className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-blue-700 transition-colors"
+                        >
+                          Bayar
+                        </Link>
+                      ) : (
+                        <Link
+                          href={`/tempo/${row.id}`}
+                          className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                        >
+                          Detail
+                        </Link>
+                      )}
+                      <Link
+                        href={`/print/tempo/${row.id}`}
+                        className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                      >
+                        Cetak
+                      </Link>
                       {!["paid", "cancelled", "written_off"].includes(row.status) && (
                         <a
                           href={buildTempoWhatsAppUrl({
@@ -304,14 +368,49 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
                           })}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center rounded-lg border border-emerald-500 bg-emerald-50 px-2.5 py-1.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition-colors shadow-xs"
+                          className="inline-flex items-center rounded-lg border border-emerald-600 bg-emerald-50 px-2.5 py-1.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition-colors shadow-xs"
                           title="Kirim Penagihan via WhatsApp"
                         >
                           WA
                         </a>
-                      )}</div></td></tr>)}{paged.length === 0 && <tr><td colSpan={8} className="px-5 py-10 text-center text-slate-500">Tidak ada Tempo sesuai filter.</td></tr>}</tbody></table>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {paged.length === 0 && (
+                <tr>
+                  <td colSpan={8} className="px-5 py-10 text-center text-slate-500">
+                    Tidak ada Tempo sesuai filter.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
-        <div className="flex items-center justify-between border-t border-slate-200 px-5 py-4 text-sm"><span className="text-slate-500">Halaman {page} dari {totalPages}</span><div className="flex gap-2">{page > 1 && <Link className="rounded-lg border border-slate-300 px-3 py-1.5 font-bold text-slate-700 hover:bg-slate-50" href={pageHref(params, page - 1)}>Sebelumnya</Link>}{page < totalPages && <Link className="rounded-lg border border-slate-300 px-3 py-1.5 font-bold text-slate-700 hover:bg-slate-50" href={pageHref(params, page + 1)}>Berikutnya</Link>}</div></div>
+
+        {/* Pagination Footer */}
+        <div className="flex items-center justify-between border-t border-slate-200 px-5 py-4 text-sm">
+          <span className="text-slate-500">Halaman {page} dari {totalPages}</span>
+          <div className="flex gap-2">
+            {page > 1 && (
+              <Link
+                className="rounded-lg border border-slate-300 px-3 py-1.5 font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                href={pageHref(params, page - 1)}
+              >
+                Sebelumnya
+              </Link>
+            )}
+            {page < totalPages && (
+              <Link
+                className="rounded-lg border border-slate-300 px-3 py-1.5 font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                href={pageHref(params, page + 1)}
+              >
+                Berikutnya
+              </Link>
+            )}
+          </div>
+        </div>
       </section>
     </AppShell>
   );

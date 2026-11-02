@@ -62,7 +62,7 @@ export default async function AuditTrailPage({ searchParams }: Props) {
   return (
     <AppShell>
       <div className="mb-7">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Append-only</p>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Append-only</p>
         <h2 className="aj-page-title text-3xl font-bold">Audit Trail</h2>
         <p className="mt-2 text-sm text-slate-600">Riwayat siapa yang membuat, mengubah, approve/reject, membayar tempo, mengirim WhatsApp, dan sinkron ERP.</p>
       </div>
@@ -109,13 +109,13 @@ export default async function AuditTrailPage({ searchParams }: Props) {
         <div data-testid="audit-mobile-cards" className="space-y-3 p-4 md:hidden">
           {result.entries.map((entry) => (
             <article key={entry.id} className="relative rounded-md border border-slate-200 bg-white p-4 pl-5 shadow-sm">
-              <span className="absolute left-0 top-4 h-10 w-1 rounded-r-full bg-emerald-500" />
+              <span className="absolute left-0 top-4 h-10 w-1 rounded-r-full bg-blue-600" />
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="font-semibold text-slate-900">{entry.action}</p>
                   <p className="mt-1 text-xs text-slate-500">{new Intl.DateTimeFormat("id-ID", { dateStyle: "medium", timeStyle: "medium", timeZone: "Asia/Jakarta" }).format(new Date(entry.createdAt))}</p>
                 </div>
-                <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">{entry.userRoleSnapshot}</span>
+                <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-700">{entry.userRoleSnapshot}</span>
               </div>
               <dl className="mt-3 grid gap-2 text-sm text-slate-600">
                 <div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">User</dt><dd className="mt-0.5 font-semibold text-slate-900">{entry.userNameSnapshot}</dd></div>
@@ -128,11 +128,11 @@ export default async function AuditTrailPage({ searchParams }: Props) {
         </div>
         <div className="hidden overflow-x-auto md:block">
           <table className="min-w-full text-left text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
               <tr><th className="px-5 py-3">Waktu</th><th className="px-5 py-3">User</th><th className="px-5 py-3">Entity</th><th className="px-5 py-3">Aksi</th><th className="px-5 py-3">Referensi</th><th className="px-5 py-3">Alasan / Tujuan</th><th className="px-5 py-3">Role</th></tr>
             </thead>
             <tbody>
-              {result.entries.map((entry) => <tr key={entry.id} className="border-b border-slate-100"><td className="px-5 py-4 text-slate-600">{new Intl.DateTimeFormat("id-ID", { dateStyle: "medium", timeStyle: "medium", timeZone: "Asia/Jakarta" }).format(new Date(entry.createdAt))}</td><td className="px-5 py-4"><b>{entry.userNameSnapshot}</b></td><td className="px-5 py-4">{entry.entityType}</td><td className="px-5 py-4">{entry.action}</td><td className="px-5 py-4">{entry.entityId}</td><td className="px-5 py-4">{entry.reason || "-"}</td><td className="px-5 py-4"><span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">{entry.userRoleSnapshot}</span></td></tr>)}
+              {result.entries.map((entry) => <tr key={entry.id} className="border-b border-slate-100"><td className="px-5 py-4 text-slate-600">{new Intl.DateTimeFormat("id-ID", { dateStyle: "medium", timeStyle: "medium", timeZone: "Asia/Jakarta" }).format(new Date(entry.createdAt))}</td><td className="px-5 py-4"><b>{entry.userNameSnapshot}</b></td><td className="px-5 py-4">{entry.entityType}</td><td className="px-5 py-4">{entry.action}</td><td className="px-5 py-4">{entry.entityId}</td><td className="px-5 py-4">{entry.reason || "-"}</td><td className="px-5 py-4"><span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-700">{entry.userRoleSnapshot}</span></td></tr>)}
               {result.entries.length === 0 && <tr><td colSpan={7} className="px-5 py-10 text-center text-slate-500">Belum ada aktivitas sesuai filter.</td></tr>}
             </tbody>
           </table>

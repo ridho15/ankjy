@@ -11,11 +11,12 @@ export async function AppShell({ children }: { children: ReactNode }) {
   const user = await getCurrentUser();
   const profile = await getUserProfile(user);
   const provider = resolveAuthProvider();
+
   return (
-    <div className="min-h-screen lg:flex">
+    <div className="min-h-screen bg-slate-50 lg:flex text-slate-900">
       <MobileNavigationDrawer role={user.role} userName={profile.name} />
       <Sidebar role={user.role} />
-      <main className="min-w-0 flex-1 p-5 sm:p-8 lg:p-10">
+      <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
         <Header user={profile} showDemoLogout={shouldShowDemoLogout()} showLogout={provider === "local_credentials" || provider === "anika_erp"} />
         {children}
       </main>

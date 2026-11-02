@@ -66,7 +66,7 @@ export function ErpSyncSettingsForm({ initialSetting }: { initialSetting: ErpSyn
 
       {/* Bagian 1: Koneksi Transaksi Aneka Jaya ERP */}
       <section className="aj-surface p-5 sm:p-6">
-        <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">
+        <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">
           Sinkronisasi Aneka Jaya ERP
         </p>
         <h3 className="mt-1 text-lg font-bold text-slate-900">
@@ -78,7 +78,7 @@ export function ErpSyncSettingsForm({ initialSetting }: { initialSetting: ErpSyn
 
         <label className="mt-4 flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 cursor-pointer hover:bg-slate-50 transition">
           <input
-            className="mt-1 h-4 w-4 text-emerald-600 focus:ring-emerald-500 rounded"
+            className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 rounded"
             type="checkbox"
             checked={erpTransactionSyncEnabled}
             onChange={(event) => setErpTransactionSyncEnabled(event.target.checked)}
@@ -99,7 +99,7 @@ export function ErpSyncSettingsForm({ initialSetting }: { initialSetting: ErpSyn
 
       {/* Bagian 2: Integrasi Inbound Sistem MJ */}
       <section className="aj-surface p-5 sm:p-6">
-        <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">
+        <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">
           Integrasi Inbound
         </p>
         <h3 className="mt-1 text-lg font-bold text-slate-900">
@@ -153,7 +153,7 @@ export function ErpSyncSettingsForm({ initialSetting }: { initialSetting: ErpSyn
           </label>
 
           <label className={`flex items-start gap-3 rounded-xl border p-3.5 cursor-pointer transition ${
-            mjTransactionMode === "process_aj" ? "border-emerald-300 bg-emerald-50/50" : "border-slate-200 bg-white hover:bg-slate-50"
+            mjTransactionMode === "process_aj" ? "border-blue-500 bg-blue-50/40" : "border-slate-200 bg-white hover:bg-slate-50"
           }`}>
             <input
               type="radio"
@@ -161,7 +161,7 @@ export function ErpSyncSettingsForm({ initialSetting }: { initialSetting: ErpSyn
               value="process_aj"
               checked={mjTransactionMode === "process_aj"}
               onChange={() => setMjTransactionMode("process_aj")}
-              className="mt-1 text-emerald-600 focus:ring-emerald-500"
+              className="mt-1 text-blue-600 focus:ring-blue-500"
             />
             <div>
               <span className="block text-sm font-bold text-slate-900">
@@ -177,7 +177,7 @@ export function ErpSyncSettingsForm({ initialSetting }: { initialSetting: ErpSyn
 
       {/* Bagian 3: Auto Sync Setelah Edit */}
       <section className="aj-surface p-5 sm:p-6">
-        <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">
+        <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">
           Otomasi Edit
         </p>
         <h3 className="mt-1 text-lg font-bold text-slate-900">
@@ -189,7 +189,7 @@ export function ErpSyncSettingsForm({ initialSetting }: { initialSetting: ErpSyn
 
         <label className="mt-4 flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 cursor-pointer hover:bg-slate-50 transition">
           <input
-            className="mt-1 h-4 w-4 text-emerald-600 focus:ring-emerald-500 rounded"
+            className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 rounded"
             type="checkbox"
             checked={autoSyncAfterSalesEdit}
             onChange={(event) => setAutoSyncAfterSalesEdit(event.target.checked)}
@@ -211,7 +211,7 @@ export function ErpSyncSettingsForm({ initialSetting }: { initialSetting: ErpSyn
           type="button"
           onClick={save}
           disabled={saving}
-          className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-sm"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-xs"
         >
           {saving ? "Menyimpan..." : "Simpan Konfigurasi Integrasi"}
         </Button>

@@ -41,7 +41,7 @@ export function PostReturnButton({
       type="button"
       onClick={handlePost}
       disabled={loading}
-      className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 disabled:opacity-50 transition-colors"
+      className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700 disabled:opacity-50 transition-colors shadow-xs"
     >
       {loading ? "Posting..." : "Posting Jurnal"}
     </button>

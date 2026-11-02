@@ -33,7 +33,7 @@ export function SlmProfitSettingsForm({ initialSetting }: { initialSetting: Oper
     <div className="space-y-6">
       {notice && <Toast {...notice} />}
       <section className="aj-surface max-w-xl p-5 sm:p-6">
-        <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Profit Operasional</p>
+        <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Profit Operasional</p>
         <h3 className="mt-1 text-lg font-bold">Persentase Gross Profit</h3>
         <p className="mt-2 text-sm text-slate-600">Dashboard memakai persentase ini untuk menghitung estimasi Gross Profit Operasional dari omzet approved bulanan non-AJ.</p>
         <div className="mt-5">

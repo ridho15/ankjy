@@ -55,7 +55,7 @@ export function EmployeeSubledgerView({
         <div>
           <Link
             href="/sdm/kasbon"
-            className="inline-flex items-center text-xs font-semibold text-emerald-600 hover:text-emerald-700 mb-2"
+            className="inline-flex items-center text-xs font-semibold text-blue-600 hover:text-blue-800 mb-2"
           >
             ← Kembali ke Daftar Kasbon
           </Link>
@@ -84,7 +84,7 @@ export function EmployeeSubledgerView({
 
         <section className="aj-surface p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Dilunasi</p>
-          <p className="mt-2 text-2xl font-black tracking-tight text-emerald-700">{formatCurrency(totalPaid)}</p>
+          <p className="mt-2 text-2xl font-black tracking-tight text-slate-900 font-mono tabular-nums">{formatCurrency(totalPaid)}</p>
           <p className="mt-3 text-xs text-slate-500">Total setoran masuk dan potong gaji</p>
         </section>
 
@@ -172,7 +172,7 @@ export function EmployeeSubledgerView({
                       <td className="px-5 py-3.5 text-right text-xs font-mono tabular-nums font-medium text-slate-900">
                         {entry.debit > 0 ? formatCurrency(entry.debit) : "—"}
                       </td>
-                      <td className="px-5 py-3.5 text-right text-xs font-mono tabular-nums font-medium text-emerald-700">
+                      <td className="px-5 py-3.5 text-right text-xs font-mono tabular-nums font-medium text-slate-900">
                         {entry.credit > 0 ? formatCurrency(entry.credit) : "—"}
                       </td>
                       <td className="px-5 py-3.5 text-right text-xs font-mono tabular-nums font-bold text-slate-900">
@@ -184,7 +184,7 @@ export function EmployeeSubledgerView({
                             href={entry.attachmentUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 rounded border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-emerald-700 transition"
+                            className="inline-flex items-center gap-1 rounded border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-blue-600 transition"
                           >
                             <span>Lihat Bukti</span>
                             <span className="text-[10px]">↗</span>

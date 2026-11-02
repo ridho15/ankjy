@@ -28,7 +28,7 @@ export default async function EditPenjualanPage({ params }: { params: Promise<{ 
               Draft Penjualan
             </span>
           ) : (
-            <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Transaksi</p>
+            <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Transaksi</p>
           )}
         </div>
         <h2 className="aj-page-title text-3xl font-bold">

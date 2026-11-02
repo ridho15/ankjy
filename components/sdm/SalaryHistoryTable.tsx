@@ -61,7 +61,7 @@ export function SalaryHistoryTable({ initialItems, initialSummary, initialPeriod
           <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
             Total Gaji Ditransfer {period ? `(${period})` : "(Semua Periode)"}
           </p>
-          <p className="mt-2 text-2xl font-black tracking-tight text-emerald-700">{formatCurrency(summary.totalAmount)}</p>
+          <p className="mt-2 text-2xl font-black tracking-tight text-slate-900 font-mono tabular-nums">{formatCurrency(summary.totalAmount)}</p>
           <p className="mt-3 text-xs text-slate-500">Total nominal bersih yang dibayarkan ke rekening karyawan</p>
         </section>
 
@@ -120,7 +120,7 @@ export function SalaryHistoryTable({ initialItems, initialSummary, initialPeriod
 
           <Link
             href="/pengeluaran/input"
-            className="inline-flex items-center justify-center rounded border border-emerald-600 bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-2xs"
+            className="inline-flex items-center justify-center rounded-lg border border-blue-600 bg-blue-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-blue-700 transition shadow-xs"
           >
             + Input Pembayaran Gaji
           </Link>
@@ -128,7 +128,7 @@ export function SalaryHistoryTable({ initialItems, initialSummary, initialPeriod
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm text-slate-700">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
               <tr>
                 <th className="px-5 py-3">Tanggal Bayar</th>
                 <th className="px-5 py-3">Karyawan</th>
@@ -169,7 +169,7 @@ export function SalaryHistoryTable({ initialItems, initialSummary, initialPeriod
                       <td className="px-5 py-3.5 text-xs text-slate-600">
                         {item.rekeningNameSnapshot || "Rekening"}
                       </td>
-                      <td className="px-5 py-3.5 text-right font-mono tabular-nums font-bold text-emerald-700 text-sm">
+                      <td className="px-5 py-3.5 text-right font-mono tabular-nums font-bold text-slate-900 text-sm">
                         {formatCurrency(item.amountPaid)}
                       </td>
                       <td className="px-5 py-3.5 text-center">
@@ -195,7 +195,7 @@ export function SalaryHistoryTable({ initialItems, initialSummary, initialPeriod
                             href={item.attachmentUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 rounded border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-emerald-700 transition"
+                            className="inline-flex items-center gap-1 rounded border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-blue-600 transition"
                           >
                             <span>Lihat Bukti</span>
                             <span className="text-[10px]">↗</span>

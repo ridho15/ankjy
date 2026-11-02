@@ -26,8 +26,8 @@ export function RoleSelector({ currentRole, redirectTo = "/" }: { currentRole: R
   };
 
   return (
-    <section className="mt-6 max-w-3xl rounded-[1.5rem] border border-emerald-100 bg-white p-5 shadow-[0_18px_60px_rgba(15,23,42,0.07)] sm:p-6">
-      <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-700">Development Access</p>
+    <section className="mt-6 max-w-3xl rounded-xl border border-slate-200 bg-white p-5 shadow-xs sm:p-6">
+      <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Development Access</p>
       <h3 className="mt-2 text-xl font-bold tracking-tight text-slate-950">Pilih role development</h3>
       <p className="mt-2 text-sm leading-6 text-slate-600">
         Super Admin memiliki akses penuh. Admin fokus input Penjualan, Pengeluaran, dan Stock Barang. Finance menangani Tempo/pengeluaran. Manager fokus approval dan akses baca laporan/riwayat. Viewer default tanpa akses.
@@ -36,7 +36,7 @@ export function RoleSelector({ currentRole, redirectTo = "/" }: { currentRole: R
         <Select value={role} onChange={(event) => setRole(event.target.value as Role)}>
           {ROLES.map((item) => <option key={item} value={item}>{roleLabel(item)}</option>)}
         </Select>
-        <Button type="button" onClick={save} disabled={saving} className="bg-emerald-600 text-white hover:bg-emerald-700">
+        <Button type="button" onClick={save} disabled={saving} className="bg-blue-600 text-white hover:bg-blue-700 shadow-xs">
           {saving ? "Menyimpan..." : "Terapkan peran"}
         </Button>
       </div>

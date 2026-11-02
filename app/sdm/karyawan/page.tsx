@@ -20,7 +20,7 @@ export default async function SdmKaryawanPage() {
   return (
     <AppShell>
       <div className="mb-7">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">SDM & Personalia</p>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">SDM & Personalia</p>
         <h2 className="aj-page-title text-3xl font-bold">Data Karyawan & Organisasi</h2>
         <p className="mt-2 text-sm text-slate-600">
           Kelola master data karyawan, posisi, atasan langsung, dan bagan hierarki organisasi perusahaan.

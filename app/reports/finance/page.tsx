@@ -92,7 +92,7 @@ function Pagination({
       <div className="flex items-center gap-1.5">
         {current > 1 ? (
           <Link
-            className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 shadow-2xs transition hover:bg-slate-50 hover:text-emerald-700"
+            className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 shadow-2xs transition hover:bg-slate-50 hover:text-blue-600"
             href={hrefFor(current - 1)}
           >
             ← Sebelumnya
@@ -107,7 +107,7 @@ function Pagination({
         </span>
         {current < totalPages ? (
           <Link
-            className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 shadow-2xs transition hover:bg-slate-50 hover:text-emerald-700"
+            className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-semibold text-slate-700 shadow-2xs transition hover:bg-slate-50 hover:text-blue-600"
             href={hrefFor(current + 1)}
           >
             Berikutnya →
@@ -201,7 +201,7 @@ export default async function FinanceReportsPage({
         <div className="flex flex-wrap items-center gap-2">
           <a
             href={`/api/reports/finance?month=${encodeURIComponent(month)}&format=excel`}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-xs font-bold text-emerald-800 shadow-2xs transition hover:bg-emerald-100 sm:text-sm"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 shadow-xs transition hover:bg-slate-50 sm:text-sm"
           >
             Unduh Excel
           </a>
@@ -209,7 +209,7 @@ export default async function FinanceReportsPage({
             href={`/reports/finance/print?month=${encodeURIComponent(month)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-emerald-700 sm:text-sm"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-blue-700 sm:text-sm"
           >
             Cetak / PDF
           </a>
@@ -233,7 +233,7 @@ export default async function FinanceReportsPage({
         </label>
         <button
           type="submit"
-          className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-xs transition hover:bg-emerald-700"
+          className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white shadow-xs transition hover:bg-blue-700"
         >
           Terapkan
         </button>
@@ -278,7 +278,7 @@ export default async function FinanceReportsPage({
           </p>
           <div className="mt-3 flex items-center justify-between text-xs">
             <span className="text-slate-500">Aset Piutang</span>
-            <Link href="/sdm/kasbon" className="font-semibold text-emerald-700 hover:underline">
+            <Link href="/sdm/kasbon" className="font-semibold text-blue-600 hover:text-blue-800 hover:underline">
               SDM Kasbon →
             </Link>
           </div>
@@ -365,7 +365,7 @@ export default async function FinanceReportsPage({
             <div className="flex items-end gap-2">
               <button
                 type="submit"
-                className="inline-flex h-[38px] flex-1 items-center justify-center rounded-lg bg-emerald-600 px-4 text-xs font-bold text-white shadow-2xs transition hover:bg-emerald-700"
+                className="inline-flex h-[38px] flex-1 items-center justify-center rounded-lg bg-blue-600 px-4 text-xs font-bold text-white shadow-xs transition hover:bg-blue-700"
               >
                 Terapkan
               </button>
@@ -414,7 +414,7 @@ export default async function FinanceReportsPage({
               {isTempoFiltered && (
                 <Link
                   href={resetTempoFilterHref(params)}
-                  className="mt-2 inline-block text-xs font-semibold text-emerald-600 underline"
+                  className="mt-2 inline-block text-xs font-semibold text-blue-600 hover:text-blue-800 underline"
                 >
                   Bersihkan filter
                 </Link>
@@ -462,7 +462,7 @@ export default async function FinanceReportsPage({
                     {isTempoFiltered && (
                       <Link
                         href={resetTempoFilterHref(params)}
-                        className="mt-2 inline-block text-xs font-semibold text-emerald-600 underline"
+                        className="mt-2 inline-block text-xs font-semibold text-blue-600 hover:text-blue-800 underline"
                       >
                         Bersihkan filter
                       </Link>
@@ -570,7 +570,7 @@ export default async function FinanceReportsPage({
             <div className="flex items-end gap-2">
               <button
                 type="submit"
-                className="inline-flex h-[38px] flex-1 items-center justify-center rounded-lg bg-emerald-600 px-4 text-xs font-bold text-white shadow-2xs transition hover:bg-emerald-700"
+                className="inline-flex h-[38px] flex-1 items-center justify-center rounded-lg bg-blue-600 px-4 text-xs font-bold text-white shadow-xs transition hover:bg-blue-700"
               >
                 Terapkan
               </button>
@@ -625,7 +625,7 @@ export default async function FinanceReportsPage({
               {isExpenseFiltered && (
                 <Link
                   href={resetExpenseFilterHref(params)}
-                  className="mt-2 inline-block text-xs font-semibold text-emerald-600 underline"
+                  className="mt-2 inline-block text-xs font-semibold text-blue-600 hover:text-blue-800 underline"
                 >
                   Bersihkan filter
                 </Link>
@@ -688,7 +688,7 @@ export default async function FinanceReportsPage({
                     {isExpenseFiltered && (
                       <Link
                         href={resetExpenseFilterHref(params)}
-                        className="mt-2 inline-block text-xs font-semibold text-emerald-600 underline"
+                        className="mt-2 inline-block text-xs font-semibold text-blue-600 hover:text-blue-800 underline"
                       >
                         Bersihkan filter
                       </Link>

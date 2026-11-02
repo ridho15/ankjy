@@ -133,7 +133,7 @@ export function PrintPreviewPage({
           type="button"
           onClick={() => window.print()}
           disabled={loading || Boolean(error)}
-          className="border border-emerald-600 bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg border border-blue-600 bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-xs hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Print Browser
         </button>
@@ -141,27 +141,27 @@ export function PrintPreviewPage({
           type="button"
           onClick={downloadText}
           disabled={loading || Boolean(error) || !text}
-          className="border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-xs hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Download .txt
         </button>
         <a
           href={printPreviewEndpoint(kind, id, "prn")}
           download={`${kind}-${id}.prn`}
-          className={`border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 ${loading || error ? "pointer-events-none opacity-50" : ""}`}
+          className={`rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-xs hover:bg-slate-50 ${loading || error ? "pointer-events-none opacity-50" : ""}`}
         >
           Download .prn
         </a>
         <button
           type="button"
           onClick={() => history.back()}
-          className="border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800"
+          className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-xs hover:bg-slate-50"
         >
           Back
         </button>
         <Link
           href={printPreviewListPath(kind)}
-          className="border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800"
+          className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-xs hover:bg-slate-50"
         >
           Daftar
         </Link>

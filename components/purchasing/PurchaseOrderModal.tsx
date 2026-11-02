@@ -225,7 +225,7 @@ export function PurchaseOrderModal({ isOpen, onClose, suppliers, onSuccess }: Pr
               <button
                 type="button"
                 onClick={handleAddItem}
-                className="text-xs font-semibold text-emerald-700 hover:text-emerald-900"
+                className="text-xs font-semibold text-blue-600 hover:text-blue-800"
               >
                 + Tambah Baris Barang
               </button>

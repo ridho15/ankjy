@@ -21,7 +21,7 @@ export default async function SdmUangMukaPage() {
   return (
     <AppShell>
       <div className="mb-7">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">SDM & Operasional</p>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">SDM & Operasional</p>
         <h2 className="aj-page-title text-3xl font-bold">Uang Muka Operasional</h2>
         <p className="mt-2 text-sm text-slate-600">
           Monitoring uang muka dinas karyawan, verifikasi nota fisik pengeluaran riil, dan pencatatan pengembalian sisa kas.

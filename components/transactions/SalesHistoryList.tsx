@@ -241,8 +241,8 @@ function ExpandButton({
       onClick={onToggle}
       className={
         compact
-          ? "grid h-9 w-9 place-items-center rounded-md border border-slate-200 text-slate-600 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-          : "flex w-full items-center justify-center gap-1.5 rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5 font-semibold text-slate-700 hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          ? "grid h-9 w-9 place-items-center rounded-md border border-slate-200 text-slate-600 hover:border-blue-400 hover:bg-blue-50/50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          : "flex w-full items-center justify-center gap-1.5 rounded-md border border-slate-200 bg-slate-50 px-3 py-2.5 font-semibold text-slate-700 hover:border-blue-400 hover:bg-blue-50/50 hover:text-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
       }
     >
       <span
@@ -273,7 +273,7 @@ export function SalesItemsDetail({
       ) : (
         <div className="overflow-x-auto rounded-md border border-slate-200 bg-white">
           <table className="min-w-full text-left text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
               <tr>
                 <th className="px-4 py-2.5">Item</th>
                 <th className="px-4 py-2.5 text-right">Qty</th>
@@ -449,13 +449,13 @@ export function SalesHistoryList({
               {expanded && <SalesItemsDetail sale={sale} className="mt-3" />}
               <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
                 <Link
-                  className="rounded-md bg-emerald-600 px-2.5 py-2 text-center text-xs font-semibold text-white hover:bg-emerald-700 shadow-xs"
+                  className="rounded-lg bg-blue-600 px-2.5 py-2 text-center text-xs font-semibold text-white hover:bg-blue-700 shadow-xs"
                   href={`/penjualan/${sale.id}`}
                 >
                   Detail
                 </Link>
                 <Link
-                  className="rounded-md border border-emerald-300 bg-emerald-50 px-2.5 py-2 text-center text-xs font-bold text-emerald-800 hover:bg-emerald-100 shadow-xs"
+                  className="rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-center text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-xs"
                   href={`/print/sales/${sale.id}/continuous`}
                 >
                   Cetak
@@ -494,7 +494,7 @@ export function SalesHistoryList({
 
       <div className="hidden overflow-x-auto md:block">
         <table className="min-w-full text-left text-sm">
-          <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+          <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
             <tr>
               <th className="w-12 px-3 py-3">
                 <span className="sr-only">Item</span>
@@ -537,13 +537,13 @@ export function SalesHistoryList({
                       <div className="flex flex-col gap-1.5 min-w-[135px]">
                         <div className="flex items-center gap-1.5">
                           <Link
-                            className="flex-1 whitespace-nowrap rounded-md bg-emerald-600 px-2.5 py-1 text-center text-xs font-semibold text-white hover:bg-emerald-700 shadow-xs"
+                            className="flex-1 whitespace-nowrap rounded-lg bg-blue-600 px-2.5 py-1 text-center text-xs font-semibold text-white hover:bg-blue-700 shadow-xs"
                             href={`/penjualan/${sale.id}`}
                           >
                             Detail
                           </Link>
                           <Link
-                            className="flex-1 whitespace-nowrap rounded-md border border-emerald-300 bg-emerald-50 px-2.5 py-1 text-center text-xs font-bold text-emerald-800 hover:bg-emerald-100 shadow-xs"
+                            className="flex-1 whitespace-nowrap rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-center text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-xs"
                             href={`/print/sales/${sale.id}/continuous`}
                             title="Cetak Nota Continuous Form"
                           >

@@ -128,7 +128,7 @@ export function AccountManagerTable({ initialAccounts }: Props) {
               onClick={() => setSelectedCategory(c.key)}
               className={`px-3 py-2 text-xs font-semibold rounded-t-xs border-b-2 transition-colors whitespace-nowrap ${
                 selectedCategory === c.key
-                  ? "border-emerald-600 bg-white text-emerald-800"
+                  ? "border-blue-600 bg-white text-blue-700 font-bold"
                   : "border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100"
               }`}
             >
@@ -160,7 +160,7 @@ export function AccountManagerTable({ initialAccounts }: Props) {
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 text-slate-600 font-semibold uppercase tracking-wider border-b border-slate-200">
+            <thead className="bg-slate-50 text-slate-600 font-bold uppercase tracking-wider border-b border-slate-200">
               <tr>
                 <th className="py-3 px-4 w-32">Kode Akun</th>
                 <th className="py-3 px-4">Nama Akun & Deskripsi</th>

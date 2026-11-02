@@ -53,7 +53,7 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
 
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex items-center gap-1 rounded-xl border border-slate-200 bg-white p-1 text-xs font-semibold shadow-xs">
-            <Link href="/reports" className="rounded-lg bg-emerald-600 px-3 py-1.5 text-white shadow-xs">Harian</Link>
+            <Link href="/reports" className="rounded-lg bg-blue-600 px-3 py-1.5 text-white shadow-xs">Harian</Link>
             <Link href="/reports/customers" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900">Customer</Link>
             <Link href="/reports/products" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900">Produk</Link>
             <Link href="/reports/stocks" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900">Stok</Link>
@@ -61,7 +61,7 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
           </div>
           <a
             href={`/api/reports/daily?date=${encodeURIComponent(selectedDate)}&format=excel`}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-xs font-bold text-emerald-800 shadow-xs transition hover:bg-emerald-100 sm:text-sm"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 shadow-xs transition hover:bg-slate-50 sm:text-sm"
           >
             Unduh Excel
           </a>
@@ -69,7 +69,7 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
             href={`/reports/print?date=${encodeURIComponent(selectedDate)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-emerald-700 sm:text-sm"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-blue-700 sm:text-sm"
           >
             Cetak / PDF
           </a>
@@ -79,28 +79,28 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
       <form className="aj-surface mb-5 flex flex-col gap-3 p-5 sm:flex-row sm:items-end">
         <label className="text-sm font-semibold text-slate-700">
           <span className="mb-1 block">Tanggal laporan</span>
-          <input className="w-full rounded-xl border border-slate-300 px-3 py-2 sm:w-auto" type="date" name="date" defaultValue={selectedDate} />
+          <input className="w-full rounded-xl border border-slate-300 px-3 py-2 sm:w-auto focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600" type="date" name="date" defaultValue={selectedDate} />
         </label>
-        <button className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700">Terapkan</button>
+        <button className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white shadow-xs hover:bg-blue-700">Terapkan</button>
       </form>
 
       <div className="mb-5 grid gap-4 lg:grid-cols-4 md:grid-cols-2">
         <section className="aj-surface p-5">
           <p className="text-sm text-slate-500">Grand Total paid</p>
-          <p className="mt-2 text-2xl font-black">{rupiah(summary.grandTotal)}</p>
+          <p className="mt-2 text-2xl font-black font-mono tabular-nums text-slate-900">{rupiah(summary.grandTotal)}</p>
           <p className="mt-1 text-xs text-slate-500">Termasuk pembayaran Tempo • exclude QA</p>
         </section>
         <section className="aj-surface p-5">
           <p className="text-sm text-slate-500">Cash</p>
-          <p className="mt-2 text-2xl font-black">{rupiah(summary.totalCash)}</p>
+          <p className="mt-2 text-2xl font-black font-mono tabular-nums text-slate-900">{rupiah(summary.totalCash)}</p>
         </section>
         <section className="aj-surface p-5">
           <p className="text-sm text-slate-500">Transfer</p>
-          <p className="mt-2 text-2xl font-black">{rupiah(summary.totalTf)}</p>
+          <p className="mt-2 text-2xl font-black font-mono tabular-nums text-slate-900">{rupiah(summary.totalTf)}</p>
         </section>
         <section className="aj-surface p-5">
           <p className="text-sm text-slate-500">AJ belum tersinkron ERP</p>
-          <p className="mt-2 text-2xl font-black text-amber-700">{rupiah(summary.unsyncedErpTotal)}</p>
+          <p className="mt-2 text-2xl font-black font-mono tabular-nums text-amber-700">{rupiah(summary.unsyncedErpTotal)}</p>
           <p className="mt-1 text-xs text-slate-500">{summary.unsyncedErpCount} transaksi pending/failed.</p>
         </section>
       </div>
@@ -111,7 +111,7 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
         </section>
       )}
 
-      {summary.tempoPayments.length > 0 && <section className="aj-surface mb-5 p-5"><p className="font-bold">Pembayaran Tempo diterima</p><p className="mt-1 text-sm text-slate-500">{summary.tempoPayments.length} pembayaran • {rupiah(summary.tempoPaymentTotal)}</p><div className="mt-4 divide-y divide-slate-100">{summary.tempoPayments.map((payment) => <div key={payment.id} className="flex items-center justify-between gap-4 py-3 text-sm"><div><p className="font-semibold">{payment.customerName || payment.salesId || payment.tempoReceivableId}</p><p className="mt-0.5 text-xs text-slate-500">{payment.paymentMethod} • {payment.rekeningNameSnapshot}</p></div><b>{rupiah(payment.amountPaid)}</b></div>)}</div></section>}
+      {summary.tempoPayments.length > 0 && <section className="aj-surface mb-5 p-5"><p className="font-bold">Pembayaran Tempo diterima</p><p className="mt-1 text-sm text-slate-500">{summary.tempoPayments.length} pembayaran • {rupiah(summary.tempoPaymentTotal)}</p><div className="mt-4 divide-y divide-slate-100">{summary.tempoPayments.map((payment) => <div key={payment.id} className="flex items-center justify-between gap-4 py-3 text-sm"><div><p className="font-semibold">{payment.customerName || payment.salesId || payment.tempoReceivableId}</p><p className="mt-0.5 text-xs text-slate-500">{payment.paymentMethod} • {payment.rekeningNameSnapshot}</p></div><b className="font-mono tabular-nums">{rupiah(payment.amountPaid)}</b></div>)}</div></section>}
       {summary.tempoReversals.length > 0 && <section className="aj-surface mb-5 p-5"><p className="font-bold text-rose-700">Reversal pembayaran Tempo</p><p className="mt-1 text-sm text-slate-500">{summary.tempoReversals.length} reversal • -{rupiah(summary.tempoReversalTotal)}</p></section>}
 
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(360px,.9fr)]">
@@ -124,16 +124,16 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
           </div>
           <div data-testid="reports-mobile-cards" className="space-y-3 p-4 md:hidden">
             {pagedPaidSales.map((sale) => (
-              <article key={sale.id} className="rounded-md border border-slate-200 bg-white p-4 shadow-sm">
+              <article key={sale.id} className="rounded-md border border-slate-200 bg-white p-4 shadow-xs">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate font-semibold text-slate-900">{sale.customerName}</p>
                     <p className="mt-1 text-xs text-slate-500">{sale.tipeCodeSnapshot || "W"} • {sale.paymentMethod}</p>
                   </div>
-                  <p className="shrink-0 font-bold text-slate-900">{rupiah(sale.total)}</p>
+                  <p className="shrink-0 font-bold font-mono tabular-nums text-slate-900">{rupiah(sale.total)}</p>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                  <span className="rounded-full bg-emerald-50 px-2.5 py-1 font-semibold text-emerald-700">{sale.paymentMethod}</span>
+                  <span className="rounded-full bg-slate-100 px-2.5 py-1 font-semibold text-slate-700">{sale.paymentMethod}</span>
                   <span className="rounded-full bg-slate-100 px-2.5 py-1 font-semibold text-slate-600">{sale.syncTarget === "erp" ? sale.syncStatus || "pending" : "local"}</span>
                 </div>
               </article>
@@ -142,7 +142,7 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
           </div>
           <div className="hidden overflow-x-auto md:block">
             <table className="min-w-full text-left text-sm">
-              <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+              <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
                 <tr>
                   <th className="px-5 py-3">Customer</th>
                   <th className="px-5 py-3">Tipe</th>
@@ -153,12 +153,12 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
               </thead>
               <tbody>
                 {pagedPaidSales.map((sale) => (
-                  <tr key={sale.id} className="border-b border-slate-100">
-                    <td className="px-5 py-4 font-semibold">{sale.customerName}</td>
-                    <td className="px-5 py-4">{sale.tipeCodeSnapshot || "W"}</td>
-                    <td className="px-5 py-4">{sale.paymentMethod}</td>
-                    <td className="px-5 py-4">{sale.syncTarget === "erp" ? sale.syncStatus || "pending" : "local"}</td>
-                    <td className="px-5 py-4 text-right">{rupiah(sale.total)}</td>
+                  <tr key={sale.id} className="border-b border-slate-100 hover:bg-slate-50/50">
+                    <td className="px-5 py-4 font-semibold text-slate-900">{sale.customerName}</td>
+                    <td className="px-5 py-4 font-mono text-slate-600">{sale.tipeCodeSnapshot || "W"}</td>
+                    <td className="px-5 py-4 text-slate-600">{sale.paymentMethod}</td>
+                    <td className="px-5 py-4 text-slate-600">{sale.syncTarget === "erp" ? sale.syncStatus || "pending" : "local"}</td>
+                    <td className="px-5 py-4 text-right font-mono tabular-nums font-semibold text-slate-900">{rupiah(sale.total)}</td>
                   </tr>
                 ))}
                 {pagedPaidSales.length === 0 && (
@@ -175,7 +175,7 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 bg-slate-50/50 px-5 py-4 text-xs text-slate-600 sm:text-sm">
               <div>
                 <span>
-                  Halaman <b className="text-slate-900">{page}</b> dari <b className="text-slate-900">{totalPages}</b> ({totalPaidSales} transaksi)
+                  Halaman <b className="text-slate-900 font-mono tabular-nums">{page}</b> dari <b className="text-slate-900 font-mono tabular-nums">{totalPages}</b> ({totalPaidSales} transaksi)
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -210,15 +210,15 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
 
         <section className="aj-surface overflow-hidden">
           <div className="border-b border-slate-100 p-5">
-            <p className="font-bold">Breakdown per tipe</p>
+            <p className="font-bold text-slate-900">Breakdown per tipe</p>
           </div>
           <div className="divide-y divide-slate-100">
             {summary.byTipe.map((row) => (
               <div key={row.tipe} className="p-5">
-                <p className="font-bold">{row.tipe}</p>
-                <p className="mt-2 text-sm text-slate-600">Cash: {rupiah(row.cash)}</p>
-                <p className="text-sm text-slate-600">TF: {rupiah(row.tf)}</p>
-                <p className="mt-1 text-sm font-semibold">Total: {rupiah(row.total)}</p>
+                <p className="font-bold text-slate-900">{row.tipe}</p>
+                <p className="mt-2 text-sm text-slate-600">Cash: <span className="font-mono tabular-nums">{rupiah(row.cash)}</span></p>
+                <p className="text-sm text-slate-600">TF: <span className="font-mono tabular-nums">{rupiah(row.tf)}</span></p>
+                <p className="mt-1 text-sm font-semibold text-slate-900">Total: <span className="font-mono tabular-nums">{rupiah(row.total)}</span></p>
               </div>
             ))}
             {summary.byTipe.length === 0 && <p className="p-5 text-sm text-slate-500">Belum ada breakdown.</p>}
@@ -227,8 +227,8 @@ export default async function ReportsPage({ searchParams }: { searchParams?: Pro
       </div>
 
       <section className="aj-surface mt-5 p-6">
-        <p className="mb-3 font-bold">Preview WhatsApp</p>
-        <pre className="whitespace-pre-wrap rounded-2xl bg-slate-950 p-5 text-sm leading-7 text-slate-50">{reportText}</pre>
+        <p className="mb-3 font-bold text-slate-900">Preview WhatsApp</p>
+        <pre className="whitespace-pre-wrap rounded-2xl bg-slate-950 p-5 text-sm leading-7 text-slate-50 font-mono">{reportText}</pre>
       </section>
     </AppShell>
   );

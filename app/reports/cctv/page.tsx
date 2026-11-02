@@ -105,7 +105,7 @@ export default async function CctvReportsMultiTabPage({ searchParams }: Props) {
           href={pageHref(params, { tab: "outbound", page: 1 })}
           className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
             activeTab === "outbound"
-              ? "bg-emerald-600 text-white shadow-xs"
+              ? "bg-blue-600 text-white shadow-xs"
               : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
           }`}
         >
@@ -119,7 +119,7 @@ export default async function CctvReportsMultiTabPage({ searchParams }: Props) {
           href={pageHref(params, { tab: "anomalies", page: 1 })}
           className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
             activeTab === "anomalies"
-              ? "bg-emerald-600 text-white shadow-xs"
+              ? "bg-blue-600 text-white shadow-xs"
               : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
           }`}
         >
@@ -133,7 +133,7 @@ export default async function CctvReportsMultiTabPage({ searchParams }: Props) {
           href={pageHref(params, { tab: "cameras", page: 1 })}
           className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-bold transition-all ${
             activeTab === "cameras"
-              ? "bg-emerald-600 text-white shadow-xs"
+              ? "bg-blue-600 text-white shadow-xs"
               : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
           }`}
         >
@@ -264,7 +264,7 @@ export default async function CctvReportsMultiTabPage({ searchParams }: Props) {
                           {sale ? (
                             <Link
                               href={`/penjualan/${sale.id}`}
-                              className="font-mono text-xs font-bold text-emerald-600 hover:text-emerald-700 hover:underline"
+                              className="font-mono text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline"
                             >
                               {sale.transactionNumber || item.invoiceNumber || sale.id}
                             </Link>
@@ -385,7 +385,7 @@ export default async function CctvReportsMultiTabPage({ searchParams }: Props) {
                 {page < outboundData.totalPages && (
                   <Link
                     href={pageHref(params, { tab: "outbound", page: page + 1 })}
-                    className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700"
+                    className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
                   >
                     Selanjutnya →
                   </Link>
@@ -548,7 +548,7 @@ export default async function CctvReportsMultiTabPage({ searchParams }: Props) {
                 {page < anomaliesData.totalPages && (
                   <Link
                     href={pageHref(params, { tab: "anomalies", page: page + 1 })}
-                    className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700"
+                    className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
                   >
                     Selanjutnya →
                   </Link>

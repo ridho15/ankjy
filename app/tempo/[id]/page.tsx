@@ -22,7 +22,7 @@ function statusBadge(status: string) {
   };
   const config = configs[status] || { label: status, bg: "bg-slate-100", text: "text-slate-700", border: "border-slate-200" };
   return (
-    <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold border ${config.bg} ${config.text} ${config.border}`}>
+    <span className={`inline-flex items-center rounded-md px-2.5 py-1 text-xs font-bold border ${config.bg} ${config.text} ${config.border}`}>
       {config.label}
     </span>
   );
@@ -58,7 +58,7 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">Piutang • Tempo</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-600">Piutang • Tempo</span>
             <span className="text-slate-300">•</span>
             <span className="font-mono text-xs font-semibold text-slate-500">{tempo.id}</span>
           </div>
@@ -71,21 +71,21 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
         <div className="flex flex-wrap items-center gap-2">
           <Link
             href="/tempo"
-            className="inline-flex items-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
+            className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-xs"
           >
             ← Kembali
           </Link>
           {tempo.salesId && (
             <Link
               href={`/penjualan/${tempo.salesId}`}
-              className="inline-flex items-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
+              className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-xs"
             >
               Nota Penjualan
             </Link>
           )}
           <Link
             href={`/print/tempo/${tempo.id}`}
-            className="inline-flex items-center rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
+            className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-xs"
           >
             Cetak Nota
           </Link>
@@ -100,7 +100,7 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
               })}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-600 bg-emerald-600 px-4 py-2 text-sm font-bold text-white hover:bg-emerald-700 transition-colors shadow-sm"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-600 bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition-colors shadow-xs"
             >
               Kirim Tagihan WA
             </a>
@@ -111,45 +111,45 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
       {/* KPI Financial Overview Cards */}
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* Card 1: Total Tagihan */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
           <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Total Tagihan Awal</p>
-          <p className="mt-2 text-2xl font-black text-slate-900">{rupiah(tempo.originalAmount)}</p>
+          <p className="mt-2 text-2xl font-black text-slate-900 font-mono tabular-nums">{rupiah(tempo.originalAmount)}</p>
           <p className="mt-1 text-xs text-slate-400">Nilai total faktur penjualan</p>
         </div>
 
         {/* Card 2: Sudah Dibayar */}
-        <div className="rounded-2xl border border-emerald-200/80 bg-emerald-50/40 p-5 shadow-sm">
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-5 shadow-xs">
           <div className="flex items-center justify-between">
             <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Sudah Dibayar</p>
-            <span className="text-xs font-extrabold text-emerald-700">{percentagePaid}%</span>
+            <span className="text-xs font-extrabold text-emerald-700 font-mono tabular-nums">{percentagePaid}%</span>
           </div>
-          <p className="mt-2 text-2xl font-black text-emerald-700">{rupiah(tempo.paidAmount)}</p>
+          <p className="mt-2 text-2xl font-black text-emerald-700 font-mono tabular-nums">{rupiah(tempo.paidAmount)}</p>
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-emerald-200/60">
             <div className="h-full rounded-full bg-emerald-600 transition-all duration-500" style={{ width: `${percentagePaid}%` }} />
           </div>
         </div>
 
         {/* Card 3: Sisa Piutang */}
-        <div className={`rounded-2xl border p-5 shadow-sm ${
+        <div className={`rounded-xl border p-5 shadow-xs ${
           isPaid
-            ? "border-emerald-200/80 bg-emerald-50/30"
-            : "border-amber-200/80 bg-amber-50/40"
+            ? "border-emerald-200 bg-emerald-50/30"
+            : "border-amber-200 bg-amber-50/40"
         }`}>
           <p className="text-xs font-bold uppercase tracking-wider text-slate-600">Sisa Tagihan Tempo</p>
-          <p className={`mt-2 text-2xl font-black ${isPaid ? "text-emerald-700" : "text-amber-700"}`}>
+          <p className={`mt-2 text-2xl font-black font-mono tabular-nums ${isPaid ? "text-emerald-700" : "text-amber-700"}`}>
             {rupiah(tempo.remainingAmount)}
           </p>
           <p className="mt-1 text-xs text-slate-500">{isPaid ? "Tagihan sudah lunas sepenuhnya" : "Wajib dilunasi pelanggan"}</p>
         </div>
 
         {/* Card 4: Jatuh Tempo & Status */}
-        <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm flex flex-col justify-between">
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs flex flex-col justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Status & Jatuh Tempo</p>
             <div className="mt-2">{statusBadge(tempo.status)}</div>
           </div>
           <p className="mt-2 text-xs font-medium text-slate-600">
-            Jatuh Tempo: <b className="text-slate-800">{new Intl.DateTimeFormat("id-ID", { dateStyle: "medium", timeZone: "Asia/Jakarta" }).format(new Date(tempo.dueDate))}</b>
+            Jatuh Tempo: <b className="text-slate-800 font-mono tabular-nums">{new Intl.DateTimeFormat("id-ID", { dateStyle: "medium", timeZone: "Asia/Jakarta" }).format(new Date(tempo.dueDate))}</b>
           </p>
         </div>
       </div>
@@ -159,7 +159,7 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
         {/* Left Column: Details, Purchased Items Table, & Payment Timeline */}
         <div className="space-y-6">
           {/* Card 1: Informasi Detail Tempo */}
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs sm:p-6">
             <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
               Informasi Piutang & Transaksi
             </h3>
@@ -175,7 +175,7 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
                 <dt className="text-xs font-bold uppercase tracking-wider text-slate-400">Nota Penjualan Asal</dt>
                 <dd className="mt-1">
                   {tempo.salesId ? (
-                    <Link href={`/penjualan/${tempo.salesId}`} className="font-semibold text-emerald-700 hover:underline">
+                    <Link href={`/penjualan/${tempo.salesId}`} className="font-semibold text-blue-600 hover:underline">
                       {sale?.transactionNumber ? `${sale.transactionNumber} (${tempo.salesId})` : tempo.salesId} ↗
                     </Link>
                   ) : "—"}
@@ -192,18 +192,18 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
 
           {/* Card 2: Rincian Barang yang Di-Tempo */}
           {sale?.items && sale.items.length > 0 && (
-            <section className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-              <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50/70 px-5 py-4">
+            <section className="rounded-xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+              <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-5 py-4">
                 <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
                   Rincian Barang yang Di-Tempo
                 </h3>
-                <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800">
+                <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-700">
                   {sale.items.length} Macam Barang ({totalItemQty} Pcs)
                 </span>
               </div>
               <div className="overflow-x-auto">
-                <table className="min-w-full text-left text-sm">
-                  <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+                <table className="min-w-full text-left text-sm divide-y divide-slate-200">
+                  <thead className="bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
                     <tr>
                       <th className="px-5 py-3">Produk / SKU</th>
                       <th className="px-5 py-3">Lokasi Stok</th>
@@ -214,35 +214,35 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
                       <th className="px-5 py-3 text-right">Subtotal</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-slate-100 bg-white">
                     {sale.items.map((item, index) => {
                       const itemSubtotal = item.quantity * item.unitPrice - (item.discount || 0);
                       return (
-                        <tr key={`${item.productRef}-${index}`} className="hover:bg-slate-50/60 transition-colors">
+                        <tr key={`${item.productRef}-${index}`} className="hover:bg-slate-50/70 transition-colors">
                           <td className="px-5 py-3.5 font-semibold text-slate-900">
                             {item.manualProduct?.name || item.productRef}
                             {item.manualProduct?.sku && item.manualProduct.sku !== item.productRef && (
-                              <span className="block text-xs text-slate-500 font-normal">SKU: {item.manualProduct.sku}</span>
+                              <span className="block font-mono text-xs text-slate-500 font-normal">SKU: {item.manualProduct.sku}</span>
                             )}
                           </td>
                           <td className="px-5 py-3.5 text-xs text-slate-600">
                             {[item.warehouseNameSnapshot, item.rackNameSnapshot].filter(Boolean).join(" / ") || "Gudang Utama"}
                           </td>
-                          <td className="px-5 py-3.5 text-right font-bold text-slate-900">{item.quantity}</td>
+                          <td className="px-5 py-3.5 text-right font-bold font-mono tabular-nums text-slate-900">{item.quantity}</td>
                           <td className="px-5 py-3.5 text-slate-600 text-xs">{item.unitSnapshot || "Pcs"}</td>
-                          <td className="px-5 py-3.5 text-right text-slate-700">{rupiah(item.unitPrice)}</td>
-                          <td className="px-5 py-3.5 text-right text-slate-500">{item.discount ? rupiah(item.discount) : "—"}</td>
-                          <td className="px-5 py-3.5 text-right font-bold text-slate-900">{rupiah(itemSubtotal)}</td>
+                          <td className="px-5 py-3.5 text-right font-mono tabular-nums text-slate-700">{rupiah(item.unitPrice)}</td>
+                          <td className="px-5 py-3.5 text-right font-mono tabular-nums text-slate-500">{item.discount ? rupiah(item.discount) : "—"}</td>
+                          <td className="px-5 py-3.5 text-right font-bold font-mono tabular-nums text-slate-900">{rupiah(itemSubtotal)}</td>
                         </tr>
                       );
                     })}
                   </tbody>
-                  <tfoot className="border-t border-slate-200 bg-slate-50/80 font-bold text-slate-900">
+                  <tfoot className="border-t border-slate-200 bg-slate-50 font-bold text-slate-900">
                     <tr>
                       <td colSpan={2} className="px-5 py-3 text-xs uppercase tracking-wider text-slate-500">Total Tagihan Barang</td>
-                      <td className="px-5 py-3 text-right">{totalItemQty}</td>
+                      <td className="px-5 py-3 text-right font-mono tabular-nums">{totalItemQty}</td>
                       <td colSpan={3}></td>
-                      <td className="px-5 py-3 text-right text-base text-emerald-800">{rupiah(sale.total)}</td>
+                      <td className="px-5 py-3 text-right font-mono tabular-nums text-base text-slate-900">{rupiah(sale.total)}</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -251,12 +251,12 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
           )}
 
           {/* Card 3: Riwayat Pembayaran */}
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs sm:p-6">
             <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 flex items-center gap-2">
                 Riwayat Pembayaran & Cicilan
               </h3>
-              <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-700">
+              <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-700">
                 {payments.length} Transaksi
               </span>
             </div>
@@ -266,13 +266,13 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
                 <div key={payment.id} className="py-3.5 first:pt-0 last:pb-0">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-800">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs font-bold text-slate-700">
                         {index + 1}
                       </span>
-                      <b className="text-base font-extrabold text-slate-900">{rupiah(payment.amountPaid)}</b>
+                      <b className="text-base font-extrabold text-slate-900 font-mono tabular-nums">{rupiah(payment.amountPaid)}</b>
                       {methodBadge(payment.paymentMethod)}
                     </div>
-                    <span className="text-xs font-semibold text-slate-500">
+                    <span className="text-xs font-semibold font-mono tabular-nums text-slate-500">
                       {new Intl.DateTimeFormat("id-ID", { dateStyle: "medium", timeZone: "Asia/Jakarta" }).format(new Date(payment.paymentDate))}
                     </span>
                   </div>
@@ -330,25 +330,25 @@ export default async function TempoDetailPage({ params }: { params: Promise<{ id
               )}
             </>
           ) : isPaid ? (
-            <div className="rounded-2xl border border-emerald-200 bg-gradient-to-b from-white to-emerald-50/50 p-6 text-center shadow-sm">
-              <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
-                <svg className="h-7 w-7 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 text-center shadow-xs">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                <svg className="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-lg font-extrabold text-emerald-900">Tagihan Sudah Lunas!</h3>
+              <h3 className="text-base font-extrabold text-emerald-900">Tagihan Sudah Lunas!</h3>
               <p className="mt-1 text-xs text-slate-600">
-                Seluruh kewajiban piutang customer {tempo.customerName} telah terbayar penuh sebesar <b>{rupiah(tempo.originalAmount)}</b>.
+                Seluruh kewajiban piutang customer {tempo.customerName} telah terbayar penuh sebesar <b className="font-mono tabular-nums">{rupiah(tempo.originalAmount)}</b>.
               </p>
               <Link
                 href={`/print/tempo/${tempo.id}`}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 text-sm font-bold text-white shadow-sm hover:bg-emerald-700 transition-colors"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 py-2.5 text-sm font-bold text-white shadow-xs hover:bg-emerald-700 transition-colors"
               >
                 Cetak Bukti Pelunasan
               </Link>
             </div>
           ) : (
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center text-slate-600">
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-6 text-center text-slate-600">
               <p className="text-sm font-bold">Status Tagihan: {tempo.status}</p>
               <p className="mt-1 text-xs text-slate-500">Tidak ada tindakan pembayaran yang tersedia.</p>
             </div>
@@ -367,5 +367,3 @@ function Info({ label, value }: { label: string; value: string }) {
     </div>
   );
 }
-
-

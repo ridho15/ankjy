@@ -25,7 +25,7 @@ export default async function OrganizationPage() {
   return (
     <AppShell>
       <div className="mb-6">
-        <p className="mb-1 text-xs font-bold uppercase tracking-[0.13em] text-emerald-700">
+        <p className="mb-1 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">
           SDM & STRUKTUR
         </p>
         <h2 className="aj-page-title text-3xl font-bold">Bagan Struktur Organisasi</h2>

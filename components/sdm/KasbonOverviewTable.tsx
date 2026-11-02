@@ -59,7 +59,7 @@ export function KasbonOverviewTable({ overview }: Props) {
 
         <section className="aj-surface p-5">
           <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Pelunasan Diterima</p>
-          <p className="mt-2 text-2xl font-black tracking-tight text-emerald-700">{formatCurrency(summary.totalRepaid)}</p>
+          <p className="mt-2 text-2xl font-black tracking-tight text-slate-900 font-mono tabular-nums">{formatCurrency(summary.totalRepaid)}</p>
           <p className="mt-3 text-xs text-slate-500">Melalui transfer, tunai, atau potong gaji</p>
         </section>
 
@@ -98,7 +98,7 @@ export function KasbonOverviewTable({ overview }: Props) {
 
           <Link
             href="/pengeluaran/input"
-            className="inline-flex items-center justify-center rounded border border-emerald-600 bg-emerald-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-700 transition shadow-2xs"
+            className="inline-flex items-center justify-center rounded-lg border border-blue-600 bg-blue-600 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-blue-700 transition shadow-xs"
           >
             + Input Kasbon Baru
           </Link>
@@ -106,7 +106,7 @@ export function KasbonOverviewTable({ overview }: Props) {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm text-slate-700">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
               <tr>
                 <th className="px-5 py-3">Nama Karyawan</th>
                 <th className="px-5 py-3">Departemen & Jabatan</th>
@@ -138,7 +138,7 @@ export function KasbonOverviewTable({ overview }: Props) {
                     <td className="px-5 py-3.5 text-right font-mono tabular-nums text-slate-900">
                       {formatCurrency(item.totalLoans)}
                     </td>
-                    <td className="px-5 py-3.5 text-right font-mono tabular-nums text-emerald-700">
+                    <td className="px-5 py-3.5 text-right font-mono tabular-nums text-slate-900">
                       {formatCurrency(item.totalRepaid)}
                     </td>
                     <td className="px-5 py-3.5 text-right font-mono tabular-nums font-bold text-amber-700">
@@ -158,7 +158,7 @@ export function KasbonOverviewTable({ overview }: Props) {
                     <td className="px-5 py-3.5 text-right">
                       <Link
                         href={`/sdm/kasbon/${item.employeeId}`}
-                        className="inline-flex items-center rounded border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-emerald-700 transition"
+                        className="inline-flex items-center rounded border border-slate-300 bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 hover:text-blue-600 transition"
                       >
                         Buku Pembantu →
                       </Link>

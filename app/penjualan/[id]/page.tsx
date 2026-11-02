@@ -119,16 +119,16 @@ export default async function SalesDetailPage({ params }: { params: Promise<{ id
     <AppShell>
       <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Detail Penjualan</p>
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Detail Penjualan</p>
           <h2 className="aj-page-title text-3xl font-bold">{sale.customerName}</h2>
           {canViewTransactionNumber && <p className="mt-2 font-mono text-sm text-slate-500">{sale.transactionNumber || sale.id}</p>}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Link href="/penjualan" className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-50">Riwayat</Link>
-          <Link href={`/penjualan/${sale.id}/invoice`} className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 shadow-xs transition-colors">
+          <Link href={`/penjualan/${sale.id}/invoice`} className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 shadow-xs transition-colors">
             {sale.paymentMethod === "Tempo" ? "Lihat / Simpan Nota Tempo" : "Lihat / Simpan Invoice"}
           </Link>
-          <Link href={`/print/sales/${sale.id}/continuous`} className="rounded-xl border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-sm font-bold text-emerald-800 hover:bg-emerald-100 shadow-xs transition-colors">Cetak Nota</Link>
+          <Link href={`/print/sales/${sale.id}/continuous`} className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 shadow-xs transition-colors">Cetak Nota</Link>
           {sale.approvalStatus === "approved" && sale.source !== "MJ" && (
             <SalesReturnModal
               salesRecordId={sale.id}
@@ -311,7 +311,7 @@ export default async function SalesDetailPage({ params }: { params: Promise<{ id
       </section>
 
       {/* Card 3: Integrasi Stok Gudang Aneka Jaya (AJ ERP) */}
-      <section className="aj-surface mb-5 p-5 border-l-4 border-emerald-500">
+      <section className="aj-surface mb-5 p-5 border-l-4 border-blue-500">
         <h3 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-900">
           Integrasi Gudang Aneka Jaya (AJ ERP)
         </h3>
@@ -337,7 +337,7 @@ export default async function SalesDetailPage({ params }: { params: Promise<{ id
       <section className="aj-surface overflow-x-auto">
         <div className="border-b border-slate-200 px-5 py-4 font-bold text-slate-900">Item Barang ({sale.items.length})</div>
         <table className="min-w-full text-left text-sm">
-          <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+          <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
             <tr>
               <th className="px-5 py-3">Produk / SKU</th>
               <th className="px-5 py-3">Lokasi Stok</th>

@@ -111,7 +111,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
   const isFullPayment = amountPaid === remainingAmount;
 
   return (
-    <form onSubmit={submit} className="rounded-2xl border border-emerald-100 bg-gradient-to-b from-white to-emerald-50/30 p-5 shadow-sm sm:p-6">
+    <form onSubmit={submit} className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs sm:p-6">
       {notice && <div className="mb-4"><Toast {...notice} /></div>}
 
       <div className="mb-5 flex items-center justify-between border-b border-slate-100 pb-3">
@@ -120,11 +120,11 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
           <p className="text-xs text-slate-500">Catat penerimaan cicilan atau pelunasan sisa tagihan</p>
         </div>
         {isFullPayment ? (
-          <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800">
+          <span className="rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800">
             Pelunasan Penuh
           </span>
         ) : (
-          <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold text-amber-800">
+          <span className="rounded-md border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-800">
             Cicilan / Sebagian
           </span>
         )}
@@ -142,7 +142,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
             value={paymentDate}
             onChange={(e) => setPaymentDate(e.target.value)}
             required
-            className="w-full rounded-xl border-slate-200 bg-white"
+            className="w-full rounded-lg border-slate-300 bg-white"
           />
         </div>
 
@@ -153,7 +153,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
               Nominal Dibayar (Rp)
             </label>
             <span className="text-xs text-slate-500 font-medium">
-              Sisa: <b className="text-slate-900">{rupiah(remainingAmount)}</b>
+              Sisa: <b className="text-slate-900 font-mono tabular-nums">{rupiah(remainingAmount)}</b>
             </span>
           </div>
           <MoneyInput
@@ -161,7 +161,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
             onValueChange={(val) => setAmountPaid(val)}
             placeholder="0"
             required
-            className="w-full text-base font-bold rounded-xl border-slate-200 bg-white text-slate-900"
+            className="w-full text-base font-bold font-mono tabular-nums rounded-lg border-slate-300 bg-white text-slate-900"
           />
           {/* Quick Pay Buttons */}
           <div className="mt-2 flex flex-wrap gap-1.5">
@@ -170,7 +170,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
               onClick={() => setAmountPaid(remainingAmount)}
               className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all cursor-pointer ${
                 amountPaid === remainingAmount
-                  ? "bg-emerald-600 text-white shadow-sm"
+                  ? "bg-blue-600 text-white shadow-xs"
                   : "bg-slate-100 text-slate-700 hover:bg-slate-200"
               }`}
             >
@@ -202,10 +202,10 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
                   key={method}
                   type="button"
                   onClick={() => setPaymentMethod(method)}
-                  className={`flex flex-col items-center justify-center rounded-xl border py-2.5 px-2 text-center transition-all cursor-pointer ${
+                  className={`flex flex-col items-center justify-center rounded-lg border py-2 px-2 text-center transition-all cursor-pointer ${
                     active
-                      ? "border-emerald-500 bg-emerald-50 text-emerald-900 font-bold shadow-sm"
-                      : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50"
+                      ? "border-blue-600 bg-blue-50 text-blue-900 font-bold shadow-xs"
+                      : "border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50"
                   }`}
                 >
                   <span className="text-xs font-bold">{labels[method]}</span>
@@ -222,7 +222,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-600">
               Rekening Penerima {paymentMethod === "Cash" ? "(Kas Tunai)" : paymentMethod === "TF" ? "(Rekening Bank)" : ""}
             </label>
-            <span className="text-xs text-slate-400">
+            <span className="text-xs text-slate-500">
               {availableRekenings.length} akun tersedia
             </span>
           </div>
@@ -231,7 +231,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
             value={selectedRekeningId}
             onChange={(e) => setSelectedRekeningId(e.target.value)}
             required
-            className="w-full rounded-xl border-slate-200 bg-white text-sm font-medium"
+            className="w-full rounded-lg border-slate-300 bg-white text-sm font-medium"
           >
             {availableRekenings.map((r) => {
               const isCash = isCashRekening(r);
@@ -259,7 +259,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Contoh: Bukti transfer via BCA an. Toko"
-            className="w-full rounded-xl border-slate-200 bg-white text-sm"
+            className="w-full rounded-lg border-slate-300 bg-white text-sm"
           />
         </div>
 
@@ -267,7 +267,7 @@ export function TempoPayForm({ tempoId, remainingAmount, tipeId, rekenings }: Pr
         <button
           type="submit"
           disabled={isSubmitting || amountPaid <= 0 || amountPaid > remainingAmount}
-          className="w-full flex items-center justify-center gap-2 rounded-xl bg-emerald-600 py-3 px-4 text-sm font-bold text-white shadow-sm hover:bg-emerald-700 focus:ring-4 focus:ring-emerald-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 rounded-lg bg-blue-600 py-2.5 px-4 text-sm font-bold text-white shadow-xs hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           {isSubmitting ? (
             <>

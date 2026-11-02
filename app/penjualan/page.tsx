@@ -104,11 +104,11 @@ export default async function PenjualanHistoryPage({ searchParams }: { searchPar
     <AppShell>
       <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">SalesRecord</p>
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">SalesRecord</p>
           <h2 className="aj-page-title text-3xl font-bold">Riwayat Penjualan</h2>
           <p className="mt-2 text-sm text-slate-600">Cari, filter, dan cetak transaksi penjualan yang tersimpan permanen.</p>
         </div>
-        {can(role, "penjualan.create") && <Link href="/penjualan/input" className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700">+ Input Penjualan</Link>}
+        {can(role, "penjualan.create") && <Link href="/penjualan/input" className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-700">+ Input Penjualan</Link>}
       </div>
 
       <ResponsiveFilterPanel

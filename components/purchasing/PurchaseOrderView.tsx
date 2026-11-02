@@ -189,7 +189,7 @@ export function PurchaseOrderView({ initialOrders, suppliers }: Props) {
       <section className="aj-surface">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500 font-semibold">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-600 font-bold">
               <tr>
                 <th className="px-5 py-3">No. PO & Tanggal</th>
                 <th className="px-5 py-3">Supplier</th>
@@ -276,7 +276,7 @@ export function PurchaseOrderView({ initialOrders, suppliers }: Props) {
                               <button
                                 disabled={isUpdatingStatus}
                                 onClick={() => handleUpdateStatus(o.id, "APPROVED")}
-                                className="rounded-sm border border-emerald-600 bg-emerald-600 px-2.5 py-1 text-xs font-semibold text-white hover:bg-emerald-700"
+                                className="rounded-lg border border-blue-600 bg-blue-600 px-2.5 py-1 text-xs font-semibold text-white hover:bg-blue-700 shadow-xs"
                               >
                                 Setujui PO
                               </button>
@@ -293,7 +293,7 @@ export function PurchaseOrderView({ initialOrders, suppliers }: Props) {
                           {(o.status === "APPROVED" || o.status === "PARTIAL_RECEIVED") && (
                             <button
                               onClick={() => setGrnOrder(o)}
-                              className="rounded-sm border border-emerald-700 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800 hover:bg-emerald-100"
+                              className="rounded-lg border border-blue-600 bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700 hover:bg-blue-100 shadow-xs"
                             >
                               + Terima Barang (GRN)
                             </button>

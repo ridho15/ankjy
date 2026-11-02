@@ -15,7 +15,7 @@ export default async function RekeningPage() {
   return (
     <AppShell>
       <div className="mb-7">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Super Admin</p>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Super Admin</p>
         <h2 className="aj-page-title text-3xl font-bold">Rekening</h2>
         <p className="mt-2 text-sm text-slate-600">Kelola rekening bank dan kas per tipe. Satu rekening bisa diassign ke banyak tipe.</p>
       </div>

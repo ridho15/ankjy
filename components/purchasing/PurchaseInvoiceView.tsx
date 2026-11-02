@@ -206,7 +206,7 @@ export function PurchaseInvoiceView({
       <section className="aj-surface">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500 font-semibold">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-600 font-bold">
               <tr>
                 <th className="px-5 py-3">No. Faktur & Tanggal</th>
                 <th className="px-5 py-3">Supplier & Tautan PO</th>
@@ -295,7 +295,7 @@ export function PurchaseInvoiceView({
                             <button
                               disabled={isPosting}
                               onClick={() => handlePostInvoice(inv.id, inv.invoiceNumber)}
-                              className="rounded-sm border border-emerald-700 bg-emerald-600 px-3 py-1 text-xs font-bold text-white hover:bg-emerald-700"
+                              className="rounded-lg border border-blue-600 bg-blue-600 px-3 py-1 text-xs font-bold text-white hover:bg-blue-700 shadow-xs"
                             >
                               Post Jurnal & HPP
                             </button>

@@ -135,7 +135,7 @@ export function WhatsAppRecipientManager({ initialRecipients, recipients: propRe
                 <td className="px-5 py-4">{row.isActive ? "Aktif" : "Nonaktif"}</td>
                 <td className="px-5 py-4">
                   <div className="flex gap-2">
-                    <button className="font-bold text-emerald-700 cursor-pointer" type="button" onClick={() => edit(row)}>
+                    <button className="font-bold text-blue-600 hover:text-blue-800 cursor-pointer" type="button" onClick={() => edit(row)}>
                       Edit
                     </button>
                     {row.isActive && (
@@ -168,7 +168,7 @@ export function WhatsAppRecipientManager({ initialRecipients, recipients: propRe
           <label className="block text-sm font-semibold text-slate-700">
             Nama
             <input
-              className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               value={form.name}
               onChange={(event) => setField("name", event.target.value)}
               placeholder="Nama penerima"
@@ -177,7 +177,7 @@ export function WhatsAppRecipientManager({ initialRecipients, recipients: propRe
           <label className="block text-sm font-semibold text-slate-700">
             Nomor WhatsApp
             <input
-              className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               placeholder="62812..."
               value={form.phoneNumber}
               onChange={(event) => setField("phoneNumber", event.target.value)}

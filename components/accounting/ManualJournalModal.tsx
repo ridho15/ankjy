@@ -157,7 +157,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
                   required
                   value={entryDate}
                   onChange={(e) => setEntryDate(e.target.value)}
-                  className="mt-1 block w-full rounded border border-slate-300 bg-white px-3 py-1.5 text-xs focus:border-emerald-600 focus:outline-none font-mono"
+                  className="mt-1 block w-full rounded border border-slate-300 bg-white px-3 py-1.5 text-xs focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 font-mono"
                 />
               </div>
 
@@ -168,7 +168,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
                   placeholder="Misal: MEMO-2026/001"
                   value={sourceRef}
                   onChange={(e) => setSourceRef(e.target.value)}
-                  className="mt-1 block w-full rounded border border-slate-300 bg-white px-3 py-1.5 text-xs focus:border-emerald-600 focus:outline-none font-mono"
+                  className="mt-1 block w-full rounded border border-slate-300 bg-white px-3 py-1.5 text-xs focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 font-mono"
                 />
               </div>
 
@@ -180,7 +180,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
                   placeholder="Ringkasan transaksi jurnal..."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="mt-1 block w-full rounded border border-slate-300 bg-white px-3 py-1.5 text-xs focus:border-emerald-600 focus:outline-none"
+                  className="mt-1 block w-full rounded border border-slate-300 bg-white px-3 py-1.5 text-xs focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                 />
               </div>
             </div>
@@ -214,7 +214,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
                           <select
                             value={line.accountId}
                             onChange={(e) => handleLineChange(index, "accountId", e.target.value)}
-                            className="w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-xs focus:border-emerald-600 focus:outline-none font-mono"
+                            className="w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-xs focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 font-mono"
                           >
                             {accounts.map((acc) => (
                               <option key={acc.id} value={acc.id}>
@@ -229,7 +229,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
                             placeholder="Catatan baris..."
                             value={line.description}
                             onChange={(e) => handleLineChange(index, "description", e.target.value)}
-                            className="w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-xs focus:border-emerald-600 focus:outline-none"
+                            className="w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-xs focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                           />
                         </td>
                         <td className="p-2">
@@ -244,7 +244,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
                               if (val > 0) handleLineChange(index, "credit", 0);
                             }}
                             placeholder="0"
-                            className="w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-xs text-right font-mono tabular-nums focus:border-emerald-600 focus:outline-none"
+                            className="w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-xs text-right font-mono tabular-nums focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                           />
                         </td>
                         <td className="p-2">
@@ -259,7 +259,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
                               if (val > 0) handleLineChange(index, "debit", 0);
                             }}
                             placeholder="0"
-                            className="w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-xs text-right font-mono tabular-nums focus:border-emerald-600 focus:outline-none"
+                            className="w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-xs text-right font-mono tabular-nums focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                           />
                         </td>
                         <td className="p-2 text-center">

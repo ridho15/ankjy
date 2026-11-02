@@ -263,7 +263,7 @@ export function EmployeeManager({ initialEmployees, initialOrgTree, canManage }:
           {/* Table */}
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-slate-700">
-              <thead className="border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
                 <tr>
                   <th className="px-5 py-3">Nama / NIK</th>
                   <th className="px-5 py-3">Jabatan & Departemen</th>
@@ -327,7 +327,7 @@ export function EmployeeManager({ initialEmployees, initialOrgTree, canManage }:
                             <button
                               type="button"
                               onClick={() => openEditModal(emp)}
-                              className="rounded border border-emerald-200 px-2.5 py-1 text-xs font-medium text-emerald-700 hover:bg-emerald-50 transition-colors"
+                              className="rounded-lg border border-slate-300 px-2.5 py-1 text-xs font-medium text-blue-600 hover:bg-blue-50 transition-colors"
                             >
                               Edit
                             </button>

@@ -183,7 +183,7 @@ export default async function DashboardPage({ searchParams }: { searchParams?: P
     <AppShell>
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Ringkasan operasional</p>
+          <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Ringkasan operasional</p>
           <h2 className="aj-page-title mt-2 text-3xl font-bold">Halo, {user.name}</h2>
           <p className="mt-2 text-sm text-slate-600">Pantau penjualan, pengeluaran, dan stok dalam satu tampilan.</p>
         </div>
@@ -193,14 +193,14 @@ export default async function DashboardPage({ searchParams }: { searchParams?: P
       {operationalProfit && <section className="mt-7">
         <div className="mb-3 flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">OPERASIONAL</p>
+            <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">OPERASIONAL</p>
             <h3 className="text-lg font-bold tracking-tight">Profit Operasional</h3>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm font-semibold">
-            <Link className="inline-flex items-center gap-1 font-bold text-emerald-600 hover:text-emerald-700" href="/dashboard/detail">
+            <Link className="inline-flex items-center gap-1 font-bold text-blue-600 hover:text-blue-700" href="/dashboard/detail">
               Lihat Rincian Sumber Data Profit →
             </Link>
-            <Link className="text-sm font-semibold text-emerald-700 hover:text-emerald-800" href="/settings/profit-slm">
+            <Link className="text-sm font-semibold text-blue-600 hover:text-blue-700" href="/settings/profit-slm">
               Atur Gross Profit {operationalProfit.grossProfitPercent.toLocaleString("id-ID", { maximumFractionDigits: 2 })}% →
             </Link>
           </div>
@@ -244,31 +244,31 @@ export default async function DashboardPage({ searchParams }: { searchParams?: P
       <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1.45fr)_minmax(300px,.85fr)]">
         <section className="aj-surface overflow-hidden">
           <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4 sm:px-6">
-            <div><p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Aktivitas</p><h2 className="mt-1 text-lg font-bold tracking-tight">Aktivitas terbaru</h2></div>
-            <Link className="text-sm font-semibold text-emerald-700 hover:text-emerald-800" href="/barang">Lihat barang →</Link>
+            <div><p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Aktivitas</p><h2 className="mt-1 text-lg font-bold tracking-tight">Aktivitas terbaru</h2></div>
+            <Link className="text-sm font-semibold text-blue-600 hover:text-blue-700" href="/barang">Lihat barang →</Link>
           </div>
           <div className="divide-y divide-slate-100">
             {activities.map((activity) => (
               <div key={activity.id} className="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
                 <div className="flex items-center gap-3">
-                  <span className={`grid h-9 w-9 place-items-center rounded-xl text-sm ${activity.entityType === "sales" ? "bg-emerald-50 text-emerald-700" : activity.entityType === "expense" ? "bg-slate-100 text-slate-700" : "bg-slate-100 text-slate-600"}`}>{activity.entityType === "sales" ? "↗" : activity.entityType === "expense" ? "−" : "◇"}</span>
+                  <span className={`grid h-9 w-9 place-items-center rounded-xl text-sm ${activity.entityType === "sales" ? "bg-emerald-50 text-emerald-700 font-bold" : activity.entityType === "expense" ? "bg-slate-100 text-slate-700 font-bold" : "bg-slate-100 text-slate-600"}`}>{activity.entityType === "sales" ? "↗" : activity.entityType === "expense" ? "−" : "◇"}</span>
                   <div><p className="font-semibold text-slate-800">{activityText(activity)}</p><time className="text-xs text-slate-500">{new Intl.DateTimeFormat("id-ID", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Jakarta" }).format(new Date(activity.createdAt))}</time></div>
                 </div>
-                <span className="text-xs font-semibold text-emerald-600">{activityStatusText(activity)}</span>
+                <span className="text-xs font-semibold text-slate-600">{activityStatusText(activity)}</span>
               </div>
             ))}
             {activities.length === 0 && <p className="px-5 py-8 text-sm text-slate-500">Riwayat aktivitas belum tersedia.</p>}
           </div>
         </section>
         <section className="aj-surface p-5 sm:p-6">
-          <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Koneksi</p>
+          <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Koneksi</p>
           <h2 className="mt-1 text-lg font-bold tracking-tight">Status sistem</h2>
           <Status label="ERP Integration API" ok={products.success} text={products.success ? "Terhubung dan siap digunakan" : products.message} />
           <Status label="OpenCloud Storage" ok={cloud.configured} text={cloud.message} />
           <Status label="WhatsApp" ok={whatsappStatus.ready} text={whatsappStatus.message} />
-          <div className="mt-5 rounded-xl border border-emerald-100 bg-emerald-50 p-4 text-emerald-950">
+          <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4 text-slate-900">
             <p className="text-sm font-semibold">Butuh transaksi cepat?</p>
-            <Link href="/pengeluaran/input" className="mt-2 inline-block text-sm font-semibold text-emerald-700 hover:text-emerald-800">Input pengeluaran →</Link>
+            <Link href="/pengeluaran/input" className="mt-2 inline-block text-sm font-semibold text-blue-600 hover:text-blue-700">Input pengeluaran →</Link>
           </div>
         </section>
       </div>

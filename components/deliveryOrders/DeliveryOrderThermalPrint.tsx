@@ -439,7 +439,7 @@ export function DeliveryOrderThermalPrint({ detail, autoPrint = false, printUser
           <button
             type="button"
             onClick={() => window.print()}
-            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-600 text-white font-semibold text-xs shadow-sm hover:bg-emerald-700 transition-colors cursor-pointer"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-blue-600 text-white font-semibold text-xs shadow-xs hover:bg-blue-700 transition-colors cursor-pointer"
           >
             <PrinterIcon />
             <span>Cetak Dialog</span>

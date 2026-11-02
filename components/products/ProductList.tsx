@@ -27,7 +27,7 @@ function timeLabel(date = new Date()) {
 
 function qualityWarning(warnings: string[]) {
   if (warnings.length === 0) return null;
-  return <span className="mt-1 inline-flex rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700" title={warnings.join(", ")}>Data ERP tidak lengkap</span>;
+  return <span className="mt-1 inline-flex rounded-md border border-amber-200 bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800" title={warnings.join(", ")}>Data ERP tidak lengkap</span>;
 }
 
 function stockJoinValues(stock: StockItem) {
@@ -207,25 +207,292 @@ export function ProductList({ products, productMeta, initialKeyword = "", stocks
   const start = productPage.total === 0 ? 0 : (productPage.page - 1) * productPage.pageSize + 1;
   const end = Math.min(productPage.page * productPage.pageSize, productPage.total);
 
-  return <section className="aj-surface p-5 sm:p-6"><div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"><Input className="max-w-md" placeholder="Cari kode atau nama barang" value={query} onChange={(event) => setQuery(event.target.value)} /><div className="grid gap-2 sm:flex sm:flex-wrap"><Button type="button" variant="secondary" onClick={refresh} disabled={refreshing}>{refreshing ? "Refresh..." : "Refresh ERP"}</Button>{canManage && <Link href="/barang/input"><Button className="w-full sm:w-auto">+ Tambah Barang</Button></Link>}</div></div><div className="mb-4 space-y-2"><p className="text-xs text-slate-500">Menampilkan {start}–{end} dari {productPage.total} produk. Quantity disinkronkan dari ERP setiap 30 detik{stockSync.updatedAt ? ` · terakhir berhasil ${stockSync.updatedAt}` : ""}. Auto-refresh hanya memperbarui stok untuk produk halaman aktif; tombol Refresh ERP memperbarui produk + stok.</p>{loadingProducts && <p className="text-xs font-medium text-emerald-700">Memuat produk...</p>}{stockSync.status !== "success" && <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-medium text-amber-800">{stockSync.status === "stale" ? "Refresh stok gagal, memakai data terakhir." : "Stok ERP belum berhasil dimuat."} {stockSync.message}</p>}</div><div className="space-y-3 md:hidden">{liveProducts.map((item) => {
-    const stockRows = stockRowsForProduct(item, stockLookup);
-    const validQuantities = stockRows.map((stock) => stock.quantity).filter((quantity): quantity is number => typeof quantity === "number" && Number.isFinite(quantity));
-    const quantity = item.stockSummary?.quantity ?? (stockSync.status === "failed" || stockRows.length === 0 || validQuantities.length === 0 ? null : validQuantities.reduce((sum, stockQuantity) => sum + stockQuantity, 0));
-    const minimum = item.stockSummary?.minimumStock ?? item.minimumStock ?? stockRows.find((stock) => stock.minimumStock !== null && stock.minimumStock !== undefined)?.minimumStock ?? null;
-    const unit = item.unit ?? stockRows.find((stock) => Boolean(stock.unit))?.unit ?? null;
-    const warnings = productWarnings(item, stockRows, quantity, minimum);
-    const shouldAlert = item.stockSummary?.isLowStock ?? stockRows.some((stock) => stock.isLowStock === true) ?? (quantity !== null && minimum !== null && minimum > 0 && quantity <= minimum);
-    const ready = stockRows.find((stock) => stock.ready !== null && stock.ready !== undefined)?.ready ?? (quantity === null ? null : quantity > 0);
-    return <article key={item.id} className="rounded-md border border-slate-200 bg-white p-4 shadow-sm"><div className="flex items-start justify-between gap-3"><div className="min-w-0"><p className="font-mono text-xs font-semibold text-emerald-700">{item.code}</p><h3 className="mt-1 font-semibold text-slate-900">{item.name}</h3>{qualityWarning(warnings)}</div><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${shouldAlert ? "bg-red-50 text-red-700" : quantity === null ? "bg-slate-100 text-slate-600" : "bg-emerald-50 text-emerald-700"}`}>{formatNumber(quantity)}</span></div><dl className="mt-3 grid grid-cols-2 gap-3 text-sm"><div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Lokasi</dt><dd className="mt-0.5 text-slate-700">{locationSummary(stockRows)}</dd></div><div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Minimum</dt><dd className="mt-0.5 text-slate-700">{formatNumber(minimum)}</dd></div><div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Harga jual</dt><dd className="mt-0.5 text-slate-700">{formatMoney(item.sellingPrice)}</dd></div><div><dt className="text-xs font-semibold uppercase tracking-wider text-slate-400">Status</dt><dd className="mt-0.5">{ready === null ? dash : ready ? "Ready" : "Tidak ready"} • {unit ?? dash}</dd></div></dl><div className="mt-4 grid gap-2"><Link className="rounded-sm bg-emerald-600 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-emerald-700" href={stockDetailHref({ id: item.id, productId: item.productId, sku: item.code }, "/barang")}>Detail stok</Link>{canManage ? <div className="grid grid-cols-2 gap-2"><Link className="rounded-sm border border-slate-300 px-3 py-2 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50" href={`/barang/${item.id}/edit`}>Edit</Link><ProductDeactivateButton id={item.id} disabled={item.isActive === false} /></div> : null}</div></article>;
-  })}{liveProducts.length === 0 && <p className="py-8 text-center text-sm text-slate-500">Tidak ada barang yang sesuai.</p>}</div><div className="hidden overflow-x-auto md:block"><table className="min-w-full text-left text-sm"><thead className="border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500"><tr><th className="px-3 py-3">Kode</th><th className="px-3 py-3">Nama barang</th><th className="px-3 py-3">Kategori</th><th className="px-3 py-3">Satuan</th><th className="px-3 py-3">Lokasi ERP</th><th className="px-3 py-3 text-right">Qty ERP</th><th className="px-3 py-3 text-right">Minimum</th><th className="px-3 py-3">Ready</th><th className="px-3 py-3">Harga jual</th><th className="px-3 py-3">Status</th><th className="px-3 py-3" /></tr></thead><tbody>{liveProducts.map((item) => {
-    const stockRows = stockRowsForProduct(item, stockLookup);
-    const validQuantities = stockRows.map((stock) => stock.quantity).filter((quantity): quantity is number => typeof quantity === "number" && Number.isFinite(quantity));
-    const quantity = item.stockSummary?.quantity ?? (stockSync.status === "failed" || stockRows.length === 0 || validQuantities.length === 0 ? null : validQuantities.reduce((sum, stockQuantity) => sum + stockQuantity, 0));
-    const minimum = item.stockSummary?.minimumStock ?? item.minimumStock ?? stockRows.find((stock) => stock.minimumStock !== null && stock.minimumStock !== undefined)?.minimumStock ?? null;
-    const unit = item.unit ?? stockRows.find((stock) => Boolean(stock.unit))?.unit ?? null;
-    const warnings = productWarnings(item, stockRows, quantity, minimum);
-    const shouldAlert = item.stockSummary?.isLowStock ?? stockRows.some((stock) => stock.isLowStock === true) ?? (quantity !== null && minimum !== null && minimum > 0 && quantity <= minimum);
-    const ready = stockRows.find((stock) => stock.ready !== null && stock.ready !== undefined)?.ready ?? (quantity === null ? null : quantity > 0);
-    return <tr key={item.id} className="border-b border-slate-100 transition hover:bg-slate-50/80"><td className="px-3 py-3 font-semibold text-slate-800">{item.code}</td><td className="px-3 py-3">{item.name}{qualityWarning(warnings)}</td><td className="px-3 py-3">{item.category ?? dash}</td><td className="px-3 py-3">{unit ?? dash}</td><td className="px-3 py-3 text-xs text-slate-600">{locationSummary(stockRows)}</td><td className="px-3 py-3 text-right"><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${shouldAlert ? "bg-red-50 text-red-700" : quantity === null ? "bg-slate-100 text-slate-600" : "bg-emerald-50 text-emerald-700"}`}>{formatNumber(quantity)}</span></td><td className="px-3 py-3 text-right">{formatNumber(minimum)}</td><td className="px-3 py-3">{ready === null ? <span className="text-slate-500">{dash}</span> : <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${ready ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{ready ? "Ready" : "Tidak ready"}</span>}</td><td className="px-3 py-3">{formatMoney(item.sellingPrice)}</td><td className="px-3 py-3">{item.isActive === null ? <span className="text-slate-500">{dash}</span> : <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${item.isActive ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>{item.isActive ? "Aktif" : "Tidak aktif"}</span>}</td><td className="px-3 py-3 text-right"><div className="flex flex-col items-end gap-2"><Link className="font-semibold text-emerald-700 hover:text-emerald-800 hover:underline" href={stockDetailHref({ id: item.id, productId: item.productId, sku: item.code }, "/barang")}>Detail stok</Link>{canManage ? <><Link className="font-semibold text-emerald-700 hover:text-emerald-800 hover:underline" href={`/barang/${item.id}/edit`}>Edit</Link><ProductDeactivateButton id={item.id} disabled={item.isActive === false} /></> : null}</div></td></tr>;
-  })}{liveProducts.length === 0 && <tr><td colSpan={11} className="px-3 py-8 text-center text-slate-500">Tidak ada barang yang sesuai.</td></tr>}</tbody></table></div><div className="mt-4 flex flex-col gap-3 border-t border-slate-100 pt-4 text-sm sm:flex-row sm:items-center sm:justify-between"><span className="text-slate-500">Halaman {productPage.page} dari {productPage.totalPages}</span><div className="flex gap-2"><Button type="button" variant="secondary" disabled={loadingProducts || productPage.page <= 1} onClick={() => void fetchProducts(productPage.page - 1, query, { syncHistory: true, historyMode: "push" })}>Sebelumnya</Button><Button type="button" variant="secondary" disabled={loadingProducts || productPage.page >= productPage.totalPages} onClick={() => void fetchProducts(productPage.page + 1, query, { syncHistory: true, historyMode: "push" })}>Berikutnya</Button></div></div></section>;
+  return (
+    <section className="aj-surface p-5 sm:p-6">
+      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <Input
+          className="max-w-md rounded-lg border-slate-300"
+          placeholder="Cari kode atau nama barang"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
+        <div className="grid gap-2 sm:flex sm:flex-wrap">
+          <Button type="button" variant="secondary" onClick={refresh} disabled={refreshing}>
+            {refreshing ? "Refresh..." : "Refresh ERP"}
+          </Button>
+          {canManage && (
+            <Link href="/barang/input">
+              <Button className="w-full sm:w-auto">+ Tambah Barang</Button>
+            </Link>
+          )}
+        </div>
+      </div>
+
+      <div className="mb-4 space-y-2">
+        <p className="text-xs text-slate-500">
+          Menampilkan {start}–{end} dari {productPage.total} produk. Quantity disinkronkan dari ERP setiap 30 detik
+          {stockSync.updatedAt ? ` · terakhir berhasil ${stockSync.updatedAt}` : ""}. Auto-refresh hanya memperbarui stok
+          untuk produk halaman aktif; tombol Refresh ERP memperbarui produk + stok.
+        </p>
+        {loadingProducts && <p className="text-xs font-semibold text-blue-600">Memuat produk...</p>}
+        {stockSync.status !== "success" && (
+          <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-medium text-amber-800">
+            {stockSync.status === "stale" ? "Refresh stok gagal, memakai data terakhir." : "Stok ERP belum berhasil dimuat."}{" "}
+            {stockSync.message}
+          </p>
+        )}
+      </div>
+
+      {/* Mobile Card List */}
+      <div className="space-y-3 md:hidden">
+        {liveProducts.map((item) => {
+          const stockRows = stockRowsForProduct(item, stockLookup);
+          const validQuantities = stockRows
+            .map((stock) => stock.quantity)
+            .filter((quantity): quantity is number => typeof quantity === "number" && Number.isFinite(quantity));
+          const quantity =
+            item.stockSummary?.quantity ??
+            (stockSync.status === "failed" || stockRows.length === 0 || validQuantities.length === 0
+              ? null
+              : validQuantities.reduce((sum, stockQuantity) => sum + stockQuantity, 0));
+          const minimum =
+            item.stockSummary?.minimumStock ??
+            item.minimumStock ??
+            stockRows.find((stock) => stock.minimumStock !== null && stock.minimumStock !== undefined)?.minimumStock ??
+            null;
+          const unit = item.unit ?? stockRows.find((stock) => Boolean(stock.unit))?.unit ?? null;
+          const warnings = productWarnings(item, stockRows, quantity, minimum);
+          const shouldAlert =
+            item.stockSummary?.isLowStock ??
+            stockRows.some((stock) => stock.isLowStock === true) ??
+            (quantity !== null && minimum !== null && minimum > 0 && quantity <= minimum);
+          const ready =
+            stockRows.find((stock) => stock.ready !== null && stock.ready !== undefined)?.ready ??
+            (quantity === null ? null : quantity > 0);
+
+          return (
+            <article key={item.id} className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="font-mono text-xs font-bold text-blue-600">{item.code}</p>
+                  <h3 className="mt-1 font-semibold text-slate-900">{item.name}</h3>
+                  {qualityWarning(warnings)}
+                </div>
+                <span
+                  className={`rounded-md border px-2.5 py-1 text-xs font-bold font-mono tabular-nums ${
+                    shouldAlert
+                      ? "border-red-200 bg-red-50 text-red-700"
+                      : quantity === null
+                      ? "border-slate-200 bg-slate-100 text-slate-600"
+                      : "border-emerald-200 bg-emerald-50 text-emerald-700"
+                  }`}
+                >
+                  {formatNumber(quantity)}
+                </span>
+              </div>
+              <dl className="mt-3 grid grid-cols-2 gap-3 text-sm">
+                <div>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-400">Lokasi</dt>
+                  <dd className="mt-0.5 text-slate-700">{locationSummary(stockRows)}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-400">Minimum</dt>
+                  <dd className="mt-0.5 font-mono tabular-nums text-slate-700">{formatNumber(minimum)}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-400">Harga jual</dt>
+                  <dd className="mt-0.5 font-mono tabular-nums text-slate-900 font-semibold">{formatMoney(item.sellingPrice)}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-slate-400">Status</dt>
+                  <dd className="mt-0.5 text-slate-700">
+                    {ready === null ? dash : ready ? "Ready" : "Tidak ready"} • {unit ?? dash}
+                  </dd>
+                </div>
+              </dl>
+              <div className="mt-4 grid gap-2">
+                <Link
+                  className="rounded-lg bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-blue-700 transition-colors"
+                  href={stockDetailHref({ id: item.id, productId: item.productId, sku: item.code }, "/barang")}
+                >
+                  Detail stok
+                </Link>
+                {canManage ? (
+                  <div className="grid grid-cols-2 gap-2">
+                    <Link
+                      className="rounded-lg border border-slate-300 px-3 py-2 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+                      href={`/barang/${item.id}/edit`}
+                    >
+                      Edit
+                    </Link>
+                    <ProductDeactivateButton id={item.id} disabled={item.isActive === false} />
+                  </div>
+                ) : null}
+              </div>
+            </article>
+          );
+        })}
+        {liveProducts.length === 0 && <p className="py-8 text-center text-sm text-slate-500">Tidak ada barang yang sesuai.</p>}
+      </div>
+
+      {/* Desktop Table */}
+      <div className="hidden overflow-x-auto rounded-xl border border-slate-200 md:block">
+        <table className="min-w-full text-left text-sm divide-y divide-slate-200">
+          <thead className="bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
+            <tr>
+              <th className="px-4 py-3.5">Kode</th>
+              <th className="px-4 py-3.5">Nama barang</th>
+              <th className="px-4 py-3.5">Kategori</th>
+              <th className="px-4 py-3.5">Satuan</th>
+              <th className="px-4 py-3.5">Lokasi ERP</th>
+              <th className="px-4 py-3.5 text-right">Qty ERP</th>
+              <th className="px-4 py-3.5 text-right">Minimum</th>
+              <th className="px-4 py-3.5">Ready</th>
+              <th className="px-4 py-3.5">Harga jual</th>
+              <th className="px-4 py-3.5">Status</th>
+              <th className="px-4 py-3.5" />
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100 bg-white">
+            {liveProducts.map((item) => {
+              const stockRows = stockRowsForProduct(item, stockLookup);
+              const validQuantities = stockRows
+                .map((stock) => stock.quantity)
+                .filter((quantity): quantity is number => typeof quantity === "number" && Number.isFinite(quantity));
+              const quantity =
+                item.stockSummary?.quantity ??
+                (stockSync.status === "failed" || stockRows.length === 0 || validQuantities.length === 0
+                  ? null
+                  : validQuantities.reduce((sum, stockQuantity) => sum + stockQuantity, 0));
+              const minimum =
+                item.stockSummary?.minimumStock ??
+                item.minimumStock ??
+                stockRows.find((stock) => stock.minimumStock !== null && stock.minimumStock !== undefined)?.minimumStock ??
+                null;
+              const unit = item.unit ?? stockRows.find((stock) => Boolean(stock.unit))?.unit ?? null;
+              const warnings = productWarnings(item, stockRows, quantity, minimum);
+              const shouldAlert =
+                item.stockSummary?.isLowStock ??
+                stockRows.some((stock) => stock.isLowStock === true) ??
+                (quantity !== null && minimum !== null && minimum > 0 && quantity <= minimum);
+              const ready =
+                stockRows.find((stock) => stock.ready !== null && stock.ready !== undefined)?.ready ??
+                (quantity === null ? null : quantity > 0);
+
+              return (
+                <tr key={item.id} className="transition-colors hover:bg-slate-50/80">
+                  <td className="px-4 py-3.5 font-mono font-bold text-slate-900">{item.code}</td>
+                  <td className="px-4 py-3.5 font-medium text-slate-900">
+                    {item.name}
+                    {qualityWarning(warnings)}
+                  </td>
+                  <td className="px-4 py-3.5 text-slate-600">{item.category ?? dash}</td>
+                  <td className="px-4 py-3.5 text-slate-600">{unit ?? dash}</td>
+                  <td className="px-4 py-3.5 text-xs text-slate-600">{locationSummary(stockRows)}</td>
+                  <td className="px-4 py-3.5 text-right font-mono tabular-nums">
+                    <span
+                      className={`inline-flex rounded-md border px-2.5 py-0.5 text-xs font-bold ${
+                        shouldAlert
+                          ? "border-red-200 bg-red-50 text-red-700"
+                          : quantity === null
+                          ? "border-slate-200 bg-slate-100 text-slate-600"
+                          : "border-emerald-200 bg-emerald-50 text-emerald-700"
+                      }`}
+                    >
+                      {formatNumber(quantity)}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3.5 text-right font-mono tabular-nums text-slate-700">{formatNumber(minimum)}</td>
+                  <td className="px-4 py-3.5">
+                    {ready === null ? (
+                      <span className="text-slate-400">{dash}</span>
+                    ) : (
+                      <span
+                        className={`inline-flex rounded-md border px-2 py-0.5 text-xs font-semibold ${
+                          ready
+                            ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                            : "border-slate-200 bg-slate-100 text-slate-600"
+                        }`}
+                      >
+                        {ready ? "Ready" : "Tidak ready"}
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-4 py-3.5 font-mono tabular-nums font-semibold text-slate-900">{formatMoney(item.sellingPrice)}</td>
+                  <td className="px-4 py-3.5">
+                    {item.isActive === null ? (
+                      <span className="text-slate-400">{dash}</span>
+                    ) : (
+                      <span
+                        className={`inline-flex rounded-md border px-2 py-0.5 text-xs font-semibold ${
+                          item.isActive
+                            ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                            : "border-slate-200 bg-slate-100 text-slate-600"
+                        }`}
+                      >
+                        {item.isActive ? "Aktif" : "Tidak aktif"}
+                      </span>
+                    )}
+                  </td>
+                  <td className="px-4 py-3.5 text-right">
+                    <div className="flex flex-col items-end gap-1.5">
+                      <Link
+                        className="font-semibold text-blue-600 hover:text-blue-800 hover:underline"
+                        href={stockDetailHref({ id: item.id, productId: item.productId, sku: item.code }, "/barang")}
+                      >
+                        Detail stok
+                      </Link>
+                      {canManage ? (
+                        <>
+                          <Link
+                            className="font-semibold text-slate-600 hover:text-slate-900 hover:underline"
+                            href={`/barang/${item.id}/edit`}
+                          >
+                            Edit
+                          </Link>
+                          <ProductDeactivateButton id={item.id} disabled={item.isActive === false} />
+                        </>
+                      ) : null}
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+            {liveProducts.length === 0 && (
+              <tr>
+                <td colSpan={11} className="px-4 py-8 text-center text-slate-500">
+                  Tidak ada barang yang sesuai.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pagination Footer */}
+      <div className="mt-4 flex flex-col gap-3 border-t border-slate-200 pt-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+        <span className="text-slate-500">
+          Halaman {productPage.page} dari {productPage.totalPages}
+        </span>
+        <div className="flex gap-2">
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={loadingProducts || productPage.page <= 1}
+            onClick={() => void fetchProducts(productPage.page - 1, query, { syncHistory: true, historyMode: "push" })}
+          >
+            Sebelumnya
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={loadingProducts || productPage.page >= productPage.totalPages}
+            onClick={() => void fetchProducts(productPage.page + 1, query, { syncHistory: true, historyMode: "push" })}
+          >
+            Berikutnya
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
 }

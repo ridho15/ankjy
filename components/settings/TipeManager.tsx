@@ -109,7 +109,7 @@ export function TipeManager({ types: initial, rekenings }: Props) {
                 className={`mt-4 min-h-9 w-full rounded-sm border px-3 py-2 text-sm font-semibold transition-colors cursor-pointer ${
                   tipe.isActive
                     ? "border-rose-300 bg-white text-rose-700 hover:bg-rose-50"
-                    : "border-neutral-300 bg-white text-emerald-700 hover:bg-emerald-50"
+                    : "border-slate-300 bg-white text-blue-600 hover:bg-blue-50"
                 }`}
               >
                 {tipe.isActive ? "Nonaktifkan" : "Aktifkan"}
@@ -120,7 +120,7 @@ export function TipeManager({ types: initial, rekenings }: Props) {
         <p className="hidden px-5 pt-3 text-xs text-slate-500 md:block lg:hidden">Geser tabel untuk melihat kolom lainnya.</p>
         <div className="hidden overflow-x-auto md:block">
           <table className="min-w-[760px] text-left text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
               <tr>
                 <th className="px-5 py-3">Kode</th>
                 <th className="px-5 py-3">Nama</th>
@@ -141,7 +141,7 @@ export function TipeManager({ types: initial, rekenings }: Props) {
                       type="button"
                       onClick={() => setTipeToToggle({ tipe, targetStatus: !tipe.isActive })}
                       className={`text-sm font-semibold cursor-pointer transition-colors ${
-                        tipe.isActive ? "text-rose-600 hover:text-rose-800" : "text-emerald-700 hover:text-emerald-800"
+                        tipe.isActive ? "text-rose-600 hover:text-rose-800" : "text-blue-600 hover:text-blue-800"
                       }`}
                     >
                       {tipe.isActive ? "Nonaktifkan" : "Aktifkan"}

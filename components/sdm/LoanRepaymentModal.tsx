@@ -217,7 +217,7 @@ export function LoanRepaymentModal({
               <button
                 type="button"
                 onClick={() => setAmount(maxRepayment)}
-                className="font-medium text-emerald-600 hover:text-emerald-700"
+                className="font-medium text-blue-600 hover:text-blue-800"
               >
                 Lunasi Penuh
               </button>

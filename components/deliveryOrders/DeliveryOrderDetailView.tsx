@@ -649,7 +649,7 @@ export function DeliveryOrderDetailView({
                       if (el) el.indeterminate = someSelected;
                     }}
                     onChange={toggleSelectAll}
-                    className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                    className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                   />
                 </th>
                 <th className="w-10 px-2 py-3 text-center">No</th>
@@ -668,7 +668,7 @@ export function DeliveryOrderDetailView({
                     key={item.id}
                     onClick={() => toggleItem(item.id)}
                     className={`cursor-pointer transition-colors ${
-                      isChecked ? "bg-emerald-50/50" : "hover:bg-slate-50/80"
+                      isChecked ? "bg-blue-50/40" : "hover:bg-slate-50/80"
                     }`}
                   >
                     <td className="w-10 px-3 py-3 text-center" onClick={(e) => e.stopPropagation()}>
@@ -676,7 +676,7 @@ export function DeliveryOrderDetailView({
                         type="checkbox"
                         checked={isChecked}
                         onChange={() => toggleItem(item.id)}
-                        className="h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                        className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                       />
                     </td>
                     <td className="w-10 px-2 py-3 text-center text-xs font-semibold text-slate-600 tabular-nums">
@@ -773,7 +773,7 @@ export function DeliveryOrderDetailView({
                   type="button"
                   onClick={() => handleSaveReceiptPhotos()}
                   disabled={isSavingPhotos || isUploading}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-sm transition-colors disabled:opacity-50 cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 shadow-xs transition-colors disabled:opacity-50 cursor-pointer"
                 >
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -795,7 +795,7 @@ export function DeliveryOrderDetailView({
                 value={trackingNumber}
                 onChange={(e) => setTrackingNumber(e.target.value)}
                 placeholder="Contoh: JNE-987654321..."
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
             </div>
             <div>
@@ -807,7 +807,7 @@ export function DeliveryOrderDetailView({
                 rows={2}
                 onChange={(e) => setShippingNotes(e.target.value)}
                 placeholder="Catatan tambahan untuk ekspedisi / penerima..."
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
             </div>
           </div>
@@ -830,7 +830,7 @@ export function DeliveryOrderDetailView({
             type="button"
             disabled={isSubmitting || selectedItemIds.length === 0}
             onClick={handleShipItems}
-            className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:bg-emerald-700 focus:outline-none disabled:opacity-50 transition-colors"
+            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-blue-700 focus:outline-none disabled:opacity-50 transition-colors"
           >
             {isSubmitting ? (
               "Memproses..."

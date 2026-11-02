@@ -1083,7 +1083,7 @@ export function PenjualanForm({
             <div className="flex flex-wrap gap-3">
               <Link
                 href={`/penjualan/${createdSale.id}/invoice`}
-                className="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-bold text-white hover:bg-emerald-700 shadow-xs transition-colors"
+                className="rounded-lg bg-blue-600 px-3 py-2 text-xs font-bold text-white hover:bg-blue-700 shadow-xs transition-colors"
               >
                 {createdSale.paymentMethod === "Tempo"
                   ? "Lihat Nota Tempo (PNG / PDF)"
@@ -1091,7 +1091,7 @@ export function PenjualanForm({
               </Link>
               <Link
                 href={`/penjualan/${createdSale.id}`}
-                className="rounded-lg border border-emerald-600 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100 shadow-xs transition-colors"
+                className="rounded-lg border border-blue-600 bg-blue-50 px-3 py-2 text-xs font-bold text-blue-800 hover:bg-blue-100 shadow-xs transition-colors"
               >
                 Lihat Transaksi
               </Link>
@@ -1102,7 +1102,7 @@ export function PenjualanForm({
                   Boolean(createdSale.erpReference)) && (
                   <Link
                     href={`/print/sales/${createdSale.id}`}
-                    className="rounded-lg border border-emerald-300 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100"
+                    className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"
                   >
                     Cetak Penjualan
                   </Link>
@@ -1110,7 +1110,7 @@ export function PenjualanForm({
               <button
                 type="button"
                 onClick={() => setCreatedSale(undefined)}
-                className="rounded-lg border border-emerald-300 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100"
+                className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer"
               >
                 Input Lagi
               </button>
@@ -1131,7 +1131,7 @@ export function PenjualanForm({
           )}
         </div>
       )}
-      <p className="rounded-lg border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+      <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900">
         Tujuan transaksi:{" "}
         {targetsErp ? (
           <>
@@ -1212,7 +1212,7 @@ export function PenjualanForm({
                         value={method}
                         {...register("paymentMethod")}
                       />
-                      <span className="block min-w-24 px-5 py-2 text-center text-sm font-semibold text-neutral-600 peer-checked:bg-emerald-600 peer-checked:text-white">
+                      <span className="block min-w-24 px-5 py-2 text-center text-sm font-semibold text-neutral-600 peer-checked:bg-blue-600 peer-checked:text-white">
                         {method}
                       </span>
                     </label>
@@ -1273,7 +1273,7 @@ export function PenjualanForm({
                 </Field>
               )}
               {paymentMethod === "Tempo" && (
-                <div className="rounded-lg border border-emerald-100 bg-emerald-50/40 p-4 sm:col-span-2 lg:col-span-4">
+                <div className="rounded-xl border border-blue-200 bg-blue-50/40 p-4 sm:col-span-2 lg:col-span-4">
                   <div className="mb-4"><p className="text-sm font-bold text-slate-900">Pembayaran awal / DP</p><p className="mt-1 text-xs text-slate-600">Opsional. Sisa pembayaran otomatis dicatat sebagai piutang Tempo.</p></div>
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     <Field label="Nominal DP" error={errors.initialPaymentAmount?.message}>
@@ -1312,7 +1312,7 @@ export function PenjualanForm({
                       </Field>
                     )}
                   </div>
-                  <div className="mt-4 grid grid-cols-3 gap-3 border-t border-emerald-100 pt-3 text-sm"><div><p className="text-xs text-slate-500">Total</p><b>{rupiah(total)}</b></div><div><p className="text-xs text-slate-500">Dibayar sekarang</p><b className="text-emerald-700">{rupiah(initialPaymentAmount)}</b></div><div><p className="text-xs text-slate-500">Sisa Tempo</p><b className="text-amber-700">{rupiah(Math.max(0, total - initialPaymentAmount))}</b></div></div>
+                  <div className="mt-4 grid grid-cols-3 gap-3 border-t border-blue-100 pt-3 text-sm"><div><p className="text-xs text-slate-500">Total</p><b className="font-mono tabular-nums">{rupiah(total)}</b></div><div><p className="text-xs text-slate-500">Dibayar sekarang</p><b className="text-blue-700 font-mono tabular-nums">{rupiah(initialPaymentAmount)}</b></div><div><p className="text-xs text-slate-500">Sisa Tempo</p><b className="text-amber-700">{rupiah(Math.max(0, total - initialPaymentAmount))}</b></div></div>
                 </div>
               )}
               <Field label="Tanggal & jam kirim" error={errors.deliveryAt?.message}>
@@ -1331,7 +1331,7 @@ export function PenjualanForm({
                 <label className="flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900 sm:col-span-2">
                   <input
                     type="checkbox"
-                    className="mt-0.5 h-4 w-4 accent-emerald-600"
+                    className="mt-0.5 h-4 w-4 accent-blue-600"
                     {...register("isTestTransaction")}
                   />
                   <span>
@@ -1414,7 +1414,7 @@ export function PenjualanForm({
                       />
                       <button
                         type="button"
-                        className={`rounded-full border px-3 py-1 ${mode === "erp" ? "border-emerald-500 bg-emerald-50 text-emerald-800" : "border-slate-200 text-slate-600"}`}
+                        className={`rounded-full border px-3 py-1 ${mode === "erp" ? "border-blue-500 bg-blue-50 text-blue-800" : "border-slate-200 text-slate-600"}`}
                         onClick={() => {
                           setValue(`items.${index}.productInputMode`, "erp", {
                             shouldDirty: true,
@@ -1889,7 +1889,7 @@ export function PenjualanForm({
                     }
                   }
                 }}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-xs transition-colors rounded-lg"
               >
                 {isSubmitting && submitMode === "final" ? (
                   <span className="inline-flex items-center justify-center gap-2">
@@ -2152,7 +2152,7 @@ function ProductDependencyState({
 }) {
   if (state.status === "ready")
     return (
-      <p className="border-b border-emerald-100 bg-emerald-50 px-5 py-2 text-xs text-emerald-800 sm:px-6">
+      <p className="border-b border-blue-100 bg-blue-50 px-5 py-2 text-xs text-blue-800 sm:px-6">
         Produk ERP siap digunakan.
       </p>
     );
@@ -2188,7 +2188,7 @@ function StockDependencyState({ state }: { state: StockState }) {
     );
   if (state.status === "success")
     return (
-      <p className="border-b border-emerald-100 bg-emerald-50 px-5 py-2 text-xs text-emerald-800 sm:px-6">
+      <p className="border-b border-blue-100 bg-blue-50 px-5 py-2 text-xs text-blue-800 sm:px-6">
         Stok ERP berhasil dimuat · terakhir {state.updatedAt}
       </p>
     );
@@ -2263,7 +2263,7 @@ function ProductSearchSelect({
         disabled={disabled}
         value={query}
         placeholder="Cari kode / nama barang ERP"
-        className="block w-full rounded-sm border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 disabled:bg-neutral-100"
+        className="block w-full rounded-sm border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 disabled:bg-neutral-100"
         onFocus={() => setOpen(true)}
         onChange={(event) => {
           setQuery(event.target.value);
@@ -2306,7 +2306,7 @@ function ProductSearchSelect({
               aria-selected={
                 normalizeCode(option.product.code) === normalizeCode(value)
               }
-              className={`w-full rounded-lg px-3 py-2 text-left transition ${index === activeIndex ? "bg-emerald-50" : "hover:bg-neutral-50"}`}
+              className={`w-full rounded-lg px-3 py-2 text-left transition ${index === activeIndex ? "bg-blue-50 text-blue-900 font-medium" : "hover:bg-neutral-50"}`}
               onMouseDown={(event) => event.preventDefault()}
               onClick={() => choose(option)}
             >

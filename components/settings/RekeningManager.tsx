@@ -196,7 +196,7 @@ export function RekeningManager({ types, rekenings: initial }: Props) {
             onClick={() => toggleDraftTipe(tipe.id)}
             className={`rounded-sm border px-3 py-1 text-xs font-semibold transition ${
               draft.tipeIds.includes(tipe.id)
-                ? "bg-emerald-700 border-emerald-800 text-white"
+                ? "bg-blue-600 border-blue-700 text-white shadow-xs"
                 : "bg-slate-50 border-slate-300 text-slate-700 hover:bg-slate-100"
             }`}
           >
@@ -562,7 +562,7 @@ export function RekeningManager({ types, rekenings: initial }: Props) {
                     <>
                       <td className="px-5 py-4">
                         <div className="font-semibold text-slate-900">{rek.name}</div>
-                        <div className="mt-0.5 font-mono text-xs font-medium text-emerald-700">{rek.id}</div>
+                        <div className="mt-0.5 font-mono text-xs font-medium text-slate-500">{rek.id}</div>
                       </td>
                       <td className="px-5 py-4">{currencyBadge(rek.currency || "IDR")}</td>
                       <td className="px-5 py-4">
@@ -760,7 +760,7 @@ export function RekeningManager({ types, rekenings: initial }: Props) {
                     onClick={() => toggleTipe(tipe.id)}
                     className={`rounded-sm border px-3 py-1 text-xs font-semibold transition ${
                       selectedTipeIds.includes(tipe.id)
-                        ? "bg-emerald-700 border-emerald-800 text-white"
+                        ? "bg-blue-600 border-blue-700 text-white shadow-xs"
                         : "bg-slate-50 border-slate-300 text-slate-700 hover:bg-slate-100"
                     }`}
                   >

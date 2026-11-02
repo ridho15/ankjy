@@ -86,7 +86,7 @@ export function GeneralLedgerView({
                   setSelectedAccountId(e.target.value);
                   fetchLedger(e.target.value, startDate, endDate);
                 }}
-                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               >
                 {accounts.map((acc) => (
                   <option key={acc.id} value={acc.id}>
@@ -104,7 +104,7 @@ export function GeneralLedgerView({
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
             </div>
 
@@ -116,7 +116,7 @@ export function GeneralLedgerView({
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
             </div>
           </div>

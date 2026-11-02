@@ -24,7 +24,7 @@ export default async function SettingsPage() {
           href: "/settings/tipe",
           title: "Tipe Pembukuan",
           description: "Kelola tipe transaksi (AJ, W, Online, …)",
-          tone: "emerald",
+          tone: "blue",
         }
       : null,
     can(role, "settings.rekening.manage")
@@ -32,7 +32,7 @@ export default async function SettingsPage() {
           href: "/settings/rekening",
           title: "Rekening",
           description: "Kelola rekening bank / kas per tipe",
-          tone: "emerald",
+          tone: "blue",
         }
       : null,
     can(role, "settings.profit.manage")
@@ -40,7 +40,7 @@ export default async function SettingsPage() {
           href: "/settings/profit-slm",
           title: "Profit Operasional",
           description: "Atur persentase Gross Profit dashboard operasional",
-          tone: "emerald",
+          tone: "blue",
         }
       : null,
     can(role, "settings.erp_sync.manage")
@@ -48,7 +48,7 @@ export default async function SettingsPage() {
           href: "/settings/erp-sync",
           title: "Integrasi & ERP Sync",
           description: "Atur koneksi transaksi Aneka Jaya ERP, mode MJ, dan stok",
-          tone: "emerald",
+          tone: "blue",
         }
       : null,
     can(role, "users.manage")
@@ -64,7 +64,7 @@ export default async function SettingsPage() {
           href: "/settings/whatsapp",
           title: "WhatsApp",
           description: "Konfigurasi provider dan nomor tujuan",
-          tone: "emerald",
+          tone: "blue",
         }
       : null,
     can(role, "approval.view")
@@ -80,7 +80,7 @@ export default async function SettingsPage() {
           href: "/tempo",
           title: "Tempo",
           description: "Kelola piutang tempo pelanggan",
-          tone: "emerald",
+          tone: "blue",
         }
       : null,
     can(role, "audit.view")
@@ -95,7 +95,7 @@ export default async function SettingsPage() {
     href: string;
     title: string;
     description: string;
-    tone: "emerald" | "amber" | "slate";
+    tone: "blue" | "amber" | "slate";
   }>;
 
   return (
@@ -147,10 +147,10 @@ function SettingsCard({
   href: string;
   title: string;
   description: string;
-  tone: "emerald" | "amber" | "slate";
+  tone: "blue" | "amber" | "slate";
 }) {
   const hover = {
-    emerald: "hover:border-emerald-400 hover:bg-emerald-50",
+    blue: "hover:border-blue-400 hover:bg-blue-50/50",
     amber: "hover:border-amber-400 hover:bg-amber-50",
     slate: "hover:border-slate-400 hover:bg-slate-50",
   }[tone];
@@ -169,9 +169,9 @@ function SettingsCard({
 
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between gap-6 py-3">
-      <dt className="font-medium text-slate-600">{label}</dt>
-      <dd className="text-right text-slate-900">{value}</dd>
+    <div className="flex items-center justify-between py-3">
+      <dt className="text-slate-500">{label}</dt>
+      <dd className="font-semibold text-slate-900">{value}</dd>
     </div>
   );
 }

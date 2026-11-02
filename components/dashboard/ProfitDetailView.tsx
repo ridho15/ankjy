@@ -78,7 +78,7 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
   return (
     <div className="space-y-6">
       {/* 1. Header Rekonsiliasi Formula (Dark Slate Theme + Emerald Highlights) */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 p-6 text-white shadow-lg sm:p-8">
+      <div className="relative overflow-hidden rounded-2xl bg-slate-900 p-6 text-white border border-slate-800 shadow-xs sm:p-8">
         <div className="flex flex-col justify-between gap-4 border-b border-slate-800 pb-5 sm:flex-row sm:items-center">
           <div>
             <div className="flex items-center gap-2">

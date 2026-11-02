@@ -174,7 +174,7 @@ export function UserManager({ users: initial }: { users: UserRow[] }) {
     <div className="space-y-6">
       <section className="aj-surface overflow-x-auto">
         <table className="min-w-full text-left text-sm">
-          <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+          <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
             <tr>
               <th className="px-5 py-3">User</th>
               <th className="px-5 py-3">External ID</th>

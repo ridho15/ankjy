@@ -125,7 +125,7 @@ export function PurchasePaymentView({
       <section className="aj-surface">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500 font-semibold">
+            <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-600 font-bold">
               <tr>
                 <th className="px-5 py-3">No. Bayar & Tanggal</th>
                 <th className="px-5 py-3">Supplier & Faktur</th>
@@ -215,7 +215,7 @@ export function PurchasePaymentView({
                       <td className="px-5 py-4 text-center">
                         {p.journalEntry ? (
                           <div>
-                            <span className="font-mono text-xs font-semibold text-emerald-700 block">
+                            <span className="font-mono text-xs font-semibold text-blue-600 block">
                               {p.journalEntry.journalNumber}
                             </span>
                             <button

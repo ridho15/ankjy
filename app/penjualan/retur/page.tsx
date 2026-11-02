@@ -39,7 +39,7 @@ export default async function SalesReturnListPage() {
     <AppShell>
       <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">
             Modul Akuntansi Penjualan
           </p>
           <h2 className="aj-page-title text-3xl font-bold">Retur Penjualan & Pengurangan Piutang</h2>
@@ -56,7 +56,7 @@ export default async function SalesReturnListPage() {
           </Link>
           <Link
             href="/akuntansi/jurnal"
-            className="rounded-xl border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-sm font-bold text-emerald-800 hover:bg-emerald-100 shadow-xs transition-colors"
+            className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 shadow-xs transition-colors"
           >
             Buku Jurnal Umum
           </Link>
@@ -71,7 +71,7 @@ export default async function SalesReturnListPage() {
         {returns.length === 0 ? (
           <div className="p-8 text-center text-slate-500 text-sm">
             Belum ada data retur penjualan. Untuk membuat retur, buka nota pada{" "}
-            <Link href="/penjualan" className="text-emerald-600 underline font-semibold">
+            <Link href="/penjualan" className="text-blue-600 underline font-semibold">
               Riwayat Penjualan
             </Link>{" "}
             dan klik &quot;Ajukan Retur Barang&quot;.
@@ -79,7 +79,7 @@ export default async function SalesReturnListPage() {
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full text-left text-sm">
-              <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-wider text-slate-500">
+              <thead className="border-b border-slate-200 bg-slate-50 text-xs font-bold uppercase tracking-wider text-slate-600">
                 <tr>
                   <th className="px-5 py-3">No. Retur</th>
                   <th className="px-5 py-3">Tanggal</th>
@@ -104,7 +104,7 @@ export default async function SalesReturnListPage() {
                     <td className="px-5 py-4">
                       <Link
                         href={`/penjualan/${ret.salesRecordId}`}
-                        className="font-mono text-emerald-700 hover:underline text-xs font-semibold"
+                        className="font-mono text-blue-600 hover:underline text-xs font-semibold"
                       >
                         {ret.salesRecord?.transactionNumber || ret.salesRecordId}
                       </Link>
@@ -125,7 +125,7 @@ export default async function SalesReturnListPage() {
                       {ret.journalEntry ? (
                         <Link
                           href={`/akuntansi/jurnal?keyword=${ret.journalEntry.journalNumber}`}
-                          className="font-mono text-xs font-bold text-emerald-700 hover:underline"
+                          className="font-mono text-xs font-bold text-blue-600 hover:underline"
                         >
                           {ret.journalEntry.journalNumber}
                         </Link>

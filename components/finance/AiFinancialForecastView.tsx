@@ -1678,7 +1678,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
       {activeTab === "briefing" && (
         <div className="space-y-6">
           {/* Executive Headline - Formal Corporate Memo */}
-          <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 sm:p-6 shadow-xs">
+          <div className="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-xs">
             <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-slate-500">
               <span>MEMORANDUM ANALISIS EKSEKUTIF CFO</span>
               <span>&bull;</span>

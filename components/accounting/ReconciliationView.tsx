@@ -232,7 +232,7 @@ export function ReconciliationView({ initialReport, employees }: Props) {
                   <td className="py-3 px-3 text-center">
                     <Link
                       href={`/akuntansi/buku-besar?account=${item.accountCode}`}
-                      className="text-emerald-600 hover:text-emerald-800 font-semibold underline"
+                      className="text-blue-600 hover:text-blue-800 font-semibold underline"
                     >
                       Buku Besar
                     </Link>

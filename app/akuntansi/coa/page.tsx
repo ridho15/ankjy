@@ -24,7 +24,7 @@ export default async function AkuntansiCoaPage() {
   return (
     <AppShell>
       <div className="mb-7">
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">
           Akuntansi & Pembukuan
         </p>
         <h2 className="aj-page-title text-3xl font-bold">Bagan Akun (Chart of Accounts)</h2>

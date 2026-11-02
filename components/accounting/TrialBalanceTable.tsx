@@ -129,7 +129,7 @@ export function TrialBalanceTable({ initialReport }: Props) {
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
             </div>
 
@@ -141,7 +141,7 @@ export function TrialBalanceTable({ initialReport }: Props) {
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
             </div>
 
@@ -168,7 +168,7 @@ export function TrialBalanceTable({ initialReport }: Props) {
                   type="checkbox"
                   checked={hideZero}
                   onChange={(e) => setHideZero(e.target.checked)}
-                  className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                  className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
                 />
                 Sembunyikan Akun Saldo Nol
               </label>
@@ -198,7 +198,7 @@ export function TrialBalanceTable({ initialReport }: Props) {
                 <th colSpan={2} className="py-2 px-4 text-center border-b border-r border-slate-200 bg-slate-200/60">
                   Pergerakan Periode
                 </th>
-                <th colSpan={2} className="py-2 px-4 text-center border-b border-slate-200 bg-emerald-100/60 text-emerald-950">
+                <th colSpan={2} className="py-2 px-4 text-center border-b border-slate-200 bg-slate-200 text-slate-900">
                   Saldo Akhir (Neraca Saldo)
                 </th>
                 <th rowSpan={2} className="py-2.5 px-3 w-20 text-center">Buku Besar</th>
@@ -206,8 +206,8 @@ export function TrialBalanceTable({ initialReport }: Props) {
               <tr>
                 <th className="py-1.5 px-3 w-36 text-right border-r border-slate-200 bg-slate-100">Debit (Rp)</th>
                 <th className="py-1.5 px-3 w-36 text-right border-r border-slate-200 bg-slate-100">Kredit (Rp)</th>
-                <th className="py-1.5 px-3 w-36 text-right border-r border-slate-200 bg-emerald-50 text-emerald-900">Debit (Rp)</th>
-                <th className="py-1.5 px-3 w-36 text-right bg-emerald-50 text-emerald-900">Kredit (Rp)</th>
+                <th className="py-1.5 px-3 w-36 text-right border-r border-slate-200 bg-slate-100 text-slate-800">Debit (Rp)</th>
+                <th className="py-1.5 px-3 w-36 text-right bg-slate-100 text-slate-800">Kredit (Rp)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -247,7 +247,7 @@ export function TrialBalanceTable({ initialReport }: Props) {
                     <td className="py-2.5 px-3 text-center">
                       <Link
                         href={`/akuntansi/buku-besar?accountId=${acc.accountId}`}
-                        className="text-emerald-700 hover:text-emerald-900 font-bold hover:underline"
+                        className="text-blue-600 hover:text-blue-800 font-bold hover:underline"
                         title="Buka Buku Besar Akun Ini"
                       >
                         ↗
@@ -268,10 +268,10 @@ export function TrialBalanceTable({ initialReport }: Props) {
                 <td className="py-3 px-3 text-right font-mono tabular-nums text-slate-900 border-r border-slate-200">
                   {formatCurrency(report.totals.periodCredit)}
                 </td>
-                <td className="py-3 px-3 text-right font-mono tabular-nums text-emerald-900 bg-emerald-100/60 border-r border-slate-200">
+                <td className="py-3 px-3 text-right font-mono tabular-nums text-slate-900 bg-slate-200/80 border-r border-slate-200">
                   {formatCurrency(report.totals.endingDebit)}
                 </td>
-                <td className="py-3 px-3 text-right font-mono tabular-nums text-emerald-900 bg-emerald-100/60">
+                <td className="py-3 px-3 text-right font-mono tabular-nums text-slate-900 bg-slate-200/80">
                   {formatCurrency(report.totals.endingCredit)}
                 </td>
                 <td></td>

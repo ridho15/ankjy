@@ -124,7 +124,7 @@ export function PeriodClosingView({ initialPeriods }: Props) {
               type="month"
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-emerald-600 focus:outline-none"
+              className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs font-mono focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </div>
 
@@ -137,7 +137,7 @@ export function PeriodClosingView({ initialPeriods }: Props) {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Contoh: Tutup buku bulanan audit internal selesai"
-              className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs focus:border-emerald-600 focus:outline-none"
+              className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </div>
 
@@ -279,7 +279,7 @@ export function PeriodClosingView({ initialPeriods }: Props) {
                 value={reopenReason}
                 onChange={(e) => setReopenReason(e.target.value)}
                 placeholder="Contoh: Koreksi ayat jurnal atas instruksi Direksi"
-                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded border border-slate-300 bg-white px-3 py-2 text-xs focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
             </div>
             <div className="flex justify-end gap-2 pt-2 border-t border-slate-200">

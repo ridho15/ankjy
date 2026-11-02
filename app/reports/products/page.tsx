@@ -106,7 +106,7 @@ export default async function ProductReportsPage({
       <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <Link href="/reports" className="hover:text-emerald-600">
+            <Link href="/reports" className="hover:text-blue-600">
               Laporan
             </Link>
             <span>/</span>
@@ -125,16 +125,16 @@ export default async function ProductReportsPage({
           <div className="flex items-center gap-1 rounded-xl border border-slate-200 bg-white p-1 text-xs font-semibold shadow-xs">
             <Link href="/reports" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900">Harian</Link>
             <Link href="/reports/customers" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900">Customer</Link>
-            <Link href="/reports/products" className="rounded-lg bg-emerald-600 px-3 py-1.5 text-white shadow-xs">Produk</Link>
+            <Link href="/reports/products" className="rounded-lg bg-blue-600 px-3 py-1.5 text-white shadow-xs">Produk</Link>
             <Link href="/reports/stocks" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900">Stok</Link>
             <Link href="/reports/finance" className="rounded-lg px-3 py-1.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900">Finance</Link>
           </div>
           <a
             href={exportExcelUrl}
-            className="inline-flex items-center gap-2 rounded-xl border border-emerald-600 bg-emerald-50 px-4 py-2.5 text-xs font-bold text-emerald-800 shadow-xs transition hover:bg-emerald-100 sm:text-sm"
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 shadow-xs transition hover:bg-slate-50 sm:text-sm"
           >
             <svg
-              className="h-4 w-4 text-emerald-600"
+              className="h-4 w-4 text-slate-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -153,7 +153,7 @@ export default async function ProductReportsPage({
             href={printPdfUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-emerald-700 sm:text-sm"
+            className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-blue-700 sm:text-sm"
           >
             <svg
               className="h-4 w-4"
@@ -185,7 +185,7 @@ export default async function ProductReportsPage({
               type="date"
               name="startDate"
               defaultValue={startDate}
-              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </label>
 
@@ -195,7 +195,7 @@ export default async function ProductReportsPage({
               type="date"
               name="endDate"
               defaultValue={endDate}
-              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </label>
 
@@ -206,14 +206,14 @@ export default async function ProductReportsPage({
               name="keyword"
               defaultValue={keyword}
               placeholder="Contoh: BRG-001 / Kain..."
-              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
             />
           </label>
 
           <div className="flex items-end gap-2">
             <button
               type="submit"
-              className="flex-1 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-xs transition hover:bg-emerald-700"
+              className="flex-1 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white shadow-xs transition hover:bg-blue-700"
             >
               Terapkan Filter
             </button>
@@ -270,7 +270,7 @@ export default async function ProductReportsPage({
           <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
             Produk Terlaris (Top Omset)
           </p>
-          <p className="mt-2 truncate text-base font-bold text-emerald-700 sm:text-lg">
+          <p className="mt-2 truncate text-base font-bold text-slate-900 font-mono tabular-nums sm:text-lg">
             {report.summary.topProduct
               ? report.summary.topProduct.name
               : "-"}
@@ -303,7 +303,7 @@ export default async function ProductReportsPage({
                   href={buildPageHref({ ...filterState, pageSize: String(size) }, 1)}
                   className={`rounded-md px-2.5 py-1 font-semibold transition ${
                     pageSize === size
-                      ? "bg-emerald-600 text-white"
+                      ? "bg-blue-600 text-white shadow-xs"
                       : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                   }`}
                 >
@@ -411,13 +411,13 @@ export default async function ProductReportsPage({
                   <td colSpan={3} className="px-5 py-4 text-center uppercase tracking-wider">
                     Total Keseluruhan (Semua {report.summary.uniqueProductsCount} Produk)
                   </td>
-                  <td className="px-5 py-4 text-right text-base text-emerald-800">
+                  <td className="px-5 py-4 text-right text-base font-bold text-slate-900 font-mono tabular-nums">
                     {report.summary.totalQuantity.toLocaleString("id-ID")}
                   </td>
                   <td colSpan={3} className="px-5 py-4 text-right text-xs text-slate-500">
                     {report.summary.totalTransactionsCount} Total Item Transaksi
                   </td>
-                  <td className="px-5 py-4 text-right text-base text-emerald-800">
+                  <td className="px-5 py-4 text-right text-base font-bold text-slate-900 font-mono tabular-nums">
                     {rupiah(report.summary.totalOmset)}
                   </td>
                 </tr>

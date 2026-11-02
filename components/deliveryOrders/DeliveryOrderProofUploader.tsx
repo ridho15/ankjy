@@ -335,7 +335,7 @@ export function DeliveryOrderProofUploader({
           type="button"
           onClick={handleSmartCameraClick}
           disabled={disabled || isUploading}
-          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700 active:bg-emerald-800 disabled:opacity-50 transition-colors shadow-xs"
+          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 transition-colors shadow-xs"
           title="Buka kamera perangkat untuk mengambil foto resi atau surat jalan"
         >
           <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -399,7 +399,7 @@ export function DeliveryOrderProofUploader({
                     href={photoUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
+                    className="inline-flex items-center gap-1 font-semibold text-blue-600 hover:text-blue-800 hover:underline"
                     title="Buka foto ukuran penuh di tab baru"
                   >
                     <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -431,7 +431,7 @@ export function DeliveryOrderProofUploader({
                 type="button"
                 onClick={handleSmartCameraClick}
                 disabled={isUploading}
-                className="flex aspect-[4/3] flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50/60 p-2 text-center text-slate-500 hover:border-emerald-500 hover:bg-emerald-50/30 hover:text-emerald-700 transition-all cursor-pointer"
+                className="flex aspect-[4/3] flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-50/60 p-2 text-center text-slate-500 hover:border-blue-500 hover:bg-blue-50/30 hover:text-blue-700 transition-all cursor-pointer"
                 title="Ambil foto tambahan dengan kamera"
               >
                 <svg className="w-5 h-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -517,7 +517,7 @@ export function DeliveryOrderProofUploader({
                         handleCloseCameraModal();
                         nativeCameraInputRef.current?.click();
                       }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 text-white hover:bg-emerald-700"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white hover:bg-blue-700"
                     >
                       Kamera HP (Native)
                     </button>
@@ -560,7 +560,7 @@ export function DeliveryOrderProofUploader({
                     type="button"
                     onClick={handleCaptureSnapshot}
                     disabled={!!cameraError}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 text-white hover:bg-emerald-700 active:scale-95 transition-all shadow-md disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition-all shadow-md disabled:opacity-50"
                   >
                     <span className="w-3 h-3 rounded-full bg-white animate-pulse" />
                     Jepret Foto
@@ -586,7 +586,7 @@ export function DeliveryOrderProofUploader({
                   <button
                     type="button"
                     onClick={handleConfirmCapturedPhoto}
-                    className="inline-flex items-center gap-1.5 px-5 py-2.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl shadow-md"
+                    className="inline-flex items-center gap-1.5 px-5 py-2.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-xs"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

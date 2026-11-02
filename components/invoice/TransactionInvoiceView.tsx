@@ -259,7 +259,7 @@ export function TransactionInvoiceView({
               type="button"
               onClick={handleExportImage}
               disabled={isExportingImage}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 transition-colors hover:border-emerald-600 hover:text-emerald-700 hover:bg-emerald-50/50 shadow-sm disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 transition-colors hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50/50 shadow-sm disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isExportingImage ? (
                 <>Memproses...</>
@@ -277,7 +277,7 @@ export function TransactionInvoiceView({
             <button
               type="button"
               onClick={handlePrintPdf}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 transition-colors hover:border-emerald-600 hover:text-emerald-700 hover:bg-emerald-50/50 shadow-sm"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-700 transition-colors hover:border-blue-600 hover:text-blue-700 hover:bg-blue-50/50 shadow-sm"
             >
               <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -318,7 +318,7 @@ export function TransactionInvoiceView({
                 <p className="text-base font-extrabold tracking-tight text-slate-950 sm:text-lg">
                   Nota Tempo
                 </p>
-                <p className="mt-0.5 text-xs font-semibold text-emerald-800 sm:text-sm">
+                <p className="mt-0.5 text-xs font-semibold text-slate-700 sm:text-sm">
                   Jatuh tempo tanggal {dueDate || "-"}
                 </p>
                 <div className="my-2" />
@@ -342,7 +342,7 @@ export function TransactionInvoiceView({
         {/* Customer / Recipient Section + Stat Counters */}
         <div className="mb-8 flex flex-col justify-between gap-6 sm:flex-row sm:items-start">
           {/* Left Column: SLM Primary Color (Emerald) Accent Bar + Customer Details */}
-          <div className="border-l-[3.5px] border-emerald-600 pl-4">
+          <div className="border-l-[3.5px] border-blue-600 pl-4">
             <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
               {isSales ? "CUSTOMER" : "PENERIMA / VENDOR"}
             </p>
@@ -482,7 +482,7 @@ export function TransactionInvoiceView({
 
         {/* Grand Total Full-Width Banner (Matching Reference Image) */}
         <div className="mb-8 flex items-center justify-between bg-slate-100/90 px-6 py-4 sm:px-8 sm:py-5">
-          <span className="text-sm font-extrabold uppercase tracking-wider text-emerald-700 sm:text-base">
+          <span className="text-sm font-extrabold uppercase tracking-wider text-slate-800 sm:text-base">
             GRAND TOTAL
           </span>
           <span className="font-mono text-2xl font-extrabold tracking-tight text-slate-950 sm:text-3xl">
@@ -491,7 +491,7 @@ export function TransactionInvoiceView({
         </div>
 
         {/* Payment Details Section with Left SLM Emerald Accent Bar */}
-        <div className="mb-14 border-l-[3.5px] border-emerald-600 pl-4">
+        <div className="mb-14 border-l-[3.5px] border-blue-600 pl-4">
           <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
             PEMBAYARAN
           </p>
