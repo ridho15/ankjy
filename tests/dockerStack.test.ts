@@ -26,6 +26,7 @@ describe("Docker Stack & Portainer.io Configuration", () => {
     expect(compose).toContain("ankjy_data:/app/data");
     expect(compose).toContain("${APP_PORT:-3005}:3000");
     expect(compose).toContain("condition: service_healthy");
+    expect(compose).toContain("ghcr.io/ridho15/ankjy:latest");
   });
 
   it("has executable docker-entrypoint.sh that auto-migrates and seeds database", () => {
@@ -42,13 +43,15 @@ describe("Docker Stack & Portainer.io Configuration", () => {
     expect(nextConfig).toContain("standalone");
   });
 
-  it("has GitHub Actions workflow configured for automated testing, build, and Portainer auto-deploy", () => {
+  it("has GitHub Actions workflow configured for testing, GHCR build & push, and Portainer auto-deploy", () => {
     const workflowPath = path.join(root, ".github", "workflows", "deploy.yml");
     expect(fs.existsSync(workflowPath)).toBe(true);
     const workflow = fs.readFileSync(workflowPath, "utf8");
     expect(workflow).toContain("branches:\n      - main");
     expect(workflow).toContain("npm test");
     expect(workflow).toContain("npm run build");
+    expect(workflow).toContain("ghcr.io");
+    expect(workflow).toContain("build-and-push-ghcr");
     expect(workflow).toContain("PORTAINER_WEBHOOK_URL");
     expect(workflow).toContain("deploy-to-portainer");
   });
