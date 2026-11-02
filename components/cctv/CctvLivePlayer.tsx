@@ -319,7 +319,7 @@ export function CameraCell({
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 p-4 text-center">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-400 mb-2 shadow-2xs">
               {connectionStatus === "connecting" ? (
-                <svg className="w-5 h-5 animate-spin text-emerald-600" fill="none" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 animate-spin text-blue-600" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                 </svg>
@@ -342,7 +342,7 @@ export function CameraCell({
             <button
               type="button"
               onClick={togglePlay}
-              className="mt-2.5 inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-emerald-700 transition shadow-2xs active:scale-95"
+              className="mt-2.5 inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-blue-700 transition shadow-2xs active:scale-95"
             >
               <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z" />
@@ -499,7 +499,7 @@ export function CctvLivePlayer({
             onClick={() => setViewMode("grid")}
             className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-bold transition-all shadow-2xs border ${
               viewMode === "grid"
-                ? "bg-white text-emerald-800 border-slate-300 shadow-xs"
+                ? "bg-white text-blue-700 border-blue-200 shadow-xs"
                 : "border-transparent text-slate-600 hover:bg-slate-200/60"
             }`}
             title="Tampilkan ke-3 kamera sekaligus"
@@ -515,7 +515,7 @@ export function CctvLivePlayer({
             onClick={() => setViewMode("focus")}
             className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-bold transition-all shadow-2xs border ${
               viewMode === "focus"
-                ? "bg-white text-emerald-800 border-slate-300 shadow-xs"
+                ? "bg-white text-blue-700 border-blue-200 shadow-xs"
                 : "border-transparent text-slate-600 hover:bg-slate-200/60"
             }`}
             title="Tampilkan 1 kamera terpilih secara besar"
@@ -563,7 +563,7 @@ export function CctvLivePlayer({
                     onClick={() => setFocusedId(cam.id)}
                     className={`rounded-lg px-3 py-1.5 text-xs font-bold transition shadow-2xs border ${
                       isSelected
-                        ? "bg-white text-emerald-800 border-slate-300 shadow-xs"
+                        ? "bg-white text-blue-700 border-blue-200 shadow-xs"
                         : "bg-slate-50 text-slate-600 border-slate-200 hover:bg-white"
                     }`}
                   >
@@ -576,7 +576,7 @@ export function CctvLivePlayer({
             <button
               type="button"
               onClick={() => setViewMode("grid")}
-              className="text-xs font-semibold text-emerald-700 hover:underline shrink-0"
+              className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline shrink-0"
             >
               ← Kembali ke Grid 3 Kamera
             </button>

@@ -5,7 +5,7 @@ import { formatDashboardMoney, type PaymentBreakdown } from "@/lib/dashboard/sum
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 
-const colors = ["#059669", "#047857", "#10b981", "#334155", "#64748b"];
+const colors = ["#2563eb", "#3b82f6", "#60a5fa", "#334155", "#64748b"];
 type LinkFilters = { from?: string; to?: string };
 export type PaymentPeriod = {
   mode: "day" | "day-range";
@@ -34,7 +34,7 @@ export function PaymentBreakdownChart({ data, filters, period = defaultPeriod, p
   const resetQuery = new URLSearchParams(preservedParams).toString();
 
   return <section data-testid="dashboard-payment-breakdown" className="aj-surface p-5 sm:p-6">
-    <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">PEMBAYARAN</p>
+    <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">PEMBAYARAN</p>
     <h2 className="mt-1 text-lg font-bold tracking-tight">Cash & transfer</h2>
     <form className="mt-4 space-y-3 rounded-xl bg-slate-50 p-3">
       <input type="hidden" name="paymentPeriod" value={mode} />
@@ -42,10 +42,10 @@ export function PaymentBreakdownChart({ data, filters, period = defaultPeriod, p
       <Select aria-label="Mode periode pembayaran" value={mode} onChange={(event) => setMode(event.target.value as PaymentPeriod["mode"])}><option value="day">Satu tanggal</option><option value="day-range">Rentang tanggal</option></Select>
       {mode === "day" && <Input aria-label="Tanggal pembayaran" type="date" name="paymentDate" defaultValue={period.day} />}
       {mode === "day-range" && <div className="grid grid-cols-2 gap-2"><Input aria-label="Tanggal awal pembayaran" type="date" name="paymentFrom" defaultValue={period.from} /><Input aria-label="Tanggal akhir pembayaran" type="date" name="paymentTo" defaultValue={period.to} /></div>}
-      <div className="flex items-center gap-3"><button className="rounded-lg bg-emerald-600 px-3 py-2 text-xs font-bold text-white" type="submit">Terapkan</button><Link className="text-xs font-semibold text-slate-600" href={resetQuery ? `/dashboard?${resetQuery}` : "/dashboard"}>Reset periode</Link></div>
+      <div className="flex items-center gap-3"><button className="rounded-lg bg-blue-600 px-3 py-2 text-xs font-bold text-white hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600" type="submit">Terapkan</button><Link className="text-xs font-semibold text-slate-600 hover:text-slate-900" href={resetQuery ? `/dashboard?${resetQuery}` : "/dashboard"}>Reset periode</Link></div>
     </form>
     <p className="mt-3 text-xs text-slate-500">{period.label} • {period.transactionCount} transaksi approved</p>
-    {period.error && <p className="mt-2 text-xs font-semibold text-red-600">{period.error}</p>}
-    {rows.length === 0 ? <div className="grid h-40 place-items-center text-sm text-slate-500">Belum ada transaksi Cash/TF approved pada periode ini.</div> : <div className="mt-6 flex items-center gap-5"><div className="relative grid h-28 w-28 shrink-0 place-items-center rounded-full" style={{ background: `conic-gradient(${gradient})` }}><div className="grid h-20 w-20 place-items-center rounded-full bg-white text-center"><b className="text-xl">100%</b><span className="text-[10px] text-slate-500">Paid</span></div></div><div className="min-w-0 flex-1 space-y-2.5">{rows.map((item, index) => <Link key={item.label} href={paymentRowHref(item, filters)} data-testid="dashboard-payment-breakdown-row" data-label={item.label} data-value={formatDashboardMoney(item.value)} className="-mx-2 block rounded-md px-2 py-1 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2" title={`Lihat transaksi ${item.label}`}><div className="mb-1 flex justify-between gap-2 text-xs"><span className="flex min-w-0 items-center gap-1.5 text-slate-600"><i className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: colors[index % colors.length] }} /><span className="truncate">{item.label}</span></span><b className="shrink-0">{Math.round(item.percentage)}%</b></div><div className="mb-1 h-1.5 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full" style={{ width: `${item.percentage}%`, backgroundColor: colors[index % colors.length] }} /></div><p className="text-right text-xs font-semibold text-slate-700">{formatDashboardMoney(item.value)}</p></Link>)}</div></div>}
+    {period.error && <p className="mt-2 text-xs font-semibold text-rose-600">{period.error}</p>}
+    {rows.length === 0 ? <div className="grid h-40 place-items-center text-sm text-slate-500">Belum ada transaksi Cash/TF approved pada periode ini.</div> : <div className="mt-6 flex items-center gap-5"><div className="relative grid h-28 w-28 shrink-0 place-items-center rounded-full" style={{ background: `conic-gradient(${gradient})` }}><div className="grid h-20 w-20 place-items-center rounded-full bg-white text-center"><b className="text-xl">100%</b><span className="text-[10px] text-slate-500">Paid</span></div></div><div className="min-w-0 flex-1 space-y-2.5">{rows.map((item, index) => <Link key={item.label} href={paymentRowHref(item, filters)} data-testid="dashboard-payment-breakdown-row" data-label={item.label} data-value={formatDashboardMoney(item.value)} className="-mx-2 block rounded-md px-2 py-1 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" title={`Lihat transaksi ${item.label}`}><div className="mb-1 flex justify-between gap-2 text-xs"><span className="flex min-w-0 items-center gap-1.5 text-slate-600"><i className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: colors[index % colors.length] }} /><span className="truncate">{item.label}</span></span><b className="shrink-0">{Math.round(item.percentage)}%</b></div><div className="mb-1 h-1.5 overflow-hidden rounded-full bg-slate-100"><div className="h-full rounded-full" style={{ width: `${item.percentage}%`, backgroundColor: colors[index % colors.length] }} /></div><p className="text-right text-xs font-semibold text-slate-700">{formatDashboardMoney(item.value)}</p></Link>)}</div></div>}
   </section>;
 }

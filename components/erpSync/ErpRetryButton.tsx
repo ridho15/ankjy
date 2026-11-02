@@ -38,7 +38,7 @@ export function ErpRetryButton({
         type="button"
         onClick={retry}
         disabled={loading}
-        className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-bold text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
+        className="rounded-md bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
       >
         {loading ? "Retry..." : "Retry"}
       </button>

@@ -50,7 +50,7 @@ export function ResponsiveFilterPanel({
       <div className="p-4 md:hidden">
         <button
           type="button"
-          className="flex w-full items-center justify-between rounded-sm bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+          className="flex w-full items-center justify-between rounded-sm bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600"
           aria-haspopup="dialog"
           aria-expanded={open}
           aria-controls="mobile-filter-panel"
@@ -76,7 +76,7 @@ export function ResponsiveFilterPanel({
           <div className="absolute inset-x-0 bottom-0 max-h-[88vh] overflow-hidden rounded-t-2xl bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">Filter</p>
+                <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-600">Filter</p>
                 <h2 id={titleId} className="text-lg font-bold tracking-tight text-slate-950">{title}</h2>
               </div>
               <button
@@ -93,7 +93,7 @@ export function ResponsiveFilterPanel({
                 {children}
               </div>
               <div className="sticky bottom-0 -mx-5 mt-5 grid gap-2 border-t border-slate-100 bg-white px-5 py-4">
-                <button className="rounded-sm bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700" type="submit">{submitLabel}</button>
+                <button className="rounded-sm bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600" type="submit">{submitLabel}</button>
                 <Link className="rounded-sm border border-slate-300 px-4 py-2.5 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50" href={resetHref} onClick={() => setOpen(false)}>Reset</Link>
               </div>
             </form>
@@ -107,7 +107,7 @@ export function ResponsiveFilterPanel({
 function FilterActions({ resetHref, submitLabel, className }: { resetHref: string; submitLabel: string; className: string }) {
   return (
     <div className={`grid gap-2 sm:flex ${className}`}>
-      <button className="rounded-sm bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700" type="submit">{submitLabel}</button>
+      <button className="rounded-sm bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-600" type="submit">{submitLabel}</button>
       <Link className="rounded-sm border border-slate-300 px-4 py-2 text-center text-sm font-semibold text-slate-700 hover:bg-slate-50" href={resetHref}>Reset</Link>
     </div>
   );
@@ -117,7 +117,7 @@ function FilterChips({ activeFilters, emptyText }: { activeFilters: string[]; em
   return (
     <div className="mt-4 flex flex-wrap gap-2 text-xs">
       {activeFilters.length > 0
-        ? activeFilters.map((item) => <span key={item} className="rounded-full bg-emerald-50 px-2.5 py-1 font-semibold text-emerald-700">{item}</span>)
+        ? activeFilters.map((item) => <span key={item} className="rounded-full bg-blue-50 px-2.5 py-1 font-semibold text-blue-700 border border-blue-200/60">{item}</span>)
         : <span className="text-slate-500">{emptyText}</span>}
     </div>
   );
