@@ -279,7 +279,7 @@ export default async function DashboardPage({ searchParams }: { searchParams?: P
 function Status({ label, ok, text }: { label: string; ok: boolean; text: string }) {
   return (
     <div className="mt-4 rounded-xl border border-slate-100 bg-slate-50 p-3.5">
-      <div className="flex items-center gap-2 text-sm font-semibold"><span className={`h-2.5 w-2.5 rounded-full ${ok ? "bg-emerald-500" : "bg-red-500"}`} />{label}</div>
+      <div className="flex items-center gap-2 text-sm font-semibold"><span className={`h-2.5 w-2.5 rounded-full ${ok ? "bg-emerald-500" : "bg-rose-500"}`} />{label}</div>
       <p className="mt-1 text-xs leading-5 text-slate-500">{text}</p>
     </div>
   );

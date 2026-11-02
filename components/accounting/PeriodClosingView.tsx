@@ -155,11 +155,11 @@ export function PeriodClosingView({ initialPeriods }: Props) {
 
         {/* Confirmation Prompt */}
         {showConfirmClose && (
-          <div className="mt-4 rounded border border-red-200 bg-red-50/70 p-4 space-y-3">
-            <p className="text-xs font-bold text-red-900">
+          <div className="mt-4 rounded border border-rose-200 bg-rose-50/70 p-4 space-y-3">
+            <p className="text-xs font-bold text-rose-900">
               Konfirmasi Penguncian Periode: {selectedMonth}
             </p>
-            <p className="text-xs text-red-800">
+            <p className="text-xs text-rose-800">
               Apakah Anda yakin ingin mengunci periode {selectedMonth}? Seluruh pengeluaran, jurnal, dan mutasi pada bulan ini tidak akan dapat diubah lagi tanpa otorisasi pembukaan ulang.
             </p>
             <div className="flex justify-end gap-2 pt-1">
@@ -219,7 +219,7 @@ export function PeriodClosingView({ initialPeriods }: Props) {
                       <span
                         className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold ${
                           p.isClosed
-                            ? "bg-red-50 text-red-800 border border-red-200"
+                            ? "bg-rose-50 text-rose-800 border border-rose-200"
                             : "bg-emerald-50 text-emerald-800 border border-emerald-200"
                         }`}
                       >

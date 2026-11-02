@@ -215,7 +215,7 @@ export function TransactionInvoiceView({
         )}
 
         {exportError && (
-          <div className="mb-4 rounded-xl border border-red-200 bg-red-50 p-3.5 text-sm text-red-700 shadow-sm">
+          <div className="mb-4 rounded-xl border border-rose-200 bg-rose-50 p-3.5 text-sm text-rose-700 shadow-sm">
             {exportError}
           </div>
         )}

@@ -49,7 +49,7 @@ export default async function StockDetailPage({ params, searchParams }: { params
                 <h3 className="mt-1 text-2xl font-bold text-neutral-950">{result.data.productName}</h3>
                 {result.data.productId && <p className="mt-1 text-xs text-neutral-500">Product ID: {result.data.productId}</p>}
               </div>
-              <span className={`inline-flex self-start px-3 py-1.5 text-xs font-bold ${result.data.summary.isLowStock ? "bg-red-50 text-red-700" : result.data.summary.ready === false ? "bg-slate-100 text-slate-600" : "bg-emerald-50 text-emerald-700"}`}>
+              <span className={`inline-flex self-start px-3 py-1.5 text-xs font-bold ${result.data.summary.isLowStock ? "bg-rose-50 text-rose-700" : result.data.summary.ready === false ? "bg-slate-100 text-slate-600" : "bg-emerald-50 text-emerald-700"}`}>
                 {result.data.summary.isLowStock ? "Stok rendah" : result.data.summary.ready === false ? "Tidak ready" : result.data.summary.ready === true ? "Ready" : "Status tidak tersedia"}
               </span>
             </div>

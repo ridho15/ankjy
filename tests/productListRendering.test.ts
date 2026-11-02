@@ -154,7 +154,7 @@ describe("ProductList rendering", () => {
     expect(html).toContain(">0<");
     expect(html).toContain(">5<");
     expect(html).toContain("Gudang Utama / Rak A");
-    expect(html).toContain("bg-red-50");
+    expect(html).toContain("bg-rose-50");
     expect(html).toContain("Ready");
   });
 

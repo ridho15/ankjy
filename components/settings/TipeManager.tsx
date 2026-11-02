@@ -158,7 +158,7 @@ export function TipeManager({ types: initial, rekenings }: Props) {
         <h3 className="font-bold">Tambah Tipe Baru</h3>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <label className="block text-sm font-medium text-slate-700">
-            <span className="mb-1 block">Kode <span className="text-red-500">*</span></span>
+            <span className="mb-1 block">Kode <span className="text-rose-500">*</span></span>
             <Input value={newCode} onChange={(e) => setNewCode(e.target.value)} placeholder="Masukkan kode tipe resmi" />
           </label>
           <label className="block text-sm font-medium text-slate-700">

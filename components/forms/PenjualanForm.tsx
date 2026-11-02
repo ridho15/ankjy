@@ -1219,7 +1219,7 @@ export function PenjualanForm({
                   ))}
                 </div>
                 {errors.paymentMethod?.message && (
-                  <span className="mt-1 block text-xs text-red-600">
+                  <span className="mt-1 block text-xs text-rose-600">
                     {errors.paymentMethod.message}
                   </span>
                 )}
@@ -1808,7 +1808,7 @@ export function PenjualanForm({
                       <button
                         type="button"
                         onClick={() => remove(index)}
-                        className="mt-3 text-xs font-semibold text-red-600"
+                        className="mt-3 text-xs font-semibold text-rose-600"
                       >
                         Hapus barang
                       </button>
@@ -1818,7 +1818,7 @@ export function PenjualanForm({
               })}
             </div>
             {errors.items?.root?.message && (
-              <p className="px-5 py-3 text-sm text-red-600">
+              <p className="px-5 py-3 text-sm text-rose-600">
                 {errors.items.root.message}
               </p>
             )}
@@ -1990,7 +1990,7 @@ export function PenjualanForm({
                 href={`/penjualan/${duplicateSuspectModal.existingSaleId}/invoice`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-sky-600 hover:text-sky-800 hover:underline inline-flex items-center gap-1.5 font-medium"
+                className="text-xs text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1.5 font-medium"
               >
                 <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -2375,7 +2375,7 @@ function ProductSelectionInfo({
           Minimum: <b>{formatNumber(option.minimumStock)}</b>
         </span>
         {stockExceeded && (
-          <span className="rounded-full bg-red-50 px-2.5 py-1 font-semibold text-red-700">
+          <span className="rounded-full bg-rose-50 px-2.5 py-1 font-semibold text-rose-700">
             Qty melebihi stok lokasi
           </span>
         )}
@@ -2582,7 +2582,7 @@ function Field({
       <span className="mb-1 block">{label}</span>
       {children}
       {error && (
-        <span className="mt-1 block text-xs font-normal text-red-600">
+        <span className="mt-1 block text-xs font-normal text-rose-600">
           {error}
         </span>
       )}

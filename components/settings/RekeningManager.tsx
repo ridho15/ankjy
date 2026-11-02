@@ -641,7 +641,7 @@ export function RekeningManager({ types, rekenings: initial }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <label className="block text-sm font-medium text-slate-700">
               <span className="mb-1 block">
-                Mata Uang <span className="text-red-500">*</span>
+                Mata Uang <span className="text-rose-500">*</span>
               </span>
               <Select value={currency} onChange={(e) => handleCurrencyChange(e.target.value)}>
                 {SUPPORTED_CURRENCIES.map((c) => (
@@ -654,7 +654,7 @@ export function RekeningManager({ types, rekenings: initial }: Props) {
 
             <label className="block text-sm font-medium text-slate-700">
               <span className="mb-1 block">
-                Bank <span className="text-red-500">*</span>
+                Bank <span className="text-rose-500">*</span>
               </span>
               <Select value={bank} onChange={(e) => setBank(e.target.value)}>
                 {INDONESIAN_BANKS.map((b) => (
@@ -668,7 +668,7 @@ export function RekeningManager({ types, rekenings: initial }: Props) {
 
           <label className="block text-sm font-medium text-slate-700">
             <span className="mb-1 block">
-              Nama Rekening <span className="text-red-500">*</span>
+              Nama Rekening <span className="text-rose-500">*</span>
             </span>
             <Input
               value={name}

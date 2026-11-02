@@ -114,7 +114,7 @@ export default async function SalesReturnListPage() {
                       {ret.refundMethod === "REDUCE_RECEIVABLE" ? (
                         <span className="text-blue-700 bg-blue-50 px-2 py-0.5 rounded">Potong Piutang</span>
                       ) : (
-                        <span className="text-purple-700 bg-purple-50 px-2 py-0.5 rounded">Refund Kas/Bank</span>
+                        <span className="text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">Refund Kas/Bank</span>
                       )}
                     </td>
                     <td className="px-5 py-4 text-right font-mono font-bold text-slate-900">

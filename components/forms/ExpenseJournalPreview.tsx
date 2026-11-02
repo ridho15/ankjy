@@ -134,7 +134,7 @@ export function ExpenseJournalPreview({
             {/* Baris Debit */}
             <tr className="hover:bg-slate-50/50">
               <td className="py-2.5 px-3">
-                <span className="inline-block rounded bg-sky-100 px-1.5 py-0.5 text-[10px] font-bold text-sky-800 font-sans">
+                <span className="inline-block rounded bg-blue-100 px-1.5 py-0.5 text-[10px] font-bold text-blue-800 font-sans">
                   DEBIT
                 </span>
               </td>

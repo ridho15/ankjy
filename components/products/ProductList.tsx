@@ -281,7 +281,7 @@ export function ProductList({ products, productMeta, initialKeyword = "", stocks
                 <span
                   className={`rounded-md border px-2.5 py-1 text-xs font-bold font-mono tabular-nums ${
                     shouldAlert
-                      ? "border-red-200 bg-red-50 text-red-700"
+                      ? "border-rose-200 bg-rose-50 text-rose-700"
                       : quantity === null
                       ? "border-slate-200 bg-slate-100 text-slate-600"
                       : "border-emerald-200 bg-emerald-50 text-emerald-700"
@@ -393,7 +393,7 @@ export function ProductList({ products, productMeta, initialKeyword = "", stocks
                     <span
                       className={`inline-flex rounded-md border px-2.5 py-0.5 text-xs font-bold ${
                         shouldAlert
-                          ? "border-red-200 bg-red-50 text-red-700"
+                          ? "border-rose-200 bg-rose-50 text-rose-700"
                           : quantity === null
                           ? "border-slate-200 bg-slate-100 text-slate-600"
                           : "border-emerald-200 bg-emerald-50 text-emerald-700"

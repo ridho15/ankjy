@@ -373,7 +373,7 @@ export function PurchaseInvoiceView({
                                     <span
                                       className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${
                                         lc.isCreditableTax
-                                          ? "bg-purple-100 text-purple-800"
+                                          ? "bg-blue-100 text-blue-800"
                                           : "bg-emerald-100 text-emerald-800"
                                       }`}
                                     >

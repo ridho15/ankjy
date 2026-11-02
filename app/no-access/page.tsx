@@ -16,8 +16,8 @@ export default async function NoAccessPage() {
     <AppShell>
       <div className="mx-auto max-w-xl py-6">
         <section className="rounded-xl border border-slate-300 bg-white p-6 sm:p-8 shadow-sm">
-          <div className="inline-flex items-center gap-1.5 rounded-md bg-red-50 border border-red-200 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-red-700">
-            <span className="h-1.5 w-1.5 rounded-full bg-red-600" />
+          <div className="inline-flex items-center gap-1.5 rounded-md bg-rose-50 border border-rose-200 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-rose-700">
+            <span className="h-1.5 w-1.5 rounded-full bg-rose-600" />
             Akses Dibatasi
           </div>
           

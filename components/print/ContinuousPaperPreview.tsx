@@ -720,7 +720,7 @@ export function ContinuousPaperPreview({
             <span className="font-semibold text-slate-900">{title}:</span> {id}
           </div>
           <div className="flex items-center gap-2">
-            <span className="rounded-md border border-sky-200 bg-sky-50 px-2 py-0.5 font-mono font-semibold text-sky-800">
+            <span className="rounded-md border border-blue-200 bg-blue-50 px-2 py-0.5 font-mono font-semibold text-blue-800">
               Continuous Form: 12.0 cm × 14.0 cm
             </span>
             <span className="font-medium text-slate-600">
@@ -731,10 +731,10 @@ export function ContinuousPaperPreview({
 
         {/* Info Panduan Driver & Script 1-Klik Epson LX-310 */}
         {showDriverHelp && (
-          <div className="mt-3 rounded-lg border border-sky-200 bg-sky-50/80 p-4 text-xs text-sky-900">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-sky-200 pb-3">
+          <div className="mt-3 rounded-lg border border-blue-200 bg-blue-50/80 p-4 text-xs text-blue-900">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-blue-200 pb-3">
               <div>
-                <p className="font-bold text-sky-950 text-sm">
+                <p className="font-bold text-blue-950 text-sm">
                   Setup Otomatis Ukuran Kertas (1-Klik untuk Petugas):
                 </p>
                 <p className="mt-0.5 text-slate-600">
@@ -791,7 +791,7 @@ export function ContinuousPaperPreview({
 
             <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div>
-                <p className="font-bold text-sky-950">
+                <p className="font-bold text-blue-950">
                   Cara Pakai di Windows (PC):
                 </p>
                 <ol className="mt-1 list-decimal space-y-0.5 pl-4 text-slate-700">
@@ -809,7 +809,7 @@ export function ContinuousPaperPreview({
               </div>
 
               <div>
-                <p className="font-bold text-sky-950">
+                <p className="font-bold text-blue-950">
                   Cara Pakai di Mac (MacBook):
                 </p>
                 <ol className="mt-1 list-decimal space-y-0.5 pl-4 text-slate-700">
@@ -828,7 +828,7 @@ export function ContinuousPaperPreview({
               </div>
             </div>
 
-            <div className="mt-3 border-t border-sky-200 pt-2 text-slate-600">
+            <div className="mt-3 border-t border-blue-200 pt-2 text-slate-600">
               <span className="font-semibold text-slate-900">
                 Settingan Tambahan Dialog Print Browser:
               </span>{" "}
@@ -850,8 +850,8 @@ export function ContinuousPaperPreview({
       )}
 
       {error && (
-        <div className="mx-auto max-w-2xl rounded-xl border border-red-200 bg-red-50 p-5 text-sm text-red-700">
-          <b className="block text-base font-bold text-red-900">
+        <div className="mx-auto max-w-2xl rounded-xl border border-rose-200 bg-rose-50 p-5 text-sm text-rose-700">
+          <b className="block text-base font-bold text-rose-900">
             Preview Tidak Tersedia
           </b>
           <p className="mt-1">{error}</p>

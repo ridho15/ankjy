@@ -243,8 +243,8 @@ export function LoanRepaymentModal({
               </span>
             </div>
           ) : (
-            <div className="rounded border border-indigo-200 bg-indigo-50/80 p-3">
-              <label className="block text-xs font-semibold text-indigo-950">Referensi Slip / Potong Gaji *</label>
+            <div className="rounded border border-blue-200 bg-blue-50/80 p-3">
+              <label className="block text-xs font-semibold text-blue-950">Referensi Slip / Potong Gaji *</label>
               <Input
                 required
                 value={payrollReference}
@@ -252,7 +252,7 @@ export function LoanRepaymentModal({
                 placeholder="Contoh: Potongan Slip Gaji Periode Oktober 2026"
                 className="mt-1 bg-white"
               />
-              <p className="mt-1.5 text-xs text-indigo-900 leading-relaxed">
+              <p className="mt-1.5 text-xs text-blue-900 leading-relaxed">
                 <span className="font-semibold">Catatan:</span> Metode <b>Potong Gaji</b> mengurangi saldo piutang kasbon karyawan tanpa menambah saldo fisik kas/bank perusahaan (pencatatan non-tunai via penggajian).
               </p>
             </div>

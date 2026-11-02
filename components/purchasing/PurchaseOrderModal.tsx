@@ -160,7 +160,7 @@ export function PurchaseOrderModal({ isOpen, onClose, suppliers, onSuccess }: Pr
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
-                Supplier / Vendor <span className="text-red-500">*</span>
+                Supplier / Vendor <span className="text-rose-500">*</span>
               </label>
               <Select value={supplierId} onChange={(e) => setSupplierId(e.target.value)} required>
                 {suppliers.map((s) => (
@@ -314,7 +314,7 @@ export function PurchaseOrderModal({ isOpen, onClose, suppliers, onSuccess }: Pr
                             <button
                               type="button"
                               onClick={() => handleRemoveItem(idx)}
-                              className="text-red-500 hover:text-red-700 font-bold"
+                              className="text-rose-500 hover:text-rose-700 font-bold"
                             >
                               ✕
                             </button>

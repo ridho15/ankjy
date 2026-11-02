@@ -247,7 +247,7 @@ export function AccountManagerTable({ initialAccounts }: Props) {
                             onClick={() => handleToggleActive(acc)}
                             className={`text-[11px] font-semibold px-2 py-1 rounded transition-colors ${
                               acc.isActive
-                                ? "text-red-700 hover:bg-red-50"
+                                ? "text-rose-700 hover:bg-rose-50"
                                 : "text-emerald-700 hover:bg-emerald-50"
                             }`}
                           >

@@ -168,7 +168,7 @@ export function PurchasePaymentModal({
         <form onSubmit={handleSubmit} className="p-6 overflow-y-auto space-y-5 flex-1">
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
-              Pilih Faktur Pembelian yang Akan Dibayar <span className="text-red-500">*</span>
+              Pilih Faktur Pembelian yang Akan Dibayar <span className="text-rose-500">*</span>
             </label>
             <Select
               value={selectedInvoiceId}
@@ -233,7 +233,7 @@ export function PurchasePaymentModal({
 
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
-                Rekening Sumber Pembayaran <span className="text-red-500">*</span>
+                Rekening Sumber Pembayaran <span className="text-rose-500">*</span>
               </label>
               <Select
                 value={rekeningAccountId}
@@ -277,8 +277,8 @@ export function PurchasePaymentModal({
                 }
                 if (rekCur !== invCur && rekCur !== "IDR") {
                   return (
-                    <span className="mt-1.5 flex items-center gap-1.5 text-xs text-red-700 bg-red-50 px-2.5 py-1 rounded border border-red-200">
-                      <span className="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                    <span className="mt-1.5 flex items-center gap-1.5 text-xs text-rose-700 bg-rose-50 px-2.5 py-1 rounded border border-rose-200">
+                      <span className="h-1.5 w-1.5 rounded-full bg-rose-500"></span>
                       Tidak Kompatibel: Rekening {rekCur} dilarang untuk faktur {invCur} tanpa transaksi konversi eksplisit.
                     </span>
                   );
@@ -291,7 +291,7 @@ export function PurchasePaymentModal({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
-                Jumlah Valas Dibayar ({activeInvoice?.currency || "VALAS"}) <span className="text-red-500">*</span>
+                Jumlah Valas Dibayar ({activeInvoice?.currency || "VALAS"}) <span className="text-rose-500">*</span>
               </label>
               <Input
                 type="number"
@@ -306,7 +306,7 @@ export function PurchasePaymentModal({
 
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
-                Kurs Pembayaran Aktual (Rp/{activeInvoice?.currency || "VALAS"}) <span className="text-red-500">*</span>
+                Kurs Pembayaran Aktual (Rp/{activeInvoice?.currency || "VALAS"}) <span className="text-rose-500">*</span>
               </label>
               <Input
                 type="number"

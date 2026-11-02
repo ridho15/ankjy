@@ -284,7 +284,7 @@ export function UserManager({ users: initial }: { users: UserRow[] }) {
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <label className="block text-sm font-medium text-slate-700">
             <span className="mb-1 block">
-              Username / External ID <span className="text-red-500">*</span>
+              Username / External ID <span className="text-rose-500">*</span>
             </span>
             <Input
               value={externalId}
@@ -294,7 +294,7 @@ export function UserManager({ users: initial }: { users: UserRow[] }) {
           </label>
           <label className="block text-sm font-medium text-slate-700">
             <span className="mb-1 block">
-              Nama <span className="text-red-500">*</span>
+              Nama <span className="text-rose-500">*</span>
             </span>
             <Input
               value={name}
@@ -325,7 +325,7 @@ export function UserManager({ users: initial }: { users: UserRow[] }) {
           </label>
           <label className="block text-sm font-medium text-slate-700">
             <span className="mb-1 block">
-              Password awal <span className="text-red-500">*</span>
+              Password awal <span className="text-rose-500">*</span>
             </span>
             <Input
               type="password"

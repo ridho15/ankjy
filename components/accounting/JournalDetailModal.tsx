@@ -190,11 +190,11 @@ export function JournalDetailModal({ journal, onClose, onJournalReversed }: Prop
 
           {/* Reversal Confirmation Form */}
           {showReverseConfirm && (
-            <div className="rounded border border-red-200 bg-red-50/50 p-4 space-y-3">
-              <p className="text-xs font-bold text-red-900 uppercase">
+            <div className="rounded border border-rose-200 bg-rose-50/50 p-4 space-y-3">
+              <p className="text-xs font-bold text-rose-900 uppercase">
                 Konfirmasi Pembalikan Jurnal (Reversal)
               </p>
-              <p className="text-xs text-red-800">
+              <p className="text-xs text-rose-800">
                 Tindakan ini akan membuat jurnal pembalik baru dengan posisi debit dan kredit yang saling meniadakan. Jurnal ini akan ditandai sebagai REVERSED.
               </p>
               <label className="block text-xs font-semibold text-slate-700">
@@ -204,7 +204,7 @@ export function JournalDetailModal({ journal, onClose, onJournalReversed }: Prop
                   value={reversalReason}
                   onChange={(e) => setReversalReason(e.target.value)}
                   placeholder="Misal: Salah input akun beban atau transaksi dibatalkan..."
-                  className="mt-1 block w-full rounded border border-slate-300 bg-white px-3 py-1.5 text-xs focus:border-red-500 focus:outline-none"
+                  className="mt-1 block w-full rounded border border-slate-300 bg-white px-3 py-1.5 text-xs focus:border-rose-500 focus:outline-none"
                 />
               </label>
               <div className="flex justify-end gap-2 pt-1">

@@ -266,7 +266,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
                           <button
                             type="button"
                             onClick={() => removeLine(index)}
-                            className="text-slate-400 hover:text-red-600 font-bold px-1"
+                            className="text-slate-400 hover:text-rose-600 font-bold px-1"
                             title="Hapus baris"
                           >
                             ✕
@@ -298,7 +298,7 @@ export function ManualJournalModal({ isOpen, onClose, accounts, onSuccess }: Pro
               className={`rounded border p-3 flex items-center justify-between text-xs ${
                 isBalanced
                   ? "border-emerald-200 bg-emerald-50 text-emerald-900"
-                  : "border-red-200 bg-red-50 text-red-900"
+                  : "border-rose-200 bg-rose-50 text-rose-900"
               }`}
             >
               <div className="flex items-center gap-2">

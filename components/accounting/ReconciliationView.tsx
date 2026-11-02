@@ -155,7 +155,7 @@ export function ReconciliationView({ initialReport, employees }: Props) {
           <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
             Pengeluaran Historis Perlu Review
           </span>
-          <p className="mt-2 text-2xl font-bold font-mono text-indigo-700">
+          <p className="mt-2 text-2xl font-bold font-mono text-blue-700">
             {report.legacyAuditItems.length}{" "}
             <span className="text-xs font-sans font-normal text-slate-500">antrean review</span>
           </p>
@@ -212,7 +212,7 @@ export function ReconciliationView({ initialReport, employees }: Props) {
                           ? "text-slate-500"
                           : item.difference > 0
                           ? "text-emerald-700"
-                          : "text-red-700"
+                          : "text-rose-700"
                       }
                     >
                       {item.isReconciled ? "Rp 0" : formatCurrency(item.difference)}
@@ -223,7 +223,7 @@ export function ReconciliationView({ initialReport, employees }: Props) {
                       className={`inline-flex px-2 py-0.5 rounded text-[11px] font-bold ${
                         item.isReconciled
                           ? "bg-emerald-100 text-emerald-800"
-                          : "bg-red-100 text-red-800"
+                          : "bg-rose-100 text-rose-800"
                       }`}
                     >
                       {item.isReconciled ? "✓ Cocok" : "✕ Selisih"}
@@ -288,7 +288,7 @@ export function ReconciliationView({ initialReport, employees }: Props) {
                       {formatCurrency(candidate.amount)}
                     </td>
                     <td className="py-3 px-3">
-                      <span className="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                      <span className="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
                         {candidate.suggestedAccountName} ({candidate.suggestedAccountCode})
                       </span>
                       <span className="block text-[10px] text-slate-500 mt-0.5">

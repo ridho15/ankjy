@@ -16,7 +16,7 @@ function Badge({ value, tone = "slate" }: { value: string; tone?: "slate" | "gre
     slate: "bg-slate-100 text-slate-600",
     green: "bg-emerald-50 text-emerald-700",
     amber: "bg-amber-50 text-amber-700",
-    red: "bg-red-50 text-red-700"
+    red: "bg-rose-50 text-rose-700"
   }[tone];
   return <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${colors}`}>{value}</span>;
 }
@@ -71,7 +71,7 @@ export default async function ExpenseDetailPage({ params }: { params: Promise<{ 
           <Info label="Deskripsi" value={expense.description} />
           <Info label="Catatan" value={expense.notes || "—"} />
         </div>
-        {expense.erpSyncError && <p className="mt-4 rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-sm font-medium text-red-700">{expense.erpSyncError}</p>}
+        {expense.erpSyncError && <p className="mt-4 rounded-lg border border-rose-100 bg-rose-50 px-3 py-2 text-sm font-medium text-rose-700">{expense.erpSyncError}</p>}
         {canManage && (
           <div className="mt-5">
             <TransactionCancelButton

@@ -275,7 +275,7 @@ export function PurchaseInvoiceModal({
 
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
-                Supplier <span className="text-red-500">*</span>
+                Supplier <span className="text-rose-500">*</span>
               </label>
               <Select value={supplierId} onChange={(e) => setSupplierId(e.target.value)} required>
                 {suppliers.map((s) => (
@@ -288,7 +288,7 @@ export function PurchaseInvoiceModal({
 
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
-                No. Faktur Supplier (Asing) <span className="text-red-500">*</span>
+                No. Faktur Supplier (Asing) <span className="text-rose-500">*</span>
               </label>
               <Input
                 placeholder="INV-VENDOR-2026-X"
@@ -396,7 +396,7 @@ export function PurchaseInvoiceModal({
                     <div
                       key={idx}
                       className={`p-3 rounded border text-xs grid grid-cols-1 md:grid-cols-12 gap-2 items-center ${
-                        lc.isCreditableTax ? "bg-purple-50/60 border-purple-200" : "bg-slate-50 border-slate-200"
+                        lc.isCreditableTax ? "bg-blue-50/60 border-blue-200" : "bg-slate-50 border-slate-200"
                       }`}
                     >
                       <div className="md:col-span-3">
@@ -473,7 +473,7 @@ export function PurchaseInvoiceModal({
                           <span
                             className={`inline-block text-[9px] px-1 py-0.2 rounded font-semibold ${
                               lc.isCreditableTax
-                                ? "bg-purple-200 text-purple-900"
+                                ? "bg-blue-100 text-blue-900"
                                 : "bg-emerald-100 text-emerald-800"
                             }`}
                           >
@@ -483,7 +483,7 @@ export function PurchaseInvoiceModal({
                         <button
                           type="button"
                           onClick={() => handleRemoveLandedCost(idx)}
-                          className="text-red-500 hover:text-red-700 font-bold text-sm ml-2"
+                          className="text-rose-500 hover:text-rose-700 font-bold text-sm ml-2"
                         >
                           ✕
                         </button>
@@ -555,7 +555,7 @@ export function PurchaseInvoiceModal({
 
             <div>
               <div className="text-slate-500">Pajak Dibayar Dimuka (1-1006):</div>
-              <div className="text-sm font-bold text-purple-800">
+              <div className="text-sm font-bold text-blue-800">
                 Rp {creditableTaxTotal.toLocaleString("id-ID")}
               </div>
               <div className="text-[10px] text-slate-400">PPN Impor & PPh 22 creditable</div>

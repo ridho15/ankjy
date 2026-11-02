@@ -40,7 +40,7 @@ export default async function WhatsAppSettingsPage() {
       <div className="mt-3 divide-y divide-slate-100">
         {logs.map((log) => <div key={log.id} className="py-3 text-sm">
           <b>{log.reportType}</b><span className="ml-2 text-slate-500">{log.status} • {log.provider} • {log.recipientNameSnapshot} • {log.phoneMaskedSnapshot}</span>
-          {log.errorMessage && <p className="mt-1 text-xs text-red-700">{log.errorMessage}</p>}
+          {log.errorMessage && <p className="mt-1 text-xs text-rose-700">{log.errorMessage}</p>}
         </div>)}
         {logs.length === 0 && <p className="py-3 text-sm text-slate-500">Belum ada log WhatsApp.</p>}
       </div>

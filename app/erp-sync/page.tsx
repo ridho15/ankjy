@@ -184,7 +184,7 @@ export default async function ErpSyncPage({
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Failed
           </p>
-          <p className="mt-1 text-2xl font-bold text-red-700">
+          <p className="mt-1 text-2xl font-bold text-rose-700">
             {summary.failed}
           </p>
         </div>
@@ -286,7 +286,7 @@ export default async function ErpSyncPage({
                 <span
                   className={
                     item.syncStatus === "failed"
-                      ? "rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700"
+                      ? "rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700"
                       : item.syncStatus === "synced"
                         ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700"
                         : "rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700"
@@ -298,7 +298,7 @@ export default async function ErpSyncPage({
                   <span
                     className={
                       item.stockReleaseStatus === "failed"
-                        ? "rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700"
+                        ? "rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700"
                         : ["released", "already_released"].includes(item.stockReleaseStatus)
                           ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700"
                           : "rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700"
@@ -311,7 +311,7 @@ export default async function ErpSyncPage({
                   <span
                     className={
                       item.erpPaymentStatus === "failed"
-                        ? "rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700"
+                        ? "rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700"
                         : item.erpPaymentStatus === "paid" ||
                             item.erpPaymentStatus === "partial"
                           ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700"
@@ -404,7 +404,7 @@ export default async function ErpSyncPage({
                     <span
                       className={
                         item.syncStatus === "failed"
-                          ? "rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700"
+                          ? "rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700"
                           : item.syncStatus === "synced"
                             ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700"
                             : "rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700"
@@ -423,7 +423,7 @@ export default async function ErpSyncPage({
                       <span
                         className={
                           item.stockReleaseStatus === "failed"
-                            ? "rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700"
+                            ? "rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700"
                             : ["released", "already_released"].includes(item.stockReleaseStatus)
                               ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700"
                               : "rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700"
@@ -440,7 +440,7 @@ export default async function ErpSyncPage({
                       <span
                         className={
                           item.erpPaymentStatus === "failed"
-                            ? "rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700"
+                            ? "rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700"
                             : item.erpPaymentStatus === "paid" ||
                                 item.erpPaymentStatus === "partial"
                               ? "rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700"
@@ -534,7 +534,7 @@ export default async function ErpSyncPage({
                 <span
                   className={
                     item.erpSyncStatus === "failed"
-                      ? "rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700"
+                      ? "rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700"
                       : "rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700"
                   }
                 >
@@ -615,7 +615,7 @@ export default async function ErpSyncPage({
                     <span
                       className={
                         item.erpSyncStatus === "failed"
-                          ? "rounded-full bg-red-50 px-2.5 py-1 text-xs font-bold text-red-700"
+                          ? "rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700"
                           : "rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700"
                       }
                     >

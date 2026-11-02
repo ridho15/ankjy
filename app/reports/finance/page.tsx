@@ -53,7 +53,7 @@ function tempoStatusBadge(status: string) {
       );
     case "open":
       return (
-        <span className="rounded-full border border-sky-200 bg-sky-50 px-2.5 py-0.5 text-xs font-semibold text-sky-700">
+        <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
           Open
         </span>
       );
@@ -663,7 +663,7 @@ export default async function FinanceReportsPage({
                       {row.category}
                     </span>
                     {row.categoryCode === "employee_loan" && (
-                      <span className="ml-1 inline-block rounded-full bg-sky-100 px-1.5 py-0.5 text-[10px] font-semibold text-sky-800">
+                      <span className="ml-1 inline-block rounded-full bg-blue-100 px-1.5 py-0.5 text-[10px] font-semibold text-blue-800">
                         Piutang
                       </span>
                     )}

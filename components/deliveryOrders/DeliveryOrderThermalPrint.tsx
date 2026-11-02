@@ -484,7 +484,7 @@ export function DeliveryOrderThermalPrint({ detail, autoPrint = false, printUser
           <div
             className={`mt-3.5 p-3 rounded-lg text-xs font-medium flex items-start justify-between gap-2 transition-all ${
               bannerAlert.type === "error"
-                ? "bg-red-50 border border-red-200 text-red-800"
+                ? "bg-rose-50 border border-rose-200 text-rose-800"
                 : bannerAlert.type === "success"
                 ? "bg-emerald-50 border border-emerald-200 text-emerald-800"
                 : "bg-slate-100 border border-slate-200 text-slate-800"

@@ -70,9 +70,9 @@ export function JournalOverviewTable({ initialJournals, accounts }: Props) {
       case "SDM_LOAN":
         return <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">Kasbon / UM</span>;
       case "SDM_SETTLEMENT":
-        return <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold bg-teal-50 text-teal-700 border border-teal-200">Realisasi UM</span>;
+        return <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Realisasi UM</span>;
       case "SDM_SALARY":
-        return <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold bg-purple-50 text-purple-700 border border-purple-200">Gaji SDM</span>;
+        return <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">Gaji SDM</span>;
       case "MANUAL":
         return <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">Manual</span>;
       default:

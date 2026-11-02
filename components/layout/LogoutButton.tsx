@@ -26,7 +26,7 @@ export function LogoutButton({ className = "", label = "Logout" }: { className?:
         type="button"
         onClick={() => setIsConfirmOpen(true)}
         disabled={loggingOut}
-        className={`inline-flex border border-neutral-300 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-700 transition hover:border-red-300 hover:bg-red-50 hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer ${className}`}
+        className={`inline-flex border border-neutral-300 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-700 transition hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer ${className}`}
       >
         {loggingOut ? "Keluar..." : label}
       </button>

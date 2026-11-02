@@ -57,7 +57,7 @@ export function Header({ user, showDemoLogout = false, showLogout = false }: { u
               {showLogout ? (
                 <LogoutButton
                   label="Logout"
-                  className="mt-1 w-full justify-start rounded-md border-0 px-2.5 py-2 text-sm font-medium text-slate-700 transition hover:bg-red-50 hover:text-red-700"
+                  className="mt-1 w-full justify-start rounded-md border-0 px-2.5 py-2 text-sm font-medium text-slate-700 transition hover:bg-rose-50 hover:text-rose-700"
                 />
               ) : null}
               {showDemoLogout ? <DemoLogoutButton /> : null}

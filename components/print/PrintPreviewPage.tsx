@@ -176,8 +176,8 @@ export function PrintPreviewPage({
 
       {loading && <p className="font-mono text-sm">Memuat preview cetak...</p>}
       {error && (
-        <div className="max-w-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-          <b className="block text-red-900">Preview tidak tersedia</b>
+        <div className="max-w-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+          <b className="block text-rose-900">Preview tidak tersedia</b>
           <p className="mt-1">{error}</p>
         </div>
       )}

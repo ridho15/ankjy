@@ -80,13 +80,13 @@ export function TrialBalanceTable({ initialReport }: Props) {
         className={`aj-surface p-5 border-l-4 ${
           report.isEquilibrium
             ? "border-l-emerald-600 bg-emerald-50/40"
-            : "border-l-red-600 bg-red-50/40"
+            : "border-l-rose-600 bg-rose-50/40"
         }`}
       >
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <span className={`text-base font-bold ${report.isEquilibrium ? "text-emerald-800" : "text-red-800"}`}>
+              <span className={`text-base font-bold ${report.isEquilibrium ? "text-emerald-800" : "text-rose-800"}`}>
                 {report.isEquilibrium
                   ? "NERACA SALDO SEIMBANG (EQUILIBRIUM)"
                   : "PERINGATAN: NERACA SALDO TIDAK SEIMBANG"}
@@ -95,7 +95,7 @@ export function TrialBalanceTable({ initialReport }: Props) {
                 className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold ${
                   report.isEquilibrium
                     ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
-                    : "bg-red-100 text-red-800 border border-red-300"
+                    : "bg-rose-100 text-rose-800 border border-rose-300"
                 }`}
               >
                 {report.isEquilibrium ? "VALID" : "OUT OF BALANCE"}

@@ -95,7 +95,7 @@ export function LoginForm({ className = "" }: { className?: string }) {
       </div>
 
       {message && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700" role="alert">
+        <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm font-medium text-rose-700" role="alert">
           {message}
         </div>
       )}
