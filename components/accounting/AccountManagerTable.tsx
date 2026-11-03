@@ -248,7 +248,7 @@ export function AccountManagerTable({ initialAccounts }: Props) {
                             className={`text-[11px] font-semibold px-2 py-1 rounded transition-colors ${
                               acc.isActive
                                 ? "text-rose-700 hover:bg-rose-50"
-                                : "text-emerald-700 hover:bg-emerald-50"
+                                : "text-blue-700 hover:bg-blue-50"
                             }`}
                           >
                             {isProcessingId === acc.id ? "..." : acc.isActive ? "Nonaktifkan" : "Aktifkan"}

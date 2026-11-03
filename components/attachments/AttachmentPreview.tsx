@@ -30,7 +30,7 @@ export function AttachmentPreview({ url, label = "Lampiran", className = "" }: A
     <div className={`rounded-xl border border-slate-200 bg-slate-50 p-3 ${className}`}>
       <div className="mb-2 flex items-center justify-between gap-3">
         <p className="text-sm font-bold text-slate-800">{label}</p>
-        <a href={cleanUrl} target="_blank" rel="noreferrer" className="text-sm font-semibold text-emerald-700 underline underline-offset-2">
+        <a href={cleanUrl} target="_blank" rel="noreferrer" className="text-sm font-semibold text-blue-600 hover:text-blue-700 underline underline-offset-2">
           Buka file
         </a>
       </div>
