@@ -111,7 +111,7 @@ export function CctvDashboardWidget({
       {/* Header Widget */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-100 shrink-0">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700 border border-blue-100 shrink-0">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
@@ -121,8 +121,8 @@ export function CctvDashboardWidget({
               <h3 className="text-base font-bold text-slate-900 tracking-tight">
                 Pengawasan Meja Packing CCTV
               </h3>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-700 border border-emerald-200">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 animate-pulse" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-bold text-blue-700 border border-blue-200">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
                 Hari Ini
               </span>
             </div>
@@ -139,7 +139,7 @@ export function CctvDashboardWidget({
             onClick={() => setShowLiveStream((prev) => !prev)}
             className={`inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-1.5 text-xs font-bold transition-all shadow-2xs ${
               showLiveStream
-                ? "border-emerald-200 bg-emerald-50 text-emerald-800 hover:bg-emerald-100"
+                ? "border-blue-200 bg-blue-50 text-blue-800 hover:bg-blue-100"
                 : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
             }`}
           >
@@ -299,7 +299,7 @@ export function CctvDashboardWidget({
                       {sale ? (
                         <Link
                           href={`/penjualan/${sale.id}`}
-                          className="block truncate font-mono text-xs font-bold text-emerald-700 hover:underline"
+                          className="block truncate font-mono text-xs font-bold text-blue-600 hover:text-blue-700 hover:underline"
                         >
                           {sale.transactionNumber || item.invoiceNumber || sale.id}
                         </Link>

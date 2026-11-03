@@ -73,7 +73,7 @@ const mockFinancialData: FinancialAiForecastResult = {
 };
 
 describe("AiFinancialForecastView Component", () => {
-  it("renders navigation tabs with consistent emerald primary color classes", () => {
+  it("renders navigation tabs with consistent blue primary color classes", () => {
     const html = renderToStaticMarkup(<AiFinancialForecastView initialData={mockFinancialData} />);
     
     // Check navigation tabs
@@ -82,8 +82,8 @@ describe("AiFinancialForecastView Component", () => {
     expect(html).toContain("Konsultasi Finansial Interaktif");
     
     // Active tab uses primary emerald-600 background and white text
-    expect(html).toContain("bg-emerald-600 text-white shadow-xs");
-    expect(html).toContain("bg-emerald-700 text-emerald-100");
+    expect(html).toContain("bg-blue-600 text-white shadow-xs");
+    expect(html).toContain("bg-blue-700 text-blue-100");
   });
 
   it("renders intuitive cash runway curve chart with SVG and buffer threshold", () => {

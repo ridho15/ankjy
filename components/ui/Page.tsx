@@ -20,7 +20,7 @@ export function PageHeader({
   return (
     <div className={`mb-7 flex flex-col justify-between gap-5 sm:flex-row sm:items-end ${className}`}>
       <div className="min-w-0">
-        {eyebrow ? <p className="text-xs font-bold uppercase tracking-[0.15em] text-emerald-600">{eyebrow}</p> : null}
+        {eyebrow ? <p className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600">{eyebrow}</p> : null}
         <h2 className="aj-page-title mt-1.5 text-3xl font-bold sm:text-[2rem]">{title}</h2>
         {description ? <div className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{description}</div> : null}
       </div>

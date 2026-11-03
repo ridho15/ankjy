@@ -285,7 +285,7 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
                     })}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg border border-emerald-600 bg-emerald-50 px-3 py-2 text-center text-sm font-bold text-emerald-800 hover:bg-emerald-100 transition-colors"
+                    className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-center text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors"
                   >
                     WA Tagihan
                   </a>
@@ -368,7 +368,7 @@ export default async function TempoPage({ searchParams }: { searchParams?: Promi
                           })}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center rounded-lg border border-emerald-600 bg-emerald-50 px-2.5 py-1.5 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition-colors shadow-xs"
+                          className="inline-flex items-center rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
                           title="Kirim Penagihan via WhatsApp"
                         >
                           WA

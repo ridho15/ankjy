@@ -201,8 +201,8 @@ export default async function DeliveryOrdersPage({
           href={isMyTasks ? `/delivery-orders?status=belum_selesai&officerId=${user.id}` : "/delivery-orders?status=belum_selesai&view=all"}
           className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors ${
             isBelumSelesai
-              ? "bg-emerald-700 text-white"
-              : "bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100"
+              ? "bg-slate-900 text-white"
+              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
           }`}
         >
           Belum Selesai

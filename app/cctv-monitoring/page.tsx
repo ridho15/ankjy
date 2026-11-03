@@ -77,7 +77,7 @@ export default async function CctvMonitoringPage({ searchParams }: Props) {
       {/* Header Halaman */}
       <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-emerald-600">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.13em] text-blue-600">
             Sistem & Monitoring
           </p>
           <h2 className="aj-page-title text-3xl font-bold">Monitoring CCTV</h2>

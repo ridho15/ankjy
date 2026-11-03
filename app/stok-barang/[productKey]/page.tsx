@@ -33,7 +33,7 @@ export default async function StockDetailPage({ params, searchParams }: { params
     <AppShell>
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="mb-2 text-xs font-bold uppercase text-emerald-600">Stock</p>
+          <p className="mb-2 text-xs font-bold uppercase text-blue-600">Stock</p>
           <h2 className="aj-page-title text-3xl font-bold">Detail Stok Barang</h2>
           <p className="mt-2 text-sm text-slate-600">Stok ERP per gudang dan rak.</p>
         </div>
@@ -45,7 +45,7 @@ export default async function StockDetailPage({ params, searchParams }: { params
           <section className="aj-surface mb-5 p-5 sm:p-6">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="font-mono text-sm font-semibold text-emerald-700">{result.data.sku}</p>
+                <p className="font-mono text-sm font-semibold text-blue-700">{result.data.sku}</p>
                 <h3 className="mt-1 text-2xl font-bold text-neutral-950">{result.data.productName}</h3>
                 {result.data.productId && <p className="mt-1 text-xs text-neutral-500">Product ID: {result.data.productId}</p>}
               </div>

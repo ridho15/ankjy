@@ -584,7 +584,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
           onClick={() => setActiveTab("cashflow")}
           className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer ${
             activeTab === "cashflow"
-              ? "bg-emerald-600 text-white shadow-xs"
+              ? "bg-blue-600 text-white shadow-xs"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
           }`}
         >
@@ -592,7 +592,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
           <span
             className={`px-1.5 py-0.5 rounded-md text-[10px] font-bold ${
               activeTab === "cashflow"
-                ? "bg-emerald-700 text-emerald-100"
+                ? "bg-blue-700 text-blue-100"
                 : "bg-slate-200 text-slate-700"
             }`}
           >
@@ -605,7 +605,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
           onClick={() => setActiveTab("briefing")}
           className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer ${
             activeTab === "briefing"
-              ? "bg-emerald-600 text-white shadow-xs"
+              ? "bg-blue-600 text-white shadow-xs"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
           }`}
         >
@@ -613,7 +613,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
           <span
             className={`px-1.5 py-0.5 rounded-md text-[10px] font-bold ${
               activeTab === "briefing"
-                ? "bg-emerald-700 text-emerald-100"
+                ? "bg-blue-700 text-blue-100"
                 : "bg-slate-200 text-slate-700"
             }`}
           >
@@ -626,7 +626,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
           onClick={() => setActiveTab("ask")}
           className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-all cursor-pointer ${
             activeTab === "ask"
-              ? "bg-emerald-600 text-white shadow-xs"
+              ? "bg-blue-600 text-white shadow-xs"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
           }`}
         >
@@ -634,7 +634,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
           <span
             className={`px-1.5 py-0.5 rounded-md text-[10px] font-bold ${
               activeTab === "ask"
-                ? "bg-emerald-700 text-emerald-100"
+                ? "bg-blue-700 text-blue-100"
                 : "bg-slate-200 text-slate-700"
             }`}
           >
@@ -733,7 +733,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                     onClick={() => setChartMode("curve")}
                     className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all cursor-pointer ${
                       chartMode === "curve"
-                        ? "bg-emerald-600 text-white shadow-xs"
+                        ? "bg-blue-600 text-white shadow-xs"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
@@ -745,7 +745,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                     onClick={() => setChartMode("bars")}
                     className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all cursor-pointer ${
                       chartMode === "bars"
-                        ? "bg-emerald-600 text-white shadow-xs"
+                        ? "bg-blue-600 text-white shadow-xs"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
@@ -1218,7 +1218,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                     }}
                     className={`rounded-lg px-2.5 py-1 transition cursor-pointer ${
                       debtorFilter === "ALL"
-                        ? "bg-emerald-600 text-white shadow-xs"
+                        ? "bg-blue-600 text-white shadow-xs"
                         : "bg-slate-100 hover:bg-slate-200 text-slate-700"
                     }`}
                   >
@@ -1385,7 +1385,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                         onClick={() => setDebtorPage(pageNum)}
                         className={`rounded-lg px-2.5 py-1 text-xs font-bold transition cursor-pointer ${
                           debtorPage === pageNum
-                            ? "bg-emerald-600 text-white shadow-xs"
+                            ? "bg-blue-600 text-white shadow-xs"
                             : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-100"
                         }`}
                       >
@@ -1485,7 +1485,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                     }}
                     className={`rounded-lg px-2.5 py-1 transition cursor-pointer ${
                       timelineFilterCondition === "ALL"
-                        ? "bg-emerald-600 text-white shadow-xs"
+                        ? "bg-blue-600 text-white shadow-xs"
                         : "bg-slate-100 hover:bg-slate-200 text-slate-700"
                     }`}
                   >
@@ -1649,7 +1649,7 @@ export function AiFinancialForecastView({ initialData }: Props) {
                         onClick={() => setTimelinePage(pageNum)}
                         className={`rounded-lg px-2.5 py-1 text-xs font-bold transition cursor-pointer ${
                           timelinePage === pageNum
-                            ? "bg-emerald-600 text-white shadow-xs"
+                            ? "bg-blue-600 text-white shadow-xs"
                             : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-100"
                         }`}
                       >

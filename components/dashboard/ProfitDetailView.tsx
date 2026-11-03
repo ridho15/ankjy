@@ -180,9 +180,9 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
           <button
             type="button"
             onClick={() => setActiveTab("sales")}
-            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-colors ${
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-colors cursor-pointer ${
               activeTab === "sales"
-                ? "bg-emerald-600 text-white shadow-xs"
+                ? "bg-blue-600 text-white shadow-xs"
                 : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
             }`}
           >
@@ -194,9 +194,9 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
           <button
             type="button"
             onClick={() => setActiveTab("expenses")}
-            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-colors ${
+            className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold transition-colors cursor-pointer ${
               activeTab === "expenses"
-                ? "bg-emerald-600 text-white shadow-xs"
+                ? "bg-blue-600 text-white shadow-xs"
                 : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
             }`}
           >
@@ -278,7 +278,7 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
                     type="button"
                     disabled={curSalesPage <= 1}
                     onClick={() => setSalesPage((p) => Math.max(1, p - 1))}
-                    className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+                    className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer"
                   >
                     Sebelumnya
                   </button>
@@ -286,7 +286,7 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
                     type="button"
                     disabled={curSalesPage >= totalSalesPages}
                     onClick={() => setSalesPage((p) => Math.min(totalSalesPages, p + 1))}
-                    className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+                    className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer"
                   >
                     Berikutnya
                   </button>
@@ -315,28 +315,22 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
                   <tr className="border-b border-slate-200 bg-slate-50 text-[11px] font-bold uppercase tracking-wider text-slate-600">
                     <th className="py-3 px-3.5">Tanggal</th>
                     <th className="py-3 px-3.5">Kategori</th>
-                    <th className="py-3 px-3.5">Vendor / Penerima</th>
-                    <th className="py-3 px-3.5">Deskripsi</th>
-                    <th className="py-3 px-3.5">Rekening</th>
-                    <th className="py-3 px-3.5 text-right">Nominal Beban</th>
-                    <th className="py-3 px-3.5 text-center w-24">Bukti</th>
+                    <th className="py-3 px-3.5">Deskripsi Biaya</th>
+                    <th className="py-3 px-3.5">Sumber Dana Rekening</th>
+                    <th className="py-3 px-3.5 text-right">Nominal Pengeluaran</th>
+                    <th className="py-3 px-3.5 text-center">Bukti / Struk</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {pagedExpenses.map((expense) => (
-                    <tr key={expense.id} className="hover:bg-slate-50/70 transition-colors">
-                      <td className="py-3.5 px-3.5 font-mono text-xs text-slate-600">
-                        {expense.expenseDate}
-                      </td>
+                    <tr key={expense.id} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="py-3.5 px-3.5 font-mono text-xs text-slate-600">{expense.expenseDate}</td>
                       <td className="py-3.5 px-3.5">
-                        <span className="inline-flex rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
+                        <span className="inline-block rounded-md bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-700">
                           {expense.category}
                         </span>
                       </td>
-                      <td className="py-3.5 px-3.5 font-bold text-slate-900">
-                        {expense.vendorName}
-                      </td>
-                      <td className="py-3.5 px-3.5 max-w-xs text-xs text-slate-600 truncate" title={expense.description}>
+                      <td className="py-3.5 px-3.5 font-medium text-slate-900 max-w-xs truncate" title={expense.description}>
                         {expense.description}
                       </td>
                       <td className="py-3.5 px-3.5 text-xs text-slate-600">
@@ -351,7 +345,7 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
                             href={expense.attachmentUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-700 hover:bg-emerald-100"
+                            className="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-700 hover:bg-blue-100"
                           >
                             <span>Struk</span>
                             <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -381,7 +375,7 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
                     type="button"
                     disabled={curExpensesPage <= 1}
                     onClick={() => setExpensesPage((p) => Math.max(1, p - 1))}
-                    className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+                    className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer"
                   >
                     Sebelumnya
                   </button>
@@ -389,7 +383,7 @@ export function ProfitDetailView({ data }: { data: DashboardProfitDetails }) {
                     type="button"
                     disabled={curExpensesPage >= totalExpensesPages}
                     onClick={() => setExpensesPage((p) => Math.min(totalExpensesPages, p + 1))}
-                    className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400"
+                    className="rounded-lg border border-slate-300 bg-white px-3.5 py-1.5 font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 transition disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400 cursor-pointer"
                   >
                     Berikutnya
                   </button>
@@ -418,18 +412,18 @@ function SaleRowItem({
     <>
       <tr
         className={`cursor-pointer transition-colors ${
-          isExpanded ? "bg-emerald-50/40" : "hover:bg-slate-50/80"
+          isExpanded ? "bg-blue-50/40" : "hover:bg-slate-50/80"
         }`}
         onClick={onToggle}
       >
         <td className="py-3.5 pl-4 pr-2 text-slate-400 text-center">
           <button
             type="button"
-            className="p-1 hover:text-slate-700"
+            className="p-1 hover:text-slate-700 cursor-pointer"
             aria-label="Toggle details"
           >
             {isExpanded ? (
-              <svg className="h-4 w-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
             ) : (
@@ -443,7 +437,7 @@ function SaleRowItem({
         <td className="px-3 py-3.5 font-bold text-slate-950">{sale.transactionNumber || sale.id}</td>
         <td className="px-3 py-3.5 text-slate-800 font-medium">{sale.customerName || "Walk-In"}</td>
         <td className="px-3 py-3.5 text-xs text-slate-600">
-          <span className="font-bold text-emerald-700">{sale.tipeCode}</span> • {sale.rekeningNameSnapshot || sale.paymentMethod}
+          <span className="font-bold text-blue-700">{sale.tipeCode}</span> • {sale.rekeningNameSnapshot || sale.paymentMethod}
         </td>
         <td className="px-3 py-3.5 text-right font-mono font-bold text-slate-950">{rupiah(sale.revenue)}</td>
         <td className="px-3 py-3.5 text-right font-mono font-semibold text-amber-700">{rupiah(sale.cost)}</td>

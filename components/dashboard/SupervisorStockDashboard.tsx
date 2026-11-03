@@ -88,8 +88,8 @@ export function SupervisorStockDashboard({
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
           <div>
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-700 border border-emerald-200">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-blue-700 border border-blue-200">
+                <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
                 Supervisor Dashboard
               </span>
               <span className="text-xs text-slate-500">
@@ -286,7 +286,7 @@ export function SupervisorStockDashboard({
               }}
               className={`rounded-lg px-2.5 py-1 transition cursor-pointer ${
                 statusFilter === "ALL_CRITICAL"
-                  ? "bg-emerald-600 text-white shadow-xs"
+                  ? "bg-blue-600 text-white shadow-xs"
                   : "bg-white border border-slate-200 hover:bg-slate-100 text-slate-700"
               }`}
             >
@@ -462,7 +462,7 @@ export function SupervisorStockDashboard({
                     onClick={() => setPage(pageNum)}
                     className={`rounded-lg px-2.5 py-1 text-xs font-bold transition cursor-pointer ${
                       page === pageNum
-                        ? "bg-emerald-600 text-white shadow-xs"
+                        ? "bg-blue-600 text-white shadow-xs"
                         : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-100"
                     }`}
                   >

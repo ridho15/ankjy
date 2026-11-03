@@ -270,8 +270,8 @@ export default async function PanduanPage() {
 
       <section className="aj-surface mb-6 p-5 sm:p-6">
         <div className="mb-5 grid gap-3 lg:grid-cols-3">
-          <div className="rounded-md border border-emerald-100 bg-emerald-50 p-4">
-            <p className="text-xs font-bold uppercase tracking-[0.13em] text-emerald-700">Role aktif</p>
+          <div className="rounded-md border border-blue-100 bg-blue-50/50 p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.13em] text-blue-700">Role aktif</p>
             <p className="mt-1 text-lg font-bold text-slate-950">{roleLabel(role)}</p>
             <p className="mt-1 text-sm text-slate-600">Panduan hanya menampilkan area yang sesuai akses Anda.</p>
           </div>
@@ -320,7 +320,7 @@ export default async function PanduanPage() {
                 <ol className="mt-3 space-y-2">
                   {workflow.steps.map((step, index) => (
                     <li key={step} className="flex gap-2 text-sm leading-6 text-slate-700">
-                      <span className="text-xs font-bold text-emerald-700">{index + 1}.</span>
+                      <span className="text-xs font-bold text-blue-700">{index + 1}.</span>
                       <span>{step}</span>
                     </li>
                   ))}
@@ -342,7 +342,7 @@ export default async function PanduanPage() {
                 <ol className="mt-5 space-y-3">
                   {section.steps.map((step, index) => (
                     <li key={step} className="flex gap-3 text-sm leading-6 text-slate-700">
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">{index + 1}</span>
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-blue-50 text-xs font-bold text-blue-700 border border-blue-200/60">{index + 1}</span>
                       <span>{step}</span>
                     </li>
                   ))}
